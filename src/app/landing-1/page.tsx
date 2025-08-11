@@ -6,6 +6,7 @@ export default function Landing1() {
       <LandingHero
         firstLine="PROVIDING SAFE"
         secondLine="& PROFESSIONAL DRIVING CLASSES"
+        highlightWords={['SAFE', 'PROFESSIONAL']}
       />
       {/* Future sections can be added here */}
     </div>
