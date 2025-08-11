@@ -1,4 +1,4 @@
-import { Header } from '@/components/custom/header';
+import { Header } from '@/components/custom/header/header';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
