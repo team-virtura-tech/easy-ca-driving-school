@@ -9,6 +9,7 @@ export type LandingHeroProps = {
   className?: string;
   firstLine?: string;
   secondLine?: string;
+  highlightWords?: string[];
 };
 
 export const LandingHero = ({
@@ -16,10 +17,40 @@ export const LandingHero = ({
   className,
   firstLine = 'Solutions digitales',
   secondLine = '',
+  highlightWords = [],
 }: LandingHeroProps) => {
   const reduce = useReducedMotion();
   const componentName = 'LandingHero';
   const rootId = id ?? componentName;
+
+  // Function to render text with highlighted words
+  const renderTextWithHighlights = (text: string, highlights: string[]) => {
+    if (!text || highlights.length === 0) {
+      return text;
+    }
+
+    // Create a regex pattern that matches any of the highlight words (case insensitive)
+    const pattern = new RegExp(`\\b(${highlights.join('|')})\\b`, 'gi');
+    const parts = text.split(pattern);
+
+    return parts.map((part, index) => {
+      const isHighlighted = highlights.some(
+        (word) => word.toLowerCase() === part.toLowerCase()
+      );
+
+      if (isHighlighted) {
+        return (
+          <span
+            key={index}
+            className="bg-primary text-primary-foreground px-3 py-1 rounded-lg"
+          >
+            {part}
+          </span>
+        );
+      }
+      return part;
+    });
+  };
 
   return (
     <motion.section
@@ -42,7 +73,7 @@ export const LandingHero = ({
             transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
             className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight text-foreground mb-8"
           >
-            {firstLine}
+            {renderTextWithHighlights(firstLine, highlightWords)}
           </motion.h1>
 
           {secondLine && (
@@ -52,7 +83,7 @@ export const LandingHero = ({
               transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-foreground mb-8"
             >
-              {secondLine}
+              {renderTextWithHighlights(secondLine, highlightWords)}
             </motion.h2>
           )}
 
