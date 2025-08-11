@@ -94,23 +94,13 @@ export const LandingHero = ({
             transition={{ duration: 0.6, delay: 0.6, ease: 'easeOut' }}
             className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-8 text-sm sm:text-base md:text-lg text-muted-foreground"
           >
-            <span className="flex items-center gap-2">
-              Marketing digital
-              <span className="text-foreground">+</span>
-            </span>
-            <span className="flex items-center gap-2">
-              Sites & WebApps
-              <span className="text-foreground">+</span>
-            </span>
-            <span className="flex items-center gap-2">
-              Design UX/UI
-              <span className="text-foreground">+</span>
-            </span>
-            <span className="flex items-center gap-2">
-              IA
-              <span className="text-foreground">+</span>
-            </span>
-            <span>Cloud & Data</span>
+            <span className="flex items-center gap-3">Fremont</span>
+            <span className="w-2 h-2 rounded-full bg-primary shadow-lg shadow-primary/50 animate-pulse"></span>
+            <span className="flex items-center gap-3">San Jose</span>
+            <span className="w-2 h-2 rounded-full bg-primary shadow-lg shadow-primary/50 animate-pulse"></span>
+            <span className="flex items-center gap-3">Santa Clara</span>
+            <span className="w-2 h-2 rounded-full bg-primary shadow-lg shadow-primary/50 animate-pulse"></span>
+            <span className="flex items-center gap-3">Sunnyvale</span>
           </motion.div>
         </div>
       </div>
