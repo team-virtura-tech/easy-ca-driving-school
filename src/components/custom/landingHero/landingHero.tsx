@@ -1,8 +1,14 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { motion, useReducedMotion } from 'framer-motion';
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from 'framer-motion';
 import Image from 'next/image';
+import { useRef } from 'react';
 
 export type LandingHeroProps = {
   id?: string;
@@ -22,6 +28,42 @@ export const LandingHero = ({
   const reduce = useReducedMotion();
   const componentName = 'LandingHero';
   const rootId = id ?? componentName;
+
+  // Parallax scroll refs and transforms
+  const containerRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start end', 'end start'],
+  });
+
+  // Parallax transforms - only apply if motion is not reduced
+  const textY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    reduce ? [0, 0] : [0, -50]
+  );
+  const imageY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    reduce ? [0, 0] : [0, 100]
+  );
+
+  // Image expansion transforms for fullscreen effect
+  const imageContainerScale = useTransform(
+    scrollYProgress,
+    [0.4, 0.7],
+    reduce ? [1, 1] : [1, 1.2]
+  );
+  const imageContainerPadding = useTransform(
+    scrollYProgress,
+    [0.4, 0.7],
+    reduce ? [1, 1] : [1, 0]
+  );
+  const imageBorderRadius = useTransform(
+    scrollYProgress,
+    [0.4, 0.7],
+    reduce ? [16, 16] : [16, 0]
+  );
 
   // Function to render text with highlighted words
   const renderTextWithHighlights = (text: string, highlights: string[]) => {
@@ -54,18 +96,22 @@ export const LandingHero = ({
 
   return (
     <motion.section
+      ref={containerRef}
       id={rootId}
       data-component={componentName}
       initial={reduce ? false : { opacity: 0 }}
       animate={reduce ? {} : { opacity: 1 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className={cn(
-        'relative w-full min-h-screen bg-background flex flex-col',
+        'relative w-full min-h-screen bg-background flex flex-col overflow-hidden',
         className
       )}
     >
       {/* Hero Content - Text Section */}
-      <div className="flex-1 flex items-center justify-center text-center px-4 sm:px-6 lg:px-8 py-20">
+      <motion.div
+        style={{ y: textY }}
+        className="flex-1 flex items-center justify-center text-center px-4 sm:px-6 lg:px-8 py-20"
+      >
         <div className="max-w-screen-xl mx-auto">
           <motion.h1
             initial={reduce ? false : { opacity: 0, y: 32 }}
@@ -103,30 +149,45 @@ export const LandingHero = ({
             <span className="flex items-center gap-3">Sunnyvale</span>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Image Section */}
       <motion.div
+        style={{ y: imageY }}
         initial={reduce ? false : { opacity: 0, y: 40 }}
         animate={reduce ? {} : { opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.8, ease: 'easeOut' }}
-        className="px-4 sm:px-6 lg:px-8 pb-8"
+        className="pb-8"
       >
-        <div className="max-w-screen-2xl mx-auto">
-          <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl">
-            <Image
-              src="/images/landing/student-driver.jpg"
-              alt="Student learning to drive with professional instructor"
-              fill
-              priority
-              className="object-cover object-center grayscale"
-              sizes="(max-width: 768px) 100vw,
+        <motion.div
+          style={{
+            paddingLeft: imageContainerPadding,
+            paddingRight: imageContainerPadding,
+          }}
+          className="px-4 sm:px-6 lg:px-8"
+        >
+          <div className="max-w-screen-2xl mx-auto">
+            <motion.div
+              style={{
+                scale: imageContainerScale,
+                borderRadius: imageBorderRadius,
+              }}
+              className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl"
+            >
+              <Image
+                src="/images/landing/student-driver.jpg"
+                alt="Student learning to drive with professional instructor"
+                fill
+                priority
+                className="object-cover object-center grayscale"
+                sizes="(max-width: 768px) 100vw,
                      (max-width: 1280px) 100vw,
                      100vw"
-            />
-            <div className="absolute inset-0 bg-foreground/10 dark:bg-background/20" />
+              />
+              <div className="absolute inset-0 bg-foreground/10 dark:bg-background/20" />
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </motion.div>
     </motion.section>
   );
