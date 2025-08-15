@@ -3,6 +3,7 @@
 import { LandingHero } from '@/components/custom/landingHero/landingHero';
 import { Pricing } from '@/components/custom/pricing';
 import { TestimonialsCarousel } from '@/components/custom/testimonialsCarousel';
+import { WhyChooseUs } from '@/components/custom/whyChooseUs';
 
 export default function Home() {
   const handleStepClick = (stepId: string) => {
@@ -27,6 +28,8 @@ export default function Home() {
       <TestimonialsCarousel />
 
       <Pricing onPlanSelect={handlePlanSelect} />
+
+      <WhyChooseUs />
 
       {/* Future content */}
       <div className="min-h-screen bg-muted/50 flex items-center justify-center">
