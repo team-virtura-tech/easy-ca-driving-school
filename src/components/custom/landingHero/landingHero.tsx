@@ -264,7 +264,7 @@ export const LandingHero = ({
                   alt="Student learning to drive with professional instructor"
                   fill
                   priority
-                  className="object-cover object-center grayscale"
+                  className="object-cover object-center"
                   sizes="(max-width: 768px) 100vw,
                        (max-width: 1280px) 100vw,
                        100vw"
