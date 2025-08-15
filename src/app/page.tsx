@@ -33,7 +33,7 @@ export default function Home() {
 
       {/* Future content */}
       <div className="min-h-screen bg-muted/50 flex items-center justify-center">
-        <div className="text-center">
+        <div className="text-center max-w-4xl mx-auto px-4">
           <h2 className="text-4xl font-bold mb-4">Future Content</h2>
           <p className="text-lg text-muted-foreground">
             This section allows you to scroll and see the parallax effect above.

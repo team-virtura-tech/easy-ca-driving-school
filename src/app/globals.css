@@ -128,3 +128,68 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Navigation Enhancement Styles */
+@layer components {
+  /* Anti-flicker navigation dropdown - Ultimate solution */
+  .group .group-hover\:scale-100 {
+    pointer-events: none;
+  }
+
+  .group:hover .group-hover\:scale-100 {
+    pointer-events: auto;
+  }
+
+  /* Ensure dropdown bridge works */
+  .group:hover > div:nth-child(2) {
+    display: block;
+  }
+
+  /* Optimize transitions for smoothness */
+  .group .group-hover\:opacity-100 {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform, opacity, visibility;
+  }
+
+  /* Mobile Menu Slide Animation */
+  .sheet-content {
+    transform: translateZ(0);
+    transition: transform 300ms ease-out;
+  }
+
+  /* Navigation Link Hover Effects */
+  .nav-link {
+    @apply relative overflow-hidden;
+  }
+
+  .nav-link::before {
+    content: '';
+    @apply absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-[--color-brand-orange] to-[--color-brand-orange]/80;
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .nav-link:hover::before {
+    @apply w-full;
+  }
+
+  /* Active Navigation Indicator */
+  .nav-link-active {
+    @apply font-medium text-[--color-brand-orange];
+  }
+
+  /* Improved Focus States */
+  .focus-visible\:ring-custom {
+    @apply focus-visible:ring-2 focus-visible:ring-[--color-brand-orange]/50 focus-visible:ring-offset-2 focus-visible:outline-none;
+  }
+
+  /* Mobile Accordion Arrow Animation */
+  .accordion-trigger[data-state='open'] .accordion-arrow {
+    @apply rotate-90;
+  }
+
+  /* Smooth Backdrop Blur */
+  .header-backdrop {
+    @apply bg-background/95 supports-[backdrop-filter]:bg-background/80 backdrop-blur-md;
+  }
+}
