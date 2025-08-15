@@ -48,9 +48,16 @@ export type StepCardProps = {
   index: number;
   onClick?: (stepId: StepId) => void;
   reduce: boolean | null;
+  isMobile?: boolean;
 };
 
-export const StepCard = ({ step, index, onClick, reduce }: StepCardProps) => {
+export const StepCard = ({
+  step,
+  index,
+  onClick,
+  reduce,
+  isMobile,
+}: StepCardProps) => {
   const { id, label, icon: Icon } = step;
 
   return (
@@ -59,7 +66,7 @@ export const StepCard = ({ step, index, onClick, reduce }: StepCardProps) => {
       animate={reduce ? {} : { opacity: 1, y: 0 }}
       transition={{
         duration: 0.4,
-        delay: reduce ? 0 : index * 0.08,
+        delay: reduce ? 0 : isMobile ? index * 0.1 + 0.2 : index * 0.08,
         ease: 'easeOut',
       }}
     >
@@ -283,6 +290,7 @@ export const LandingHero = ({
                     index={index}
                     onClick={onCardClick}
                     reduce={reduce}
+                    isMobile={false}
                   />
                 ))}
               </ul>
@@ -292,7 +300,12 @@ export const LandingHero = ({
       </motion.section>
 
       {/* Mobile Cards - Independent section to avoid scroll transform interference */}
-      <section className="md:hidden px-4 sm:px-6 pt-4 pb-8 bg-background">
+      <motion.section
+        className="md:hidden px-4 sm:px-6 pt-4 pb-8 bg-background"
+        initial={reduce ? false : { opacity: 0, y: 20 }}
+        animate={reduce ? {} : { opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 1.2, ease: 'easeOut' }}
+      >
         <div className="max-w-screen-2xl mx-auto">
           <ul role="list" className="space-y-4">
             {defaultSteps.map((step, index) => (
@@ -302,11 +315,12 @@ export const LandingHero = ({
                 index={index}
                 onClick={onCardClick}
                 reduce={reduce}
+                isMobile={true}
               />
             ))}
           </ul>
         </div>
-      </section>
+      </motion.section>
     </>
   );
 };
