@@ -1,6 +1,7 @@
 'use client';
 
 import { LandingHero } from '@/components/custom/landingHero/landingHero';
+import { TestimonialsCarousel } from '@/components/custom/testimonialsCarousel';
 
 export default function Home() {
   const handleStepClick = (stepId: string) => {
@@ -16,6 +17,8 @@ export default function Home() {
         highlightWords={['SAFE', 'PROFESSIONAL']}
         onCardClick={handleStepClick}
       />
+
+      <TestimonialsCarousel />
 
       {/* Future content */}
       <div className="min-h-screen bg-muted/50 flex items-center justify-center">
