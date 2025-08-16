@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: 'Packages & Pricing - Easy CA Driving School',
@@ -21,10 +22,28 @@ export const metadata: Metadata = {
   },
 };
 
+// Loading component for suspense fallback
+function PackagesLoading() {
+  return (
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto px-4 py-8">
+        <div className="animate-pulse space-y-8">
+          <div className="h-8 bg-muted rounded-md w-1/3"></div>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="h-64 bg-muted rounded-lg"></div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function PackagesPricingLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return <Suspense fallback={<PackagesLoading />}>{children}</Suspense>;
 }
