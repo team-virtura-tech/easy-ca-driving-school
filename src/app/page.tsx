@@ -3,7 +3,7 @@
 import { LandingHero } from '@/components/custom/landingHero/landingHero';
 import { ParallaxBackground } from '@/components/custom/parallaxBackground';
 import { ParallaxSection } from '@/components/custom/parallaxSection';
-import { Pricing } from '@/components/custom/pricing';
+import { PricingPreview } from '@/components/custom/pricingPreview';
 import { ScrollAnimation } from '@/components/custom/scrollAnimation';
 import { ScrollProgress } from '@/components/custom/scrollProgress';
 import { StaggerAnimation } from '@/components/custom/staggerAnimation';
@@ -14,11 +14,6 @@ export default function Home() {
   const handleStepClick = (stepId: string) => {
     console.log('Step clicked:', stepId);
     // Add your navigation or action logic here
-  };
-
-  const handlePlanSelect = (planId: string) => {
-    console.log('Plan selected:', planId);
-    // Add your plan selection logic here
   };
 
   return (
@@ -44,7 +39,7 @@ export default function Home() {
         {/* Pricing Section */}
         <ParallaxSection speed={0.5} direction="down">
           <ScrollAnimation direction="scale" delay={0.1} duration={0.7}>
-            <Pricing onPlanSelect={handlePlanSelect} />
+            <PricingPreview />
           </ScrollAnimation>
         </ParallaxSection>
 
