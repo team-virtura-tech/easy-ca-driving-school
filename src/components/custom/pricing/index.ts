@@ -1,2 +1,5 @@
+export { FAQ } from './FAQ';
+export { Filters } from './Filters';
+export { PackageCard } from './PackageCard';
+export { ParallaxHero } from './ParallaxHero';
 export { Pricing } from './pricing';
-export type { PricingPlan, PricingProps } from './pricing';
