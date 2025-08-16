@@ -1,5 +1,6 @@
 'use client';
 
+import { ContactForm } from '@/components/custom/contactForm';
 import { LandingHero } from '@/components/custom/landingHero/landingHero';
 import { ParallaxBackground } from '@/components/custom/parallaxBackground';
 import { ParallaxSection } from '@/components/custom/parallaxSection';
@@ -48,6 +49,13 @@ export default function Home() {
           <StaggerAnimation direction="up" staggerDelay={0.15} duration={0.6}>
             <WhyChooseUs />
           </StaggerAnimation>
+        </ParallaxSection>
+
+        {/* Contact Form Section */}
+        <ParallaxSection speed={0.2} direction="up">
+          <ScrollAnimation direction="fade" delay={0.1} duration={0.7}>
+            <ContactForm />
+          </ScrollAnimation>
         </ParallaxSection>
       </div>
       <ScrollProgress />
