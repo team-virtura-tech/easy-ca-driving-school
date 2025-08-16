@@ -1,5 +1,6 @@
 'use client';
 
+import { StaggerAnimation } from '@/components/custom/staggerAnimation';
 import { cn } from '@/lib/utils';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Award, Car, Clock, GraduationCap, Shield, Users } from 'lucide-react';
@@ -84,19 +85,11 @@ export const WhyChooseUs = ({
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6">
         {/* Header */}
         <div className="text-center mb-12">
-          <motion.div
-            className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm text-primary font-medium mb-4"
-            initial={reduce ? false : { opacity: 0, y: 20 }}
-            animate={reduce ? {} : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
-          >
-            • Features
-          </motion.div>
           <motion.h2
             className="text-3xl font-bold text-gray-900 dark:text-white md:text-4xl"
             initial={reduce ? false : { opacity: 0, y: 20 }}
             animate={reduce ? {} : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+            transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
           >
             Key benefits that set us apart
           </motion.h2>
@@ -104,28 +97,23 @@ export const WhyChooseUs = ({
             className="text-3xl font-bold text-gray-900 dark:text-white md:text-4xl mt-2"
             initial={reduce ? false : { opacity: 0, y: 20 }}
             animate={reduce ? {} : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
+            transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
           >
             from other driving schools
           </motion.h3>
         </div>
 
         {/* Benefits Grid */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {benefits.map((benefit, index) => {
+        <StaggerAnimation
+          direction="up"
+          staggerDelay={0.2}
+          duration={0.6}
+          className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+        >
+          {benefits.map((benefit) => {
             const IconComponent = benefit.icon;
             return (
-              <motion.div
-                key={benefit.id}
-                className="text-center"
-                initial={reduce ? false : { opacity: 0, y: 20 }}
-                animate={reduce ? {} : { opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.6,
-                  delay: 0.4 + index * 0.1,
-                  ease: 'easeOut',
-                }}
-              >
+              <div key={benefit.id} className="text-center">
                 {/* Icon */}
                 <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 dark:bg-primary/20">
                   <IconComponent className="h-8 w-8 text-primary" />
@@ -138,10 +126,10 @@ export const WhyChooseUs = ({
                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   {benefit.description}
                 </p>
-              </motion.div>
+              </div>
             );
           })}
-        </div>
+        </StaggerAnimation>
 
         {/* Call to Action */}
         <motion.div
@@ -150,7 +138,7 @@ export const WhyChooseUs = ({
           animate={reduce ? {} : { opacity: 1, y: 0 }}
           transition={{
             duration: 0.6,
-            delay: 0.4 + benefits.length * 0.1,
+            delay: 0.7 + 6 * 0.2, // 6 benefits * 0.2 stagger delay
             ease: 'easeOut',
           }}
         >
