@@ -1,7 +1,12 @@
 'use client';
 
 import { LandingHero } from '@/components/custom/landingHero/landingHero';
+import { ParallaxBackground } from '@/components/custom/parallaxBackground';
+import { ParallaxSection } from '@/components/custom/parallaxSection';
 import { Pricing } from '@/components/custom/pricing';
+import { ScrollAnimation } from '@/components/custom/scrollAnimation';
+import { ScrollProgress } from '@/components/custom/scrollProgress';
+import { StaggerAnimation } from '@/components/custom/staggerAnimation';
 import { TestimonialsCarousel } from '@/components/custom/testimonialsCarousel';
 import { WhyChooseUs } from '@/components/custom/whyChooseUs';
 
@@ -17,29 +22,40 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen">
-      <LandingHero
-        firstLine="PROVIDING SAFE"
-        secondLine="& PROFESSIONAL DRIVING CLASSES"
-        highlightWords={['SAFE', 'PROFESSIONAL']}
-        onCardClick={handleStepClick}
-      />
+    <ParallaxBackground>
+      <div className="min-h-screen">
+        {/* Hero Section - already has internal animations */}
+        <ScrollAnimation direction="fade" duration={0.8}>
+          <LandingHero
+            firstLine="PROVIDING SAFE"
+            secondLine="& PROFESSIONAL DRIVING CLASSES"
+            highlightWords={['SAFE', 'PROFESSIONAL']}
+            onCardClick={handleStepClick}
+          />
+        </ScrollAnimation>
 
-      <TestimonialsCarousel />
+        {/* Testimonials Section */}
+        <ParallaxSection speed={0.3} direction="up">
+          <ScrollAnimation direction="up" delay={0.2} duration={0.8}>
+            <TestimonialsCarousel />
+          </ScrollAnimation>
+        </ParallaxSection>
 
-      <Pricing onPlanSelect={handlePlanSelect} />
+        {/* Pricing Section */}
+        <ParallaxSection speed={0.5} direction="down">
+          <ScrollAnimation direction="scale" delay={0.1} duration={0.7}>
+            <Pricing onPlanSelect={handlePlanSelect} />
+          </ScrollAnimation>
+        </ParallaxSection>
 
-      <WhyChooseUs />
-
-      {/* Future content */}
-      <div className="min-h-screen bg-muted/50 flex items-center justify-center">
-        <div className="text-center max-w-4xl mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-4">Future Content</h2>
-          <p className="text-lg text-muted-foreground">
-            This section allows you to scroll and see the parallax effect above.
-          </p>
-        </div>
+        {/* Why Choose Us Section */}
+        <ParallaxSection speed={0.4} direction="up">
+          <StaggerAnimation direction="up" staggerDelay={0.15} duration={0.6}>
+            <WhyChooseUs />
+          </StaggerAnimation>
+        </ParallaxSection>
       </div>
-    </div>
+      <ScrollProgress />
+    </ParallaxBackground>
   );
 }
