@@ -61,7 +61,7 @@ export const GMap = ({ id, className }: GMapProps) => {
       // @ts-expect-error: maplibregl is loaded globally
       const map = new window.maplibregl.Map({
         container: mapRef.current,
-        style: `https://api.maptiler.com/maps/streets/style.json?key=${process.env.MAPTILER}`,
+        style: `https://api.maptiler.com/maps/streets/style.json?key=${process.env.NEXT_PUBLIC_MAPTILER}`,
         center: [-122.0084059, 37.3710304], // Center on first city
         zoom: 10,
       });
