@@ -208,7 +208,7 @@ export default function DMVRoadTestsPage() {
       </section>
 
       {/* How It Works Section */}
-      <section className="py-16 md:py-20">
+      <section className="py-12 md:py-16">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-foreground md:text-4xl">
@@ -220,23 +220,138 @@ export default function DMVRoadTestsPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {dmvTestSteps.map((step, index) => (
-              <Card key={step.id} className="relative text-center">
-                <CardHeader>
-                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-                    <step.icon className="h-8 w-8 text-primary" />
+          <div className="max-w-6xl mx-auto">
+            {dmvTestSteps.map((step, index) => {
+              const stepNumber = String(index + 1).padStart(2, '0');
+              const isEven = index % 2 === 1;
+
+              return (
+                <div key={step.id} className="relative">
+                  {/* Desktop Layout */}
+                  <div className="hidden md:grid md:grid-cols-5 md:gap-8 md:items-center md:min-h-[280px]">
+                    {/* Left Side (2 columns) */}
+                    <div className="col-span-2">
+                      {!isEven ? (
+                        // Odd steps (1, 3): Content on left
+                        <div className="space-y-4 text-right">
+                          <h3 className="text-2xl font-bold text-foreground">
+                            {step.title}
+                          </h3>
+                          <p className="text-muted-foreground leading-relaxed">
+                            {step.description}
+                          </p>
+                          <Button
+                            variant="ghost"
+                            className="gap-2 h-auto p-0 text-primary hover:text-primary/80 ml-auto"
+                          >
+                            Discover More
+                            <step.icon className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      ) : (
+                        // Even steps (2, 4): Image on left
+                        <div className="aspect-[4/3] max-w-sm ml-auto rounded-2xl bg-gradient-to-br from-primary/8 to-primary/3 flex items-center justify-center">
+                          <div className="text-center">
+                            <step.icon className="mx-auto h-12 w-12 text-primary/40 mb-3" />
+                            <p className="text-xs text-muted-foreground/60">
+                              Step {stepNumber}
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Center Step Number & Line (1 column) */}
+                    <div className="col-span-1 flex flex-col items-center justify-start min-h-[280px]">
+                      <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold z-10 relative mt-4">
+                        {stepNumber}
+                      </div>
+                      {index < dmvTestSteps.length - 1 && (
+                        <div className="w-px bg-primary mt-4 flex-1" />
+                      )}
+                    </div>
+
+                    {/* Right Side (2 columns) */}
+                    <div className="col-span-2">
+                      {!isEven ? (
+                        // Odd steps (1, 3): Image on right
+                        <div className="aspect-[4/3] max-w-sm rounded-2xl bg-gradient-to-br from-primary/8 to-primary/3 flex items-center justify-center">
+                          <div className="text-center">
+                            <step.icon className="mx-auto h-12 w-12 text-primary/40 mb-3" />
+                            <p className="text-xs text-muted-foreground/60">
+                              Step {stepNumber}
+                            </p>
+                          </div>
+                        </div>
+                      ) : (
+                        // Even steps (2, 4): Content on right
+                        <div className="space-y-4">
+                          <h3 className="text-2xl font-bold text-foreground">
+                            {step.title}
+                          </h3>
+                          <p className="text-muted-foreground leading-relaxed">
+                            {step.description}
+                          </p>
+                          <Button
+                            variant="ghost"
+                            className="gap-2 h-auto p-0 text-primary hover:text-primary/80"
+                          >
+                            Discover More
+                            <step.icon className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                  <CardTitle className="text-lg">{step.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{step.description}</p>
-                </CardContent>
-                {index < dmvTestSteps.length - 1 && (
-                  <div className="absolute -right-4 top-1/2 hidden h-0.5 w-8 bg-primary/30 lg:block -translate-y-1/2" />
-                )}
-              </Card>
-            ))}
+
+                  {/* Mobile Layout */}
+                  <div className="md:hidden">
+                    <div className="flex gap-4 pb-8">
+                      {/* Step Number & Line */}
+                      <div className="flex flex-col items-center">
+                        <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold">
+                          {stepNumber}
+                        </div>
+                        {index < dmvTestSteps.length - 1 && (
+                          <div className="w-px h-full bg-primary mt-2 flex-1 min-h-[120px]" />
+                        )}
+                      </div>
+
+                      {/* Content */}
+                      <div className="flex-1 space-y-4">
+                        {/* Image */}
+                        <div className="aspect-[4/3] rounded-xl bg-gradient-to-br from-primary/8 to-primary/3 flex items-center justify-center">
+                          <div className="text-center">
+                            <step.icon className="mx-auto h-8 w-8 text-primary/40 mb-2" />
+                            <p className="text-xs text-muted-foreground/60">
+                              Step {stepNumber}
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Text */}
+                        <div className="space-y-3">
+                          <h3 className="text-lg font-bold text-foreground">
+                            {step.title}
+                          </h3>
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            {step.description}
+                          </p>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="gap-1 h-auto p-0 text-primary hover:text-primary/80"
+                          >
+                            Discover More
+                            <step.icon className="h-3 w-3" />
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
