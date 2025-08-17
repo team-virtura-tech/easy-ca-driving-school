@@ -52,11 +52,11 @@ export default function Home() {
         </ParallaxSection>
 
         {/* Contact Form Section */}
-        {/* <ParallaxSection speed={0.2} direction="up">
-          <ScrollAnimation direction="fade" delay={0.1} duration={0.7}> */}
-        <ContactForm />
-        {/* </ScrollAnimation>
-        </ParallaxSection> */}
+        <ParallaxSection speed={0.2} direction="up">
+          <ScrollAnimation direction="fade" delay={0.0} duration={0.7}>
+            <ContactForm />
+          </ScrollAnimation>
+        </ParallaxSection>
       </div>
       <ScrollProgress />
     </ParallaxBackground>
