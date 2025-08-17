@@ -14,13 +14,21 @@ export type FooterProps = {
 
 const routes = [
   { href: '/', label: 'Home' },
-  { href: '/about-us', label: 'About' },
-  { href: '/contact-us', label: 'Contact' },
-  { href: '/drivers-ed/learners-permit', label: 'Drivers Ed' },
-  { href: '/driving-lessons/packages-pricing', label: 'Lessons' },
+  { href: '/driving-lessons/packages-pricing', label: 'Packages & Pricing' },
+  {
+    href: '/driving-lessons/driving-assessments',
+    label: 'Driving Assessments',
+  },
+  { href: '/driving-lessons/dmv-road-tests', label: 'DMV Road Tests' },
+  { href: '/drivers-ed/learners-permit', label: "Learner's Permit" },
   { href: '/traffic-school', label: 'Traffic School' },
+  { href: '/about-us', label: 'About Us' },
+  { href: '/about-us/reviews', label: 'Reviews' },
+  { href: '/about-us/service-area', label: 'Service Area' },
+  { href: '/about-us/our-instructors', label: 'Our Instructors' },
+  { href: '/resources/dmv-practice-tests', label: 'DMV Practice Tests' },
   { href: '/resources/dmv-info', label: 'DMV Info' },
-  { href: '/resources/dmv-practice-tests', label: 'Practice Tests' },
+  { href: '/contact-us', label: 'Contact Us' },
 ];
 
 export const Footer = ({ id, className }: FooterProps) => {
@@ -57,27 +65,37 @@ export const Footer = ({ id, className }: FooterProps) => {
       {/* Center: Navigation links */}
       <nav
         aria-label="Footer navigation"
-        className="flex justify-center md:justify-center"
+        className="flex flex-col justify-center md:justify-center"
       >
-        <ul className="flex flex-wrap justify-center md:justify-center gap-4 md:gap-6">
-          {routes.map((route) => (
-            <li key={route.href}>
-              <Link
-                href={route.href}
-                className={cn(
-                  'hover:underline transition-colors',
-                  pathname === route.href ? 'text-primary font-medium' : ''
-                )}
-              >
-                {route.label}
-              </Link>
-            </li>
+        <h3 className="text-center font-semibold text-base mb-3">
+          Quick Links
+        </h3>
+        <ul className="flex flex-wrap justify-center md:justify-center gap-4 md:gap-6 items-center">
+          {routes.map((route, index) => (
+            <>
+              <li key={route.href}>
+                <Link
+                  href={route.href}
+                  className={cn(
+                    'hover:underline transition-colors',
+                    pathname === route.href ? 'text-primary font-medium' : ''
+                  )}
+                >
+                  {route.label}
+                </Link>
+              </li>
+              {index < routes.length - 1 && (
+                <li key={`dot-${index}`} className="hidden sm:block">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-lg shadow-primary/50 animate-pulse block"></span>
+                </li>
+              )}
+            </>
           ))}
         </ul>
       </nav>
       {/* Right: Map */}
       <div className="flex justify-center md:justify-end w-full md:w-auto">
-        <GMap className="w-full max-w-xs md:max-w-sm" />
+        <GMap className="w-full md:max-w-sm" />
       </div>
     </motion.footer>
   );
