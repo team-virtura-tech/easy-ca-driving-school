@@ -127,7 +127,7 @@ export const ContactForm = ({ id, className, children }: ContactFormProps) => {
         className="relative w-screen min-h-[260px] md:min-h-[320px] lg:min-h-[360px]"
       >
         {/* Road background (stretches full width) */}
-        <div className="absolute inset-0 bg-gradient-to-r from-background to-muted/40 border-y border-primary/20" />
+        <div className="absolute inset-0 bg-gradient-to-r to-muted/40" />
 
         {/* Car (floats above form; allowed to overlap) */}
         <motion.div
@@ -171,7 +171,7 @@ export const ContactForm = ({ id, className, children }: ContactFormProps) => {
                 animate={formVisible ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.4, ease: 'easeOut' }}
                 className={cn(
-                  'bg-background rounded-2xl border border-primary/30 shadow-sm p-5 md:p-6',
+                  'rounded-2xl p-5 md:p-6',
                   isNarrow
                     ? 'w-full' // Full width when narrow
                     : 'order-2 lg:order-1' // Grid positioning when wide
