@@ -1,18 +1,42 @@
 import type { Metadata } from 'next';
 
+import {
+  AssessmentHero,
+  AssessmentProcess,
+  AssessmentTypes,
+  EligibilityAndCta,
+} from '@/components/custom/drivingAssessments';
+
 export const metadata: Metadata = {
-  title: 'Driving Assessments - Easy CA Driving School',
-  description: 'Professional driving assessments to evaluate your skills.',
+  title:
+    'Driving Assessments - Easy CA Driving School | Professional Evaluation',
+  description:
+    'Professional driving assessments for business liability, family safety, and DMV test preparation. 96% pass rate with certified instructors. Schedule your evaluation today.',
+  keywords: [
+    'driving assessment',
+    'driving evaluation',
+    'business driver assessment',
+    'family driving safety',
+    'DMV test preparation',
+    'California driving school',
+    'professional driving instructor',
+    'driving skills evaluation',
+  ],
+  openGraph: {
+    title: 'Professional Driving Assessments | Easy CA Driving School',
+    description:
+      'Expert driving assessments tailored to your needs. Business, family, and DMV preparation evaluations available.',
+    type: 'website',
+  },
 };
 
 export default function DrivingAssessmentsPage() {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold">Driving Assessments</h1>
-      <p className="mt-4 text-muted-foreground">
-        Get a professional assessment of your driving skills with our certified
-        instructors.
-      </p>
-    </div>
+    <main>
+      <AssessmentHero />
+      <AssessmentTypes />
+      <AssessmentProcess />
+      <EligibilityAndCta />
+    </main>
   );
 }
