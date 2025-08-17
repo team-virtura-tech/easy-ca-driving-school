@@ -35,33 +35,39 @@ export const ContactForm = ({ id, className, children }: ContactFormProps) => {
 
   const controls = useAnimation();
   const [formVisible, setFormVisible] = useState(false);
+  const [isNarrow, setIsNarrow] = useState(true);
 
   // Metrics for robust positioning
   const [metrics, setMetrics] = useState({ carW: 0, viewW: 0 });
+  const [carSize, setCarSize] = useState(340); // default car width, will update on resize
   const gap = 16; // right padding so the car never kisses the edge
-
-  // // near the top of the component
-  // const MANUAL_END_OFFSET_X = -141; // 1356 → 1215 (1356 + -141 = 1215)
-
-  // // inside computePositions()
-  // const toX = Math.max(0, viewW - carW - gap) + MANUAL_END_OFFSET_X;
 
   const measure = useCallback(() => {
     const vw = typeof window !== 'undefined' ? window.innerWidth : 0;
-    const cw = carRef.current
-      ? Math.round(carRef.current.getBoundingClientRect().width)
-      : 0;
+
+    // Set isNarrow based on 1150px breakpoint
+    setIsNarrow(vw <= 1150);
+
+    // Dynamically adjust car size depending on viewport width
+    let newCarSize = 280;
+    if (vw < 640) newCarSize = 220;
+    else if (vw < 768) newCarSize = 260;
+    else if (vw < 980) newCarSize = 260;
+    else if (vw < 1024) newCarSize = 300;
+    else if (vw < 1070) newCarSize = 250;
+    else if (vw < 1200) newCarSize = 300;
+    else newCarSize = 360;
+    setCarSize(newCarSize);
+
+    const cw = newCarSize;
     setMetrics({ carW: cw, viewW: vw });
   }, []);
 
   // Keep metrics updated (layout + resize)
   useLayoutEffect(() => {
     measure();
-    const ro = new ResizeObserver(() => measure());
-    if (carRef.current) ro.observe(carRef.current);
     window.addEventListener('resize', measure);
     return () => {
-      ro.disconnect();
       window.removeEventListener('resize', measure);
     };
   }, [measure]);
@@ -128,22 +134,28 @@ export const ContactForm = ({ id, className, children }: ContactFormProps) => {
           ref={carRef}
           animate={controls}
           initial={{ x: 0, opacity: 0 }}
-          className="absolute left-0 -top-30 -translate-x-1/2 z-10 w-[280px] md:w-[340px] lg:w-[420px] pointer-events-none select-none"
+          className={cn(
+            'pointer-events-none select-none flex justify-center',
+            isNarrow
+              ? 'hidden -translate-x-1/1 relative mb-4' // ≤1150px: centered above form
+              : 'absolute -top-1/6 z-10 -translate-x-1/2' // >1150px: let animation handle x positioning
+          )}
+          style={{ width: `${carSize}px` }} // Use dynamic width to match animation
         >
           <Image
             src="/images/landing/white-suv.png"
             alt="Animated car"
-            width={420}
-            height={170}
+            width={carSize}
+            height={carSize}
             className="w-full h-auto object-contain rotate-90"
             priority
           />
         </motion.div>
 
-        {/* CONTENT LAYER: centered container with form; lower z-index so car can pass over */}
+        {/* CONTENT LAYER: on mobile form goes below car */}
         <div className="relative z-0 w-full">
           <div className="mx-auto max-w-[1200px] px-4 md:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-[minmax(360px,520px)_1fr] items-start gap-6 py-4 md:py-6">
+            <div className="flex flex-col lg:grid lg:grid-cols-[minmax(360px,520px)_1fr] items-start gap-6 py-4 md:py-6">
               <motion.div
                 aria-live="polite"
                 initial={
@@ -151,7 +163,7 @@ export const ContactForm = ({ id, className, children }: ContactFormProps) => {
                 }
                 animate={formVisible ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.4, ease: 'easeOut' }}
-                className="bg-background rounded-2xl border border-primary/30 shadow-sm p-5 md:p-6"
+                className="bg-background rounded-2xl border border-primary/30 shadow-sm p-5 md:p-6 order-2 lg:order-1"
               >
                 <div className="mb-4 text-left">
                   <h3 className="text-base md:text-lg font-semibold text-primary">
@@ -210,8 +222,8 @@ export const ContactForm = ({ id, className, children }: ContactFormProps) => {
                 </form>
               </motion.div>
 
-              {/* Spacer column to give the car room on large screens; no z so car can pass over */}
-              <div className="hidden lg:block" aria-hidden />
+              {/* Spacer column for car on desktop */}
+              <div className="hidden lg:block order-1 lg:order-2" aria-hidden />
             </div>
           </div>
         </div>
