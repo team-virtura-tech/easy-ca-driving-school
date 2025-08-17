@@ -192,4 +192,14 @@
   .header-backdrop {
     @apply bg-background/95 supports-[backdrop-filter]:bg-background/80 backdrop-blur-md;
   }
+
+  /* Grid Pattern Background */
+  .bg-grid-pattern {
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      rgba(59, 130, 246, 0.2) 1px,
+      transparent 0
+    );
+    background-size: 20px 20px;
+  }
 }
