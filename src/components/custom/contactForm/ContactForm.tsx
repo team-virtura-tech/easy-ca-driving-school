@@ -31,7 +31,7 @@ export const ContactForm = ({ id, className, children }: ContactFormProps) => {
   const rootRef = useRef<HTMLElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
   const carRef = useRef<HTMLDivElement | null>(null);
-  const inView = useInView(rootRef, { amount: 0.2, once: true });
+  const inView = useInView(rootRef, { amount: 0.8, once: true });
 
   const controls = useAnimation();
   const [formVisible, setFormVisible] = useState(false);
