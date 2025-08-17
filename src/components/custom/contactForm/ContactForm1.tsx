@@ -155,7 +155,14 @@ export const ContactForm = ({ id, className, children }: ContactFormProps) => {
         {/* CONTENT LAYER: on mobile form goes below car */}
         <div className="relative z-0 w-full">
           <div className="mx-auto max-w-[1200px] px-4 md:px-6">
-            <div className="flex flex-col lg:grid lg:grid-cols-[minmax(360px,520px)_1fr] items-start gap-6 py-4 md:py-6">
+            <div
+              className={cn(
+                'items-start gap-6 py-4 md:py-6',
+                isNarrow
+                  ? 'flex flex-col' // Full width on narrow screens
+                  : 'flex flex-col lg:grid lg:grid-cols-[minmax(360px,520px)_1fr]' // Grid layout on wide screens
+              )}
+            >
               <motion.div
                 aria-live="polite"
                 initial={
@@ -163,7 +170,12 @@ export const ContactForm = ({ id, className, children }: ContactFormProps) => {
                 }
                 animate={formVisible ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.4, ease: 'easeOut' }}
-                className="bg-background rounded-2xl border border-primary/30 shadow-sm p-5 md:p-6 order-2 lg:order-1"
+                className={cn(
+                  'bg-background rounded-2xl border border-primary/30 shadow-sm p-5 md:p-6',
+                  isNarrow
+                    ? 'w-full' // Full width when narrow
+                    : 'order-2 lg:order-1' // Grid positioning when wide
+                )}
               >
                 <div className="mb-4 text-left">
                   <h3 className="text-base md:text-lg font-semibold text-primary">
@@ -223,7 +235,12 @@ export const ContactForm = ({ id, className, children }: ContactFormProps) => {
               </motion.div>
 
               {/* Spacer column for car on desktop */}
-              <div className="hidden lg:block order-1 lg:order-2" aria-hidden />
+              {!isNarrow && (
+                <div
+                  className="hidden lg:block order-1 lg:order-2"
+                  aria-hidden
+                />
+              )}
             </div>
           </div>
         </div>
