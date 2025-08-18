@@ -1,15 +1,51 @@
 import type { Metadata } from 'next';
+import {
+  PermitCta,
+  PermitFaq,
+  PermitHero,
+  PermitProcess,
+  PermitRequirements,
+} from './components';
+import {
+  generateFAQStructuredData,
+  generateLearnerPermitStructuredData,
+} from './structured-data';
 
 export const metadata: Metadata = {
-  title: "Driver's Education - Easy CA Driving School",
-  description: 'Complete drivers education courses to get your license.',
+  title: "California Teen Learner's Permit | Easy CA Driving School",
+  description:
+    "Get your California learner's permit with our DMV-approved driver's education course. Step-by-step guide for teens 15½+ to obtain their permit.",
+  keywords:
+    'California learners permit, teen permit, DMV permit test, driver education, driving school',
 };
 
 export default function LearnersPermitPage() {
+  const courseStructuredData = generateLearnerPermitStructuredData();
+  const faqStructuredData = generateFAQStructuredData();
+
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold">Driver&apos;s Education</h1>
-      <p className="mt-4 text-muted-foreground">Learner Permit</p>
-    </div>
+    <>
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(courseStructuredData),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqStructuredData),
+        }}
+      />
+
+      <main className="min-h-screen">
+        <PermitHero />
+        <PermitRequirements />
+        <PermitProcess />
+        <PermitFaq />
+        <PermitCta />
+      </main>
+    </>
   );
 }
