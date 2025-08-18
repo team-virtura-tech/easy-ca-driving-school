@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { motion, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import React from 'react';
 import CircularText from './circularText';
 import { GMap } from './gMap';
 
@@ -72,8 +73,8 @@ export const Footer = ({ id, className }: FooterProps) => {
         </h3>
         <ul className="flex flex-wrap justify-center md:justify-center gap-4 md:gap-6 items-center">
           {routes.map((route, index) => (
-            <>
-              <li key={route.href}>
+            <React.Fragment key={route.href}>
+              <li>
                 <Link
                   href={route.href}
                   className={cn(
@@ -85,11 +86,11 @@ export const Footer = ({ id, className }: FooterProps) => {
                 </Link>
               </li>
               {index < routes.length - 1 && (
-                <li key={`dot-${index}`} className="hidden sm:block">
+                <li className="hidden sm:block">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-lg shadow-primary/50 animate-pulse block"></span>
                 </li>
               )}
-            </>
+            </React.Fragment>
           ))}
         </ul>
       </nav>
