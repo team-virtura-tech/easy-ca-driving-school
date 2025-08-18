@@ -16,6 +16,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
+const showThemeToggle = false;
+
 type NavItem = {
   label: string;
   href: string;
@@ -314,7 +316,7 @@ export const Header = () => {
           <Button asChild className="ml-4">
             <Link href="/contact-us">Book Now</Link>
           </Button>
-          {mounted && <ThemeToggle />}
+          {mounted && showThemeToggle && <ThemeToggle />}
         </div>
 
         {/* Mobile Hamburger Menu */}
@@ -358,7 +360,7 @@ export const Header = () => {
                 <span>(123) 456-7890</span>
               </Link>
 
-              {mounted && (
+              {mounted && showThemeToggle && (
                 <div className="flex items-center justify-between px-4 py-3 rounded-lg bg-accent/20">
                   <span className="text-base font-medium text-muted-foreground">
                     Theme

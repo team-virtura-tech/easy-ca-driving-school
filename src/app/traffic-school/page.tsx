@@ -1,18 +1,28 @@
+import {
+  TrafficSchoolBenefits,
+  TrafficSchoolFaq,
+  TrafficSchoolFeatures,
+  TrafficSchoolHero,
+  TrafficSchoolLicense,
+} from '@/components/custom/trafficSchool';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Traffic School - Easy CA Driving School',
-  description: 'Traffic school courses to help you dismiss tickets.',
+  title: 'Online Traffic School - Dismiss Your Ticket | Easy CA Driving School',
+  description:
+    'Complete DMV-approved online traffic school to dismiss your ticket, clear your driving record, and save on insurance. 24/7 access, mobile-friendly, 400,000+ satisfied students.',
+  keywords:
+    'traffic school, online traffic school, dismiss ticket, California traffic school, DMV approved, clear driving record',
 };
 
 export default function TrafficSchoolPage() {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold">Traffic School</h1>
-      <p className="mt-4 text-muted-foreground">
-        Complete traffic school courses to dismiss tickets and improve your
-        driving record.
-      </p>
-    </div>
+    <main>
+      <TrafficSchoolHero />
+      <TrafficSchoolBenefits />
+      <TrafficSchoolFeatures />
+      <TrafficSchoolLicense />
+      <TrafficSchoolFaq />
+    </main>
   );
 }
