@@ -8,6 +8,7 @@ import {
   useReducedMotion,
 } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, {
   useCallback,
   useEffect,
@@ -193,12 +194,18 @@ export const LandingContact = ({
                     Ready to start your driving journey with the best?
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors">
+                    <Link
+                      href="/contact-us"
+                      className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors text-center"
+                    >
                       Book Your First Lesson
-                    </button>
-                    <button className="px-8 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                    </Link>
+                    <Link
+                      href="/about-us"
+                      className="px-8 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-center"
+                    >
                       Learn More
-                    </button>
+                    </Link>
                   </div>
                 </motion.div>
               </motion.div>

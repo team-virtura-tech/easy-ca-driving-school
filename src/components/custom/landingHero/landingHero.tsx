@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Car, Clock, Users } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 
@@ -96,7 +97,6 @@ export const LandingHero = () => {
                 Professional Assessment Services
               </span>
             </motion.div> */}
-
             {/* Headline */}
             <div className="space-y-4">
               <motion.h1
@@ -132,18 +132,18 @@ export const LandingHero = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <Button size="lg" className="text-base px-8 py-6">
-                Schedule Assessment
+              <Button asChild size="lg" className="text-base px-8 py-6">
+                <Link href="/contact-us">Schedule Assessment</Link>
               </Button>
               <Button
+                asChild
                 variant="outline"
                 size="lg"
                 className="text-base px-8 py-6"
               >
-                Learn More
+                <Link href="/about-us">Learn More</Link>
               </Button>
             </motion.div>
-
             {/* Stats Grid */}
             <motion.div
               initial={reduce ? {} : { opacity: 0, y: 20 }}
