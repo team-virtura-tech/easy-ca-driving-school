@@ -130,7 +130,7 @@ export const PricingPreview = ({
                 </div>
 
                 {/* CTA Button */}
-                <Button
+                {/* <Button
                   asChild
                   className={cn(
                     'w-full group',
@@ -143,7 +143,7 @@ export const PricingPreview = ({
                     View Details
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
-                </Button>
+                </Button> */}
               </div>
             </motion.div>
           ))}
@@ -151,12 +151,16 @@ export const PricingPreview = ({
 
         {/* View All Pricing CTA */}
         <motion.div
-          className="mt-8 text-center"
+          className="mt-8 text-center "
           initial={reduce ? false : { opacity: 0, y: 20 }}
           animate={reduce ? {} : { opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.7, ease: 'easeOut' }}
         >
-          <Button variant="outline" asChild className="group">
+          <Button
+            variant="outline"
+            asChild
+            className="group bg-primary hover:bg-primary/90 text-primary-foreground"
+          >
             <Link href="/driving-lessons/packages-pricing">
               View All Packages & Pricing
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
