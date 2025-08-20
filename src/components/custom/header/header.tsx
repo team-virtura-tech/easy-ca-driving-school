@@ -7,9 +7,15 @@ import {
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
 import { Separator } from '@/components/ui/separator';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { cn } from '@/lib/utils';
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ChevronDown, ChevronRight, Menu, Phone } from 'lucide-react';
 import Link from 'next/link';
@@ -311,7 +317,7 @@ export const Header = () => {
             className="flex items-center space-x-2 text-sm font-medium text-muted-foreground transition-colors hover:text-[--color-brand-orange]"
           >
             <Phone className="h-4 w-4" />
-            <span>(123) 456-7890</span>
+            <span>(888) 299-8911</span>
           </Link>
           <Button asChild className="ml-4">
             <Link href="/contact-us">Book Now</Link>
@@ -338,6 +344,9 @@ export const Header = () => {
             id="mobile-menu"
             className="w-[300px] sm:w-[400px] z-[200]"
           >
+            <VisuallyHidden>
+              <SheetTitle>Navigation Menu</SheetTitle>
+            </VisuallyHidden>
             <nav
               className="mt-16 flex flex-col space-y-2"
               role="navigation"
@@ -357,7 +366,7 @@ export const Header = () => {
                 onClick={() => setIsOpen(false)}
               >
                 <Phone className="h-5 w-5" />
-                <span>(123) 456-7890</span>
+                <span>(888) 299-8911</span>
               </Link>
 
               {mounted && showThemeToggle && (

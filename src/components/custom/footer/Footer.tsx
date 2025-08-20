@@ -4,9 +4,7 @@ import { cn } from '@/lib/utils';
 import { motion, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React from 'react';
 import CircularText from './circularText';
-import { GMap } from './gMap';
 
 export type FooterProps = {
   id?: string;
@@ -47,56 +45,135 @@ export const Footer = ({ id, className }: FooterProps) => {
       transition={{ duration: 0.4, ease: 'easeOut' }}
       className={cn(
         'w-full border-t border-border bg-background text-foreground',
-        'py-6 px-4 md:px-8',
-        'grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-sm',
         className
       )}
     >
-      {/* Left: CircularText */}
-      <div className="flex justify-center md:justify-start mb-2 md:mb-0">
-        <div className="flex w-full justify-center items-center p-8">
-          <CircularText
-            text="EASY*CA*DRIVERS*ED*"
-            spinDuration={20}
-            onHover="speedUp"
-            className="dark:text-white"
-          />
+      {/* Main Footer Content */}
+      <div className="py-12 px-4 md:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+          {/* Left: Brand Section */}
+          <div className="lg:col-span-1 flex flex-col items-center lg:items-start space-y-4">
+            <div className="flex justify-center lg:justify-start">
+              <CircularText
+                text="EASY*CA*DRIVERS*ED*"
+                spinDuration={20}
+                onHover="speedUp"
+                className="dark:text-white"
+              />
+            </div>
+            <p className="text-sm text-muted-foreground text-center lg:text-left max-w-xs">
+              Professional driving education in California. Safe, reliable, and
+              convenient lessons.
+            </p>
+          </div>
+
+          {/* Navigation Links - Split into 2 columns */}
+          <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Services Column */}
+            <nav aria-label="Services navigation">
+              <h3 className="font-semibold text-base mb-4 text-center md:text-left">
+                Our Services
+              </h3>
+              <ul className="space-y-2 text-sm">
+                {routes
+                  .filter(
+                    (route) =>
+                      route.href.includes('/driving-lessons') ||
+                      route.href.includes('/drivers-ed') ||
+                      route.href.includes('/traffic-school')
+                  )
+                  .map((route) => (
+                    <li key={route.href} className="text-center md:text-left">
+                      <Link
+                        href={route.href}
+                        className={cn(
+                          'hover:text-primary transition-colors',
+                          pathname === route.href
+                            ? 'text-primary font-medium'
+                            : 'text-muted-foreground'
+                        )}
+                      >
+                        {route.label}
+                      </Link>
+                    </li>
+                  ))}
+              </ul>
+            </nav>
+
+            {/* Company & Resources Column */}
+            <nav aria-label="Company navigation">
+              <h3 className="font-semibold text-base mb-4 text-center md:text-left">
+                Company & Resources
+              </h3>
+              <ul className="space-y-2 text-sm">
+                {routes
+                  .filter(
+                    (route) =>
+                      route.href.includes('/about-us') ||
+                      route.href.includes('/resources') ||
+                      route.href.includes('/contact-us') ||
+                      route.href === '/'
+                  )
+                  .map((route) => (
+                    <li key={route.href} className="text-center md:text-left">
+                      <Link
+                        href={route.href}
+                        className={cn(
+                          'hover:text-primary transition-colors',
+                          pathname === route.href
+                            ? 'text-primary font-medium'
+                            : 'text-muted-foreground'
+                        )}
+                      >
+                        {route.label}
+                      </Link>
+                    </li>
+                  ))}
+              </ul>
+            </nav>
+          </div>
+
+          {/* Right: Contact & Address */}
+          <div className="lg:col-span-1 space-y-6">
+            {/* Contact Info */}
+            <div className="text-center lg:text-left">
+              <h3 className="font-semibold text-base mb-4">Get In Touch</h3>
+              <div className="space-y-3 text-sm">
+                <div className="flex flex-col space-y-2">
+                  <a
+                    href="tel:+18882998911"
+                    className="text-muted-foreground hover:text-primary transition-colors font-medium"
+                  >
+                    📞 (888) 299-8911
+                  </a>
+                  <a
+                    href="mailto:info@easycadriversed.com"
+                    className="text-muted-foreground hover:text-primary transition-colors break-all"
+                  >
+                    ✉️ info@easycadriversed.com
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Address */}
+            <div className="text-center lg:text-left">
+              <h3 className="font-semibold text-base mb-3">Visit Our Office</h3>
+              <address className="not-italic text-sm text-muted-foreground leading-relaxed">
+                📍 1776 Clear Lake Ave, Suite 200
+                <br />
+                Milpitas, California 95035
+              </address>
+            </div>
+          </div>
         </div>
       </div>
-      {/* Center: Navigation links */}
-      <nav
-        aria-label="Footer navigation"
-        className="flex flex-col justify-center md:justify-center"
-      >
-        <h3 className="text-center font-semibold text-base mb-3">
-          Quick Links
-        </h3>
-        <ul className="flex flex-wrap justify-center md:justify-center gap-4 md:gap-6 items-center">
-          {routes.map((route, index) => (
-            <React.Fragment key={route.href}>
-              <li>
-                <Link
-                  href={route.href}
-                  className={cn(
-                    'hover:underline transition-colors',
-                    pathname === route.href ? 'text-primary font-medium' : ''
-                  )}
-                >
-                  {route.label}
-                </Link>
-              </li>
-              {index < routes.length - 1 && (
-                <li className="hidden sm:block">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-lg shadow-primary/50 animate-pulse block"></span>
-                </li>
-              )}
-            </React.Fragment>
-          ))}
-        </ul>
-      </nav>
-      {/* Right: Map */}
-      <div className="flex justify-center md:justify-end w-full md:w-auto">
-        <GMap className="w-full md:max-w-sm" />
+
+      {/* Copyright Section */}
+      <div className="border-t border-border/50 py-4 px-4 md:px-8">
+        <p className="text-center text-xs text-muted-foreground">
+          © 2025 Easy California Drivers Ed. All rights reserved.
+        </p>
       </div>
     </motion.footer>
   );

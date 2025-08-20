@@ -110,7 +110,7 @@ export const PermitHero = () => {
           >
             <div className="space-y-4">
               <Badge variant="secondary" className="w-fit">
-                DMV Approved Course
+                DMV Licensed Course
               </Badge>
 
               <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
@@ -128,7 +128,7 @@ export const PermitHero = () => {
             <div className="flex flex-wrap gap-4">
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <CheckCircle className="h-4 w-4 text-primary" />
-                <span>DMV Approved</span>
+                <span>DMV Licensed</span>
               </div>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Clock className="h-4 w-4 text-primary" />

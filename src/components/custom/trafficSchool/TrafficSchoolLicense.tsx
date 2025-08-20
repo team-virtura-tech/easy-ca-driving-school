@@ -157,7 +157,7 @@ export const TrafficSchoolLicense = ({
             <div className="mt-8 flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
               <span className="flex items-center gap-2">
                 <Shield className="h-4 w-4 text-green-600" />
-                DMV Approved
+                DMV Licensed
               </span>
               <span className="flex items-center gap-2">
                 <Award className="h-4 w-4 text-blue-600" />

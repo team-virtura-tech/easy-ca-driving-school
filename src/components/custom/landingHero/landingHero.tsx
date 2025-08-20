@@ -1,326 +1,176 @@
 'use client';
 
-import { cn } from '@/lib/utils';
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from 'framer-motion';
-import { BadgeCheck, CalendarClock, Package } from 'lucide-react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { Car, Clock, Users } from 'lucide-react';
 import Image from 'next/image';
-import { useRef } from 'react';
 
-export type StepId = 'package' | 'schedule' | 'drive' | 'pass';
+import { Button } from '@/components/ui/button';
 
-export type Step = {
-  id: StepId;
-  label: string;
+export type StatItemProps = {
   icon: React.ComponentType<{ className?: string }>;
+  value: string;
+  label: string;
 };
 
-// Default steps data
-const defaultSteps: Step[] = [
-  {
-    id: 'package',
-    label: 'Choose Your Package',
-    icon: Package,
-  },
-  {
-    id: 'schedule',
-    label: 'Schedule Your Appointment',
-    icon: CalendarClock,
-  },
-  {
-    id: 'drive',
-    label: 'Start Driving',
-    icon: CalendarClock,
-  },
-  {
-    id: 'pass',
-    label: 'Pass Your Test',
-    icon: BadgeCheck,
-  },
-];
-
-export type StepCardProps = {
-  step: Step;
-  index: number;
-  onClick?: (stepId: StepId) => void;
-  reduce: boolean | null;
-  isMobile?: boolean;
-};
-
-export const StepCard = ({
-  step,
-  index,
-  onClick,
-  reduce,
-  isMobile,
-}: StepCardProps) => {
-  const { id, label, icon: Icon } = step;
+const StatItem = ({ icon: Icon, value }: StatItemProps) => {
+  const reduce = useReducedMotion();
 
   return (
-    <motion.li
-      initial={reduce ? false : { opacity: 0, y: 12 }}
-      animate={reduce ? {} : { opacity: 1, y: 0 }}
-      transition={{
-        duration: 0.4,
-        delay: reduce ? 0 : isMobile ? index * 0.1 + 0.2 : index * 0.08,
-        ease: 'easeOut',
-      }}
+    <motion.div
+      initial={reduce ? {} : { opacity: 0, scale: 0.8 }}
+      animate={reduce ? {} : { opacity: 1, scale: 1 }}
+      transition={{ duration: 0.3 }}
+      className="flex flex-col items-center p-4 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-2xl border border-primary/20"
     >
-      <button
-        onClick={() => onClick?.(id)}
-        aria-label={label}
-        className={cn(
-          'group w-full p-4 md:p-5',
-          'bg-primary text-primary-foreground',
-          'rounded-xl shadow-lg',
-          'hover:shadow-xl hover:scale-105',
-          'transition-all duration-200',
-          'focus:outline-none focus:ring-2 focus:ring-primary-foreground/50 focus:ring-offset-2 focus:ring-offset-primary',
-          'flex flex-col items-center text-center gap-3'
-        )}
-      >
-        <Icon className="w-6 h-6 md:w-7 md:h-7 opacity-90 group-hover:opacity-100 transition-opacity" />
-        <span className="text-sm md:text-base font-medium leading-tight">
-          {label}
-        </span>
-      </button>
-    </motion.li>
+      <Icon className="h-6 w-6 text-primary mb-2" />
+      <div className="text-sm font-bold text-foreground">{value}</div>
+      {/* <div className="text-sm text-muted-foreground text-center">{label}</div> */}
+    </motion.div>
   );
 };
 
-export type LandingHeroProps = {
-  id?: string;
-  className?: string;
-  firstLine?: string;
-  secondLine?: string;
-  highlightWords?: string[];
-  onCardClick?: (stepId: StepId) => void;
-};
-
-export const LandingHero = ({
-  id,
-  className,
-  firstLine = 'Solutions digitales',
-  secondLine = '',
-  highlightWords = [],
-  onCardClick,
-}: LandingHeroProps) => {
+export const LandingHero = () => {
   const reduce = useReducedMotion();
   const componentName = 'LandingHero';
-  const rootId = id ?? componentName;
 
-  // Parallax scroll refs and transforms
-  const containerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start end', 'end start'],
-  });
-
-  // Parallax transforms - only apply if motion is not reduced
-  const textY = useTransform(
-    scrollYProgress,
-    [0, 1],
-    reduce ? [0, 0] : [0, -25]
-  );
-  const imageY = useTransform(
-    scrollYProgress,
-    [0, 1],
-    reduce ? [0, 0] : [0, 25]
-  );
-
-  // Image expansion transforms for fullscreen effect
-  const imageContainerScale = useTransform(
-    scrollYProgress,
-    [0.4, 0.7],
-    reduce ? [1, 1] : [1, 1.2]
-  );
-  const imageContainerPadding = useTransform(
-    scrollYProgress,
-    [0.4, 0.7],
-    reduce ? [1, 1] : [1, 0]
-  );
-  const imageBorderRadius = useTransform(
-    scrollYProgress,
-    [0.4, 0.7],
-    reduce ? [16, 16] : [16, 0]
-  );
-
-  // Function to render text with highlighted words
-  const renderTextWithHighlights = (text: string, highlights: string[]) => {
-    if (!text || highlights.length === 0) {
-      return text;
-    }
-
-    // Create a regex pattern that matches any of the highlight words (case insensitive)
-    const pattern = new RegExp(`\\b(${highlights.join('|')})\\b`, 'gi');
-    const parts = text.split(pattern);
-
-    return parts.map((part, index) => {
-      const isHighlighted = highlights.some(
-        (word) => word.toLowerCase() === part.toLowerCase()
-      );
-
-      if (isHighlighted) {
-        return (
-          <span
-            key={index}
-            className="bg-primary text-primary-foreground px-2 py-1 rounded-md mx-1 inline-block"
-          >
-            {part}
-          </span>
-        );
-      }
-      return part;
-    });
-  };
+  const stats: StatItemProps[] = [
+    {
+      icon: Users,
+      value: 'DMV Approved',
+      label: '1',
+    },
+    {
+      icon: Car,
+      value: 'Dual-Control Cars',
+      label: '2',
+    },
+    {
+      icon: Clock,
+      value: 'Flexible Scheduling',
+      label: '3',
+    },
+  ];
 
   return (
-    <>
-      <motion.section
-        ref={containerRef}
-        id={rootId}
-        data-component={componentName}
-        initial={reduce ? false : { opacity: 0 }}
-        animate={reduce ? {} : { opacity: 1 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        className={cn(
-          'relative w-full bg-background flex flex-col overflow-hidden',
-          className
-        )}
-      >
-        {/* Hero Content - Text Section */}
-        <motion.div
-          style={{ y: textY }}
-          className="flex-1 flex items-center justify-center text-center px-4 sm:px-6 lg:px-8 py-8 md:py-12"
-        >
-          <div className="max-w-screen-xl mx-auto">
-            <motion.h1
-              initial={reduce ? false : { opacity: 0, y: 32 }}
-              animate={reduce ? {} : { opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-              className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight text-foreground mb-2 md:mb-3 leading-tight"
-            >
-              {renderTextWithHighlights(firstLine, highlightWords)}
-            </motion.h1>
+    <section
+      id={componentName}
+      data-component={componentName}
+      className="relative min-h-[80vh] bg-gradient-to-br from-primary/5 via-background to-secondary/10 overflow-hidden"
+    >
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]" />
 
-            {secondLine && (
-              <motion.h2
-                initial={reduce ? false : { opacity: 0, y: 32 }}
-                animate={reduce ? {} : { opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-foreground mb-2 md:mb-3 leading-tight"
-              >
-                {renderTextWithHighlights(secondLine, highlightWords)}
-              </motion.h2>
-            )}
+      {/* Hero Image - Positioned for desktop */}
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1/2 h-[70%] hidden lg:block">
+        <div className="relative w-full h-full">
+          <Image
+            src="/images/landing/student-driver.jpg"
+            alt="Professional driving assessment in progress"
+            fill
+            className="object-cover rounded-l-3xl"
+            sizes="(max-width: 1024px) 0vw, 50vw"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-background/20 rounded-l-3xl" />
+        </div>
+      </div>
 
-            {/* Service Tags */}
-            <motion.div
-              initial={reduce ? false : { opacity: 0, y: 20 }}
-              animate={reduce ? {} : { opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6, ease: 'easeOut' }}
-              className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-8 text-sm sm:text-base md:text-lg text-muted-foreground"
-            >
-              <span className="flex items-center gap-3">DMV Approved</span>
-              <span className="w-2 h-2 rounded-full bg-primary shadow-lg shadow-primary/50 animate-pulse"></span>
-              <span className="flex items-center gap-3">Dual-Control Cars</span>
-              <span className="w-2 h-2 rounded-full bg-primary shadow-lg shadow-primary/50 animate-pulse"></span>
-              <span className="flex items-center gap-3">
-                Flexible Scheduling
-              </span>
-            </motion.div>
-          </div>
-        </motion.div>
-
-        {/* Image Section */}
-        <motion.div
-          style={{ y: imageY }}
-          initial={reduce ? false : { opacity: 0, y: 40 }}
-          animate={reduce ? {} : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8, ease: 'easeOut' }}
-          className="pb-6 relative md:pb-6"
-        >
+      <div className="container mx-auto px-4 md:px-6 py-16 md:py-20 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Content Column */}
           <motion.div
-            style={{
-              paddingLeft: imageContainerPadding,
-              paddingRight: imageContainerPadding,
-            }}
-            className="px-4 sm:px-6 lg:px-8"
+            initial={reduce ? {} : { opacity: 0, x: -20 }}
+            animate={reduce ? {} : { opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="space-y-8"
           >
-            <div className="max-w-screen-2xl mx-auto relative">
-              <motion.div
-                style={{
-                  scale: imageContainerScale,
-                  borderRadius: imageBorderRadius,
-                }}
-                className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl"
+            {/* Badge */}
+            {/* <motion.div
+              initial={reduce ? {} : { opacity: 0, y: 10 }}
+              animate={reduce ? {} : { opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.1 }}
+              className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20"
+            >
+              <Shield className="h-4 w-4 text-primary mr-2" />
+              <span className="text-sm font-medium text-primary">
+                Professional Assessment Services
+              </span>
+            </motion.div> */}
+
+            {/* Headline */}
+            <div className="space-y-4">
+              <motion.h1
+                initial={reduce ? {} : { opacity: 0, y: 20 }}
+                animate={reduce ? {} : { opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
               >
-                <Image
-                  src="/images/landing/student-driver.jpg"
-                  alt="Student learning to drive with professional instructor"
-                  fill
-                  priority
-                  className="object-cover object-center"
-                  sizes="(max-width: 768px) 100vw,
-                       (max-width: 1280px) 100vw,
-                       100vw"
-                />
-                <div className="absolute inset-0 bg-foreground/10 dark:bg-background/20" />
+                <span className="text-foreground">PROVIDING </span>
+                <br />
+                <span className="text-primary">SAFE </span>
+                <span className="text-foreground">& </span>
+                <span className="text-primary">PROFESSIONAL </span>
+                <span className="text-foreground">DRIVING CLASSES</span>
+              </motion.h1>
 
-                {/* Subtle gradient overlay for contrast (bottom only) */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent md:from-black/30" />
-              </motion.div>
+              <motion.p
+                initial={reduce ? {} : { opacity: 0, y: 20 }}
+                animate={reduce ? {} : { opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl"
+              >
+                Get professional evaluation of your driving skills with our
+                certified instructors. Perfect for business liability, family
+                safety, or DMV test preparation.
+              </motion.p>
             </div>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={reduce ? {} : { opacity: 0, y: 20 }}
+              animate={reduce ? {} : { opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-col sm:flex-row gap-4"
+            >
+              <Button size="lg" className="text-base px-8 py-6">
+                Schedule Assessment
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                className="text-base px-8 py-6"
+              >
+                Learn More
+              </Button>
+            </motion.div>
+
+            {/* Stats Grid */}
+            <motion.div
+              initial={reduce ? {} : { opacity: 0, y: 20 }}
+              animate={reduce ? {} : { opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-8"
+            >
+              {stats.map((stat) => (
+                <StatItem key={stat.label} {...stat} />
+              ))}
+            </motion.div>
           </motion.div>
-        </motion.div>
 
-        {/* How it Works Cards Overlay - Desktop only */}
-        <div className="hidden md:block absolute bottom-0 left-0 right-0 px-4 sm:px-6 lg:px-8 pointer-events-none z-10">
-          <div className="max-w-screen-2xl mx-auto pointer-events-auto">
-            <div className="px-6 lg:px-8 pb-8">
-              <ul role="list" className="grid grid-cols-4 gap-4 lg:gap-6">
-                {defaultSteps.map((step, index) => (
-                  <StepCard
-                    key={step.id}
-                    step={step}
-                    index={index}
-                    onClick={onCardClick}
-                    reduce={reduce}
-                    isMobile={false}
-                  />
-                ))}
-              </ul>
-            </div>
+          {/* Mobile Image */}
+          <div className="lg:hidden relative aspect-[4/3] w-full">
+            <Image
+              src="/images/landing/student-driver.jpg"
+              alt="Professional driving assessment in progress"
+              fill
+              className="object-cover rounded-3xl"
+              sizes="(max-width: 1024px) 100vw, 0vw"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent rounded-3xl" />
           </div>
         </div>
-      </motion.section>
-
-      {/* Mobile Cards - Independent section to avoid scroll transform interference */}
-      <motion.section
-        className="md:hidden px-4 sm:px-6 pt-4 pb-8 bg-background"
-        initial={reduce ? false : { opacity: 0, y: 20 }}
-        animate={reduce ? {} : { opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 1.2, ease: 'easeOut' }}
-      >
-        <div className="max-w-screen-2xl mx-auto">
-          <ul role="list" className="space-y-4">
-            {defaultSteps.map((step, index) => (
-              <StepCard
-                key={step.id}
-                step={step}
-                index={index}
-                onClick={onCardClick}
-                reduce={reduce}
-                isMobile={true}
-              />
-            ))}
-          </ul>
-        </div>
-      </motion.section>
-    </>
+      </div>
+    </section>
   );
 };

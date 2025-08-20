@@ -199,7 +199,7 @@ export const Pricing = ({ onPlanSelect, className }: PricingProps) => {
             </Link>
           </Button>
           <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
-            All packages include pickup & drop-off service • DMV approved
+            All packages include pickup & drop-off service • DMV Licensed
             instructors
           </p>
         </motion.div>
