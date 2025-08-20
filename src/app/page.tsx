@@ -12,22 +12,12 @@ import { TestimonialsCarousel } from '@/components/custom/testimonialsCarousel';
 import { WhyChooseUs } from '@/components/custom/whyChooseUs';
 
 export default function Home() {
-  const handleStepClick = (stepId: string) => {
-    console.log('Step clicked:', stepId);
-    // Add your navigation or action logic here
-  };
-
   return (
     <ParallaxBackground>
       <div className="min-h-screen">
         {/* Hero Section - already has internal animations */}
         <ScrollAnimation direction="fade" duration={0.8}>
-          <LandingHero
-            firstLine="PROVIDING SAFE"
-            secondLine="& PROFESSIONAL DRIVING CLASSES"
-            highlightWords={['SAFE', 'PROFESSIONAL']}
-            onCardClick={handleStepClick}
-          />
+          <LandingHero />
         </ScrollAnimation>
 
         {/* Testimonials Section */}
