@@ -47,7 +47,7 @@ export const TrafficSchoolHero = ({
             {/* Badge */}
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
               <Shield className="h-4 w-4" />
-              DMV Approved Traffic School
+              DMV Licensed Traffic School
             </div>
 
             {/* Main Heading */}
@@ -82,7 +82,7 @@ export const TrafficSchoolHero = ({
               <div className="flex items-center gap-2">
                 <Shield className="h-5 w-5 text-primary" />
                 <span className="text-sm font-medium">
-                  <strong className="text-lg">100%</strong> DMV Approved
+                  <strong className="text-lg">100%</strong> DMV Licensed
                 </span>
               </div>
             </div>

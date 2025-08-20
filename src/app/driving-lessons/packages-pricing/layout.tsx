@@ -4,7 +4,7 @@ import { Suspense } from 'react';
 export const metadata: Metadata = {
   title: 'Packages & Pricing - Easy CA Driving School',
   description:
-    'Choose from our flexible driving lesson packages for teens and adults. Professional instruction with pickup & drop-off service. CA DMV approved courses with competitive pricing.',
+    'Choose from our flexible driving lesson packages for teens and adults. Professional instruction with pickup & drop-off service. CA DMV Licensed courses with competitive pricing.',
   keywords: [
     'driving lessons',
     'driving school packages',

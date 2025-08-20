@@ -18,7 +18,7 @@ import Link from 'next/link';
 const benefits = [
   {
     icon: CheckCircle,
-    text: 'DMV Approved Course',
+    text: 'DMV Licensed Course',
   },
   {
     icon: Clock,
@@ -259,7 +259,7 @@ export const PermitCta = () => {
           </p>
           <div className="flex justify-center items-center gap-8 flex-wrap">
             <div className="text-slate-600 text-sm font-medium">
-              DMV Approved
+              DMV Licensed
             </div>
             <div className="text-slate-600 text-sm font-medium">
               BBB Accredited

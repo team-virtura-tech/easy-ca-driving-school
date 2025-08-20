@@ -25,7 +25,7 @@ const requirements = [
     title: 'Driver Education Certificate',
     description:
       'Complete DMV-approved driver education course (required for under 18)',
-    highlight: 'DMV Approved',
+    highlight: 'DMV Licensed',
   },
   {
     icon: User,

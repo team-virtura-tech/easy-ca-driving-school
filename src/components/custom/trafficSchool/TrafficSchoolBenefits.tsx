@@ -44,7 +44,7 @@ const defaultBenefits: Benefit[] = [
   },
   {
     id: 'court-approved',
-    title: 'Court & DMV Approved',
+    title: 'Court & DMV Licensed',
     description:
       'Our courses are fully approved by California courts and the DMV for traffic violation dismissal',
     icon: FileText,
