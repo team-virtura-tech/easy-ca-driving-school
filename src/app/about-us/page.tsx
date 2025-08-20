@@ -61,18 +61,22 @@ export default function AboutUsPage() {
       <section ref={heroRef} className="relative overflow-hidden">
         {/* <div className="container mx-auto px-4 py-16 md:py-24"> */}
         <div className="">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* gap-12 */}
+          <div
+            className="grid grid-cols-1 lg:grid-cols-2 items-center"
+            style={{ backgroundColor: 'var(--primary-foreground)' }}
+          >
             {/* Left Column - Text */}
             <motion.div
               initial={reduce ? {} : { opacity: 0, y: 40 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, ease: 'easeOut' }}
-              className="order-2 lg:order-1 space-y-6 justify-items-center"
+              className="order-2 lg:order-1 space-y-6 justify-items-center pt-12"
             >
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                 Driving Made <span className="text-primary">Easy</span>
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl">
+              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl px-12 pb-12">
                 We&apos;re California&apos;s premier driving school, founded on
                 the belief that learning to drive should be safe, enjoyable, and
                 stress-free. Our expert instructors and proven methods have
@@ -103,44 +107,78 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      {/* Trust Factors Carousel */}
+      {/* Trust Factors Carousel (Auto-scrolling trust strip) */}
       <section
         ref={carouselRef}
-        className="bg-slate-900 text-white py-12 overflow-hidden"
+        className="relative text-white py-3 md:py-4 overflow-hidden"
+        style={{ backgroundColor: 'var(--primary)' }}
+        aria-label="Why trust us"
       >
         <motion.div
-          initial={reduce ? {} : { opacity: 0, y: 20 }}
-          animate={carouselInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="container mx-auto px-4"
+          initial={reduce ? {} : { opacity: 0 }}
+          animate={carouselInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
         >
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-            {trustFactors.map((factor, index) => (
-              <motion.div
-                key={factor.text}
-                initial={reduce ? {} : { opacity: 0, x: -20 }}
-                animate={carouselInView ? { opacity: 1, x: 0 } : {}}
-                transition={{
-                  duration: 0.4,
-                  delay: index * 0.1,
-                  ease: 'easeOut',
-                }}
-                className="flex items-center gap-3 text-sm md:text-base font-medium"
+          <div
+            className="pointer-events-none absolute inset-y-0 left-0 w-12 z-10"
+            // style={{
+            //   background:
+            //     'linear-gradient(to right, var(--primary-foreground), transparent)',
+            // }}
+            aria-hidden="true"
+          />
+          <div
+            className="pointer-events-none absolute inset-y-0 right-0 w-12 z-10"
+            // style={{
+            //   background:
+            //     'linear-gradient(to left, var(--primary-foreground), transparent)',
+            // }}
+            aria-hidden="true"
+          />
+          {/* gap-12 */}
+          <motion.div
+            className="flex items-center min-h-[36px] md:min-h-[40px] px-4"
+            style={{ willChange: 'transform' }}
+            role="list"
+            aria-label="Trust factors carousel"
+            animate={{
+              x: [0, -1000],
+            }}
+            transition={{
+              repeat: Infinity,
+              repeatType: 'loop',
+              duration: 22,
+              ease: 'linear',
+            }}
+          >
+            {/* Repeat trust factors twice for seamless loop */}
+            {[...trustFactors, ...trustFactors].map((factor, idx) => (
+              <div
+                key={idx + '-' + factor.text}
+                className="flex items-center gap-2 text-xs md:text-sm font-medium px-2"
+                role="listitem"
+                tabIndex={-1}
+                aria-label={factor.text}
               >
-                <div className="p-2 bg-white/10 rounded-lg text-white">
+                <span className="p-1 bg-white/10 rounded-md text-white flex items-center justify-center">
                   {factor.icon}
-                </div>
+                </span>
                 <span className="whitespace-nowrap">{factor.text}</span>
-              </motion.div>
+              </div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
       </section>
 
       {/* Story Section - Alternating Layout */}
-      <section ref={storyRef} className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <section ref={storyRef} className="">
+        {/* <div className="container mx-auto px-4"> */}
+        <div className="">
+          {/* gap-12 */}
+          <div
+            className="grid grid-cols-1 lg:grid-cols-2 items-center"
+            style={{ backgroundColor: 'var(--primary-foreground)' }}
+          >
             {/* Image */}
             <motion.div
               initial={reduce ? {} : { opacity: 0, scale: 0.95 }}
@@ -163,18 +201,18 @@ export default function AboutUsPage() {
               initial={reduce ? {} : { opacity: 0, y: 40 }}
               animate={storyInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
-              className="space-y-6"
+              className="justify-items-center space-y-6 pt-12"
             >
               <h2 className="text-3xl md:text-4xl font-bold">
                 Flexible Schedules, Real Results
               </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
+              <p className="text-lg text-muted-foreground leading-relaxed px-12">
                 We understand that every student has unique needs and schedules.
                 That&apos;s why we offer flexible lesson times, personalized
                 instruction, and comprehensive support throughout your learning
                 journey.
               </p>
-              <div className="space-y-4">
+              <div className="space-y-4 px-12 pb-12">
                 <div className="flex items-start gap-3">
                   <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                   <p className="text-muted-foreground">
@@ -210,7 +248,8 @@ export default function AboutUsPage() {
 
       {/* CTA Section */}
       <section className="bg-muted/30 py-16 md:py-24">
-        <div className="container mx-auto px-4">
+        {/* <div className="container mx-auto px-4"> */}
+        <div className="">
           <motion.div
             initial={reduce ? {} : { opacity: 0, y: 20 }}
             whileInView={reduce ? {} : { opacity: 1, y: 0 }}
