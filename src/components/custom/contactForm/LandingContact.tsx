@@ -23,8 +23,12 @@ export type ContactFormProps = {
 };
 
 // NOTE: Do not change the component name per user request
-export const ContactForm = ({ id, className, children }: ContactFormProps) => {
-  const componentName = 'ContactForm';
+export const LandingContact = ({
+  id,
+  className,
+  children,
+}: ContactFormProps) => {
+  const componentName = 'LandingContact';
   const rootId = id ?? componentName;
   const reduceMotion = useReducedMotion();
 
@@ -115,10 +119,7 @@ export const ContactForm = ({ id, className, children }: ContactFormProps) => {
       id={rootId}
       ref={rootRef}
       data-component={componentName}
-      className={cn(
-        'w-full flex flex-col items-center pt-20 lg:pt-24',
-        className
-      )}
+      className={cn('w-full flex flex-col items-center', className)}
       style={{ backgroundColor: 'var(--primary-foreground)' }}
     >
       {/* FULL-BLEED LAYER: road + car animate across the entire viewport width */}
@@ -138,7 +139,7 @@ export const ContactForm = ({ id, className, children }: ContactFormProps) => {
             'pointer-events-none select-none flex justify-center',
             isNarrow
               ? 'hidden -translate-x-1/1 relative mb-4' // ≤1150px: centered above form
-              : 'absolute -top-1/6 z-10 -translate-x-1/2' // >1150px: let animation handle x positioning
+              : 'absolute -top-2/6 z-10 -translate-x-1/2' // >1150px: let animation handle x positioning
           )}
           style={{ width: `${carSize}px` }} // Use dynamic width to match animation
         >
@@ -177,61 +178,29 @@ export const ContactForm = ({ id, className, children }: ContactFormProps) => {
                     : 'order-2 lg:order-1' // Grid positioning when wide
                 )}
               >
-                <div className="mb-4 text-left">
-                  <h3 className="text-base md:text-lg font-semibold text-primary">
-                    Ready to Start?
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    Book your first lesson today
+                {/* Call to Action */}
+                <motion.div
+                  className="text-center mt-16"
+                  initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+                  animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.6,
+                    delay: 0.7 + 6 * 0.2, // 6 benefits * 0.2 stagger delay
+                    ease: 'easeOut',
+                  }}
+                >
+                  <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
+                    Ready to start your driving journey with the best?
                   </p>
-                </div>
-                <form className="flex flex-col gap-3 text-left">
-                  <div className="flex gap-2">
-                    <input
-                      type="text"
-                      name="firstName"
-                      placeholder="First Name"
-                      className="flex-1 rounded-md border border-primary px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                      required
-                    />
-                    <input
-                      type="text"
-                      name="lastName"
-                      placeholder="Last Name"
-                      className="flex-1 rounded-md border border-primary px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                      required
-                    />
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors">
+                      Book Your First Lesson
+                    </button>
+                    <button className="px-8 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                      Learn More
+                    </button>
                   </div>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    className="rounded-md border border-primary px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                    required
-                  />
-                  <input
-                    type="tel"
-                    name="phone"
-                    placeholder="Phone Number"
-                    pattern="[0-9]*"
-                    inputMode="numeric"
-                    className="rounded-md border border-primary px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                    required
-                  />
-                  <textarea
-                    name="message"
-                    placeholder="Message"
-                    rows={3}
-                    className="rounded-md border border-primary px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary resize-none"
-                    required
-                  />
-                  <button
-                    type="submit"
-                    className="mt-2 rounded-md bg-primary text-primary-foreground px-4 py-2 font-medium hover:bg-primary/90 transition-colors"
-                  >
-                    Send Message
-                  </button>
-                </form>
+                </motion.div>
               </motion.div>
 
               {/* Spacer column for car on desktop */}

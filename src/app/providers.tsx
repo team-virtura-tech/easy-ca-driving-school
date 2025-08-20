@@ -1,3 +1,4 @@
+import { Toaster } from '@/components/ui/sonner';
 import { ThemeProvider } from 'next-themes';
 
 // A wrapper that bootstraps next-themes and any other providers
@@ -9,5 +10,6 @@ export const AppProviders = ({ children }: { children: React.ReactNode }) => (
     disableTransitionOnChange
   >
     {children}
+    <Toaster />
   </ThemeProvider>
 );

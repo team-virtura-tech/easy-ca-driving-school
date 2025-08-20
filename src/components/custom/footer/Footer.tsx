@@ -43,10 +43,8 @@ export const Footer = ({ id, className }: FooterProps) => {
       initial={reduceMotion ? false : { opacity: 0, y: 24 }}
       animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: 'easeOut' }}
-      className={cn(
-        'w-full border-t border-border bg-background text-foreground',
-        className
-      )}
+      style={{ backgroundColor: 'var(--primary-foreground)' }}
+      className={cn('w-full border-t border-border text-foreground', className)}
     >
       {/* Main Footer Content */}
       <div className="py-12 px-4 md:px-8">
@@ -170,8 +168,13 @@ export const Footer = ({ id, className }: FooterProps) => {
       </div>
 
       {/* Copyright Section */}
-      <div className="border-t border-border/50 py-4 px-4 md:px-8">
-        <p className="text-center text-xs text-muted-foreground">
+      <div
+        className="border-t border-border/50 py-4 px-4 md:px-8"
+        style={{
+          backgroundColor: 'var(--primary)',
+        }}
+      >
+        <p className="text-center text-md text-foreground">
           © 2025 Easy California Drivers Ed. All rights reserved.
         </p>
       </div>

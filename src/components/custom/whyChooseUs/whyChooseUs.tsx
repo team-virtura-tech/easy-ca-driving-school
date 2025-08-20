@@ -132,7 +132,7 @@ export const WhyChooseUs = ({
         </StaggerAnimation>
 
         {/* Call to Action */}
-        <motion.div
+        {/* <motion.div
           className="text-center mt-16"
           initial={reduce ? false : { opacity: 0, y: 20 }}
           animate={reduce ? {} : { opacity: 1, y: 0 }}
@@ -153,7 +153,7 @@ export const WhyChooseUs = ({
               Learn More
             </button>
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </motion.section>
   );
