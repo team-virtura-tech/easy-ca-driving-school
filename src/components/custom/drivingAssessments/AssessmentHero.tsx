@@ -69,7 +69,7 @@ export const AssessmentHero = () => {
       <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1/2 h-[70%] hidden lg:block">
         <div className="relative w-full h-full">
           <Image
-            src="/images/landing/student-driver.jpg"
+            src="/images/drivingAssessments/driving-assessments.jpg"
             alt="Professional driving assessment in progress"
             fill
             className="object-cover rounded-l-3xl"

@@ -16,6 +16,7 @@ import {
   Users,
 } from 'lucide-react';
 import type { Metadata } from 'next';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title:
@@ -191,16 +192,20 @@ export default function DMVRoadTestsPage() {
                 </Button>
               </div>
             </div>
-
-            {/* Image Placeholder */}
             <div className="relative aspect-[4/3] lg:aspect-square">
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
-                <div className="text-center">
-                  <Car className="mx-auto h-16 w-16 text-primary/60 mb-4" />
-                  <p className="text-muted-foreground">
-                    Professional DMV Road Test Image
-                  </p>
+                <div className="relative w-full h-full">
+                  <Image
+                    src="/images/dmvRoadTests/dmv-road-tests.jpg"
+                    alt="Professional DMV Road Test"
+                    fill
+                    className="object-cover rounded-2xl"
+                    priority
+                  />
                 </div>
+                <p className="text-muted-foreground absolute bottom-4 left-1/2 -translate-x-1/2 bg-background/70 px-2 py-1 rounded text-xs">
+                  Professional DMV Road Test Image
+                </p>
               </div>
             </div>
           </div>
@@ -250,13 +255,38 @@ export default function DMVRoadTestsPage() {
                         </div>
                       ) : (
                         // Even steps (2, 4): Image on left
-                        <div className="aspect-[4/3] max-w-sm ml-auto rounded-2xl bg-gradient-to-br from-primary/8 to-primary/3 flex items-center justify-center">
-                          <div className="text-center">
-                            <step.icon className="mx-auto h-12 w-12 text-primary/40 mb-3" />
-                            <p className="text-xs text-muted-foreground/60">
-                              Step {stepNumber}
-                            </p>
-                          </div>
+                        <div className="ml-auto rounded-2xl bg-gradient-to-br from-primary/8 to-primary/3 flex items-center justify-center overflow-hidden">
+                          {step.id === 'schedule' ? (
+                            <div className="relative aspect-square w-full h-auto">
+                              <Image
+                                src="/images/dmvRoadTests/scheduling.jpg"
+                                alt="Scheduling DMV Test"
+                                fill
+                                className="object-cover rounded-2xl"
+                                priority
+                              />
+                            </div>
+                          ) : step.id === 'pickup' ? (
+                            <div className="relative aspect-square w-full h-auto">
+                              <Image
+                                src="/images/dmvRoadTests/pickup.jpg"
+                                alt="Instructor Pickup for DMV Test"
+                                fill
+                                className="object-cover rounded-2xl"
+                                priority
+                              />
+                            </div>
+                          ) : (
+                            <div className="relative aspect-square w-full h-auto">
+                              <Image
+                                src="/images/dmvRoadTests/test-day-support.jpg"
+                                alt="Instructor Pickup for DMV Test"
+                                fill
+                                className="object-cover rounded-2xl"
+                                priority
+                              />
+                            </div>
+                          )}
                         </div>
                       )}
                     </div>
@@ -275,13 +305,38 @@ export default function DMVRoadTestsPage() {
                     <div className="col-span-2">
                       {!isEven ? (
                         // Odd steps (1, 3): Image on right
-                        <div className="aspect-[4/3] max-w-sm rounded-2xl bg-gradient-to-br from-primary/8 to-primary/3 flex items-center justify-center">
-                          <div className="text-center">
-                            <step.icon className="mx-auto h-12 w-12 text-primary/40 mb-3" />
-                            <p className="text-xs text-muted-foreground/60">
-                              Step {stepNumber}
-                            </p>
-                          </div>
+                        <div className="rounded-2xl bg-gradient-to-br from-primary/8 to-primary/3 flex items-center justify-center overflow-hidden">
+                          {step.id === 'schedule' ? (
+                            <div className="relative aspect-square w-full h-auto">
+                              <Image
+                                src="/images/dmvRoadTests/scheduling.jpg"
+                                alt="Scheduling DMV Test"
+                                fill
+                                className="object-cover rounded-2xl"
+                                priority
+                              />
+                            </div>
+                          ) : step.id === 'pickup' ? (
+                            <div className="relative aspect-square w-full h-auto">
+                              <Image
+                                src="/images/dmvRoadTests/pickup.jpg"
+                                alt="Instructor Pickup for DMV Test"
+                                fill
+                                className="object-cover rounded-2xl"
+                                priority
+                              />
+                            </div>
+                          ) : (
+                            <div className="relative aspect-square w-full h-auto">
+                              <Image
+                                src="/images/dmvRoadTests/pre-test-coaching.jpg"
+                                alt="Pre-Test Coaching"
+                                fill
+                                className="object-cover rounded-2xl"
+                                priority
+                              />
+                            </div>
+                          )}
                         </div>
                       ) : (
                         // Even steps (2, 4): Content on right

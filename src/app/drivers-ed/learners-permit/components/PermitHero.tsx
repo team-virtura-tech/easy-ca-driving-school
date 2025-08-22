@@ -171,7 +171,7 @@ export const PermitHero = () => {
           >
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-2xl">
               <Image
-                src="/images/landing/student-driver.jpg"
+                src="/images/learnersPermit/learners-permit.jpg"
                 alt="Teen learning to drive with instructor"
                 fill
                 className="object-cover"

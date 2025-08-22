@@ -94,7 +94,7 @@ export default function AboutUsPage() {
             >
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
-                  src="/images/landing/student-driving.jpg"
+                  src="/images/aboutUs/drivingMadeEasy.jpg"
                   alt="Student learning to drive with professional instructor"
                   fill
                   className="object-cover"
@@ -187,7 +187,7 @@ export default function AboutUsPage() {
             >
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
-                  src="/images/landing/student-driver.jpg"
+                  src="/images/aboutUs/scheduling.jpg"
                   alt="Happy student celebrating with driving license"
                   fill
                   className="object-cover"
