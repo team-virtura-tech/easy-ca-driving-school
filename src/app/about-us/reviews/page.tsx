@@ -20,7 +20,7 @@ export type Testimonial = {
   date?: string; // ISO
 };
 
-export const defaultTestimonials: Testimonial[] = [
+const defaultTestimonials: Testimonial[] = [
   {
     id: '1',
     name: 'Sarah Johnson',
