@@ -1,0 +1,89 @@
+<svg width="200" height="200" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Graduation Cap -->
+  <g>
+    <!-- Cap Base -->
+    <path
+      d="M20 35 L50 25 L80 35 L75 40 L50 32 L25 40 Z"
+      fill="url(#capGradient)"
+    />
+    
+    <!-- Cap Top -->
+    <path
+      d="M22 35 L50 27 L78 35 L78 42 L50 34 L22 42 Z"
+      fill="url(#capTopGradient)"
+      opacity="0.9"
+    />
+    
+    <!-- Tassel -->
+    <circle cx="75" cy="42" r="2" fill="#fb923c" />
+    <line
+      x1="75"
+      y1="44"
+      x2="75"
+      y2="50"
+      stroke="#fb923c"
+      stroke-width="1.5"
+      stroke-linecap="round"
+    />
+  </g>
+
+  <!-- Steering Wheel -->
+  <g>
+    <!-- Outer Ring -->
+    <circle
+      cx="50"
+      cy="65"
+      r="25"
+      fill="none"
+      stroke="url(#wheelGradient)"
+      stroke-width="4"
+    />
+    
+    <!-- Inner Ring -->
+    <circle
+      cx="50"
+      cy="65"
+      r="18"
+      fill="none"
+      stroke="#f97316"
+      stroke-width="2"
+      opacity="0.7"
+    />
+    
+    <!-- Center Hub -->
+    <circle
+      cx="50"
+      cy="65"
+      r="6"
+      fill="url(#hubGradient)"
+    />
+    
+    <!-- Spokes -->
+    <g stroke="#f97316" stroke-width="3" stroke-linecap="round">
+      <line x1="50" y1="47" x2="50" y2="59" />
+      <line x1="35.5" y1="57.5" x2="44.5" y2="61.5" />
+      <line x1="64.5" y1="57.5" x2="55.5" y2="61.5" />
+    </g>
+  </g>
+
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="capGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1f2937" />
+      <stop offset="100%" stop-color="#f97316" />
+    </linearGradient>
+    <linearGradient id="capTopGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f97316" />
+      <stop offset="100%" stop-color="#fb923c" />
+    </linearGradient>
+    <linearGradient id="wheelGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1f2937" />
+      <stop offset="50%" stop-color="#f97316" />
+      <stop offset="100%" stop-color="#fb923c" />
+    </linearGradient>
+    <linearGradient id="hubGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f97316" />
+      <stop offset="100%" stop-color="#1f2937" />
+    </linearGradient>
+  </defs>
+</svg>
