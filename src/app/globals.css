@@ -8,7 +8,9 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --color-brand-orange: #ff6900;
+  --font-inter: var(--font-inter);
+  --color-primary: var(--primary);
+  --color-brand-orange: var(--primary);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -59,7 +61,7 @@
   --popover-foreground: oklch(0.141 0.005 285.823);
   --primary: oklch(0.705 0.213 47.604);
   --primary-foreground: oklch(0.98 0.016 73.684);
-  --brand-orange: #ff6900;
+  --brand-orange: var(--primary);
   --secondary: oklch(0.967 0.001 286.375);
   --secondary-foreground: oklch(0.21 0.006 285.885);
   --muted: oklch(0.967 0.001 286.375);
@@ -94,7 +96,7 @@
   --popover-foreground: oklch(0.985 0 0);
   --primary: oklch(0.646 0.222 41.116);
   --primary-foreground: oklch(0.98 0.016 73.684);
-  --brand-orange: #ff6900;
+  --brand-orange: var(--primary);
   --secondary: oklch(0.274 0.006 286.033);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.274 0.006 286.033);
@@ -150,6 +152,21 @@
     transform: translateZ(0);
     backface-visibility: hidden;
     will-change: transform, opacity, visibility;
+  }
+
+  /* Logo-specific styles */
+  .font-logo {
+    font-family:
+      var(--font-inter),
+      system-ui,
+      -apple-system,
+      sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+
+  .text-brand-orange {
+    color: var(--primary);
   }
 
   /* Mobile Menu Slide Animation */
