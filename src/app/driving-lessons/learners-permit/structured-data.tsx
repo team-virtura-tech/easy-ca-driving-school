@@ -4,7 +4,7 @@ export const generateLearnerPermitStructuredData = () => {
   return {
     '@context': 'https://schema.org',
     '@type': 'Course',
-    '@id': `${baseUrl}/drivers-ed/learners-permit`,
+    '@id': `${baseUrl}/driving-lessons/learners-permit`,
     name: "California Teen Learner's Permit Course",
     description:
       "DMV-approved online driver education course for California teens to obtain their learner's permit. Start at any age, take the permit test at 15½.",
