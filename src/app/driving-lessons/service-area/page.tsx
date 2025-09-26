@@ -1,4 +1,4 @@
-// app/service-areas/page.tsx (Server Component)
+// app/driving-lessons/service-area/page.tsx (Server Component)
 import {
   AnimatedCard,
   AnimatedInView,
@@ -68,8 +68,8 @@ export default function ServiceAreaPage() {
         </h1>
         <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
           Professional, friendly instructors across multiple California cities.
-          If you don’t see your city listed, reach out — we may still be able to
-          help.
+          If you don&apos;t see your city listed, reach out — we may still be
+          able to help.
         </p>
       </AnimatedSection>
 
@@ -207,7 +207,7 @@ export default function ServiceAreaPage() {
       >
         <div className="inline-flex flex-col items-center gap-3 rounded-2xl border bg-muted/30 px-6 py-6">
           <p className="text-sm text-muted-foreground">
-            Ready to start? We’ll match you with an instructor near you.
+            Ready to start? We&apos;ll match you with an instructor near you.
           </p>
           <a
             href="/book"

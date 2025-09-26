@@ -46,34 +46,22 @@ const navItems: NavItem[] = [
         href: '/driving-lessons/driving-assessments',
       },
       { label: 'DMV Road Tests', href: '/driving-lessons/dmv-road-tests' },
-    ],
-  },
-  {
-    label: "Driver's Ed",
-    href: '/drivers-ed', // This won't be used as a link
-    children: [
       {
         label: "Learner's Permit",
-        href: '/drivers-ed/learners-permit',
+        href: '/driving-lessons/learners-permit',
       },
+      { label: 'Service Area', href: '/driving-lessons/service-area' },
     ],
   },
   { label: 'Traffic School', href: '/traffic-school' },
-  {
-    label: 'About Us',
-    href: '/about-us', // This WILL be used as a link
-    children: [
-      { label: 'Reviews', href: '/about-us/reviews' },
-      { label: 'Service Area', href: '/about-us/service-area' },
-      { label: 'Our Instructors', href: '/about-us/our-instructors' },
-    ],
-  },
+  { label: 'Reviews', href: '/reviews' },
   {
     label: 'Resources',
     href: '/resources', // This won't be used as a link
     children: [
       { label: 'DMV Practice Tests', href: '/resources/dmv-practice-tests' },
       { label: 'DMV Info', href: '/resources/dmv-info' },
+      { label: 'About Us', href: '/about-us' },
     ],
   },
   { label: 'Contact Us', href: '/contact-us' },

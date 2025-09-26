@@ -1,4 +1,4 @@
-// app/instructors/page.tsx (Server Component)
+// app/our-instructors/page.tsx (Server Component)
 import {
   AnimatedCard,
   AnimatedInView,
@@ -58,7 +58,7 @@ const INSTRUCTORS: Instructor[] = [
     years: 6,
     languages: ['English', 'Mandarin'],
     specialties: ['Test readiness', 'Mirror discipline', 'Smooth braking'],
-    bio: 'Clear communication and structured lesson plans so you always know what’s next.',
+    bio: "Clear communication and structured lesson plans so you always know what's next.",
     photo: '/images/aboutUs/maleProfile.png',
   },
   {
@@ -67,7 +67,7 @@ const INSTRUCTORS: Instructor[] = [
     years: 8,
     languages: ['English'],
     specialties: ['Highway merges', 'Route planning', 'Emergency handling'],
-    bio: 'Marcus tailors practice routes to your neighborhood and the DMV you’ll use.',
+    bio: "Marcus tailors practice routes to your neighborhood and the DMV you'll use.",
     photo: '/images/aboutUs/maleProfile.png',
   },
   {
@@ -195,8 +195,8 @@ export default function OurInstructorsPage() {
         className="mt-10 text-center"
       >
         <p className="text-sm text-muted-foreground">
-          Don’t see your city? We often accommodate nearby areas in the South
-          Bay.
+          Don&apos;t see your city? We often accommodate nearby areas in the
+          South Bay.
         </p>
       </AnimatedInView>
     </div>
