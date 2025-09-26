@@ -21,7 +21,7 @@ import { ChevronDown, ChevronRight, Menu, Phone } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { CaliforniaLogo } from '../logo';
+import { ModernDriversEdLogo } from '../logo';
 
 const showThemeToggle = false;
 
@@ -281,10 +281,37 @@ export const Header = () => {
       transition={{ duration: 0.25 }}
       className="sticky top-0 z-[50] w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
     >
+      {/* Licensed Banner */}
+      <div className="bg-primary py-1">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16">
+          <p className="text-center text-xs md:text-sm font-medium text-primary-foreground">
+            <span className="inline-flex items-center gap-1.5">
+              <svg
+                className="w-3 h-3 text-primary-foreground"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              🎓 Licensed & Certified • CA DMV License # E2127
+            </span>
+          </p>
+        </div>
+      </div>
       <div className="flex h-20 items-center justify-between px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16 max-w-none w-full">
         {/* Logo + Company Name */}
         <Link href="/" className="flex items-center">
-          <CaliforniaLogo variant="full" size="md" />
+          <ModernDriversEdLogo
+            size="md"
+            variant="full"
+            colorScheme="gradient"
+          />
+          {/* <CaliforniaLogo variant="full" size="md" /> */}
         </Link>
 
         {/* Desktop Navigation */}

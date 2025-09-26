@@ -136,21 +136,31 @@ export const Footer = ({ id, className }: FooterProps) => {
           <div className="lg:col-span-1 space-y-6">
             {/* Contact Info */}
             <div className="text-center lg:text-left">
-              <h3 className="font-semibold text-base mb-4">Get In Touch</h3>
-              <div className="space-y-3 text-sm">
-                <div className="flex flex-col space-y-2">
+              <h3 className="font-semibold text-base mb-3">Get in Touch</h3>
+              <div className="space-y-2 text-sm">
+                <div className="flex items-center justify-center lg:justify-start gap-2">
+                  <span>📞</span>
                   <a
                     href="tel:+18882998911"
-                    className="text-muted-foreground hover:text-primary transition-colors font-medium"
+                    className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    📞 (888) 299-8911
+                    (888) 299-8911
                   </a>
+                </div>
+                <div className="flex items-center justify-center lg:justify-start gap-2">
+                  <span>✉️</span>
                   <a
                     href="mailto:info@easycadriversed.com"
-                    className="text-muted-foreground hover:text-primary transition-colors break-all"
+                    className="text-muted-foreground hover:text-primary transition-colors"
                   >
                     ✉️ info@easycadriversed.com
                   </a>
+                </div>
+                <div className="flex items-center justify-center lg:justify-start gap-2 pt-2 border-t border-border/30 mt-3">
+                  <span>🏛️</span>
+                  <span className="font-medium text-[--color-brand-orange]">
+                    CA DMV License # E2127
+                  </span>
                 </div>
               </div>
             </div>
