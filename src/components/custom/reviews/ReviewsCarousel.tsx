@@ -1,5 +1,5 @@
 'use client';
-import type { Testimonial } from '@/app/about-us/reviews/page.tsx';
+import type { Testimonial } from '@/app/reviews/page.tsx';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
 import Image from 'next/image';

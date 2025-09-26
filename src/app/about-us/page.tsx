@@ -269,7 +269,7 @@ export default function AboutUsPage() {
                 <Link href="/contact-us">Book Your First Lesson</Link>
               </Button>
               <Button asChild variant="outline" size="lg">
-                <Link href="/about-us/reviews">Read Our Reviews</Link>
+                <Link href="/reviews">Read Our Reviews</Link>
               </Button>
             </div>
           </motion.div>

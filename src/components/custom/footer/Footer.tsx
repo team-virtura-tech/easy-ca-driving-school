@@ -22,9 +22,9 @@ const routes = [
   { href: '/drivers-ed/learners-permit', label: "Learner's Permit" },
   { href: '/traffic-school', label: 'Traffic School' },
   { href: '/about-us', label: 'About Us' },
-  { href: '/about-us/reviews', label: 'Reviews' },
+  { href: '/reviews', label: 'Reviews' },
   { href: '/about-us/service-area', label: 'Service Area' },
-  { href: '/about-us/our-instructors', label: 'Our Instructors' },
+  { href: '/our-instructors', label: 'Our Instructors' },
   { href: '/resources/dmv-practice-tests', label: 'DMV Practice Tests' },
   { href: '/resources/dmv-info', label: 'DMV Info' },
   { href: '/contact-us', label: 'Contact Us' },
@@ -110,6 +110,8 @@ export const Footer = ({ id, className }: FooterProps) => {
                       route.href.includes('/about-us') ||
                       route.href.includes('/resources') ||
                       route.href.includes('/contact-us') ||
+                      route.href.includes('/our-instructors') ||
+                      route.href.includes('/reviews') ||
                       route.href === '/'
                   )
                   .map((route) => (

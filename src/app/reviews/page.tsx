@@ -208,7 +208,7 @@ const defaultTestimonials: Testimonial[] = [
     role: 'New Driver',
     avatar: '/images/landing/student-driver.jpg',
     content:
-      'I was terrified of hill starts—now they are easy. Couldn’t recommend more!',
+      "I was terrified of hill starts—now they are easy. Couldn't recommend more!",
     rating: 5,
     city: 'Sunnyvale',
     tags: ['Beginners'],
@@ -244,7 +244,7 @@ const defaultTestimonials: Testimonial[] = [
     role: 'Student',
     avatar: '/images/aboutUs/maleProfile.png',
     content:
-      'Patient, positive, and super knowledgeable. The best learning experience I’ve had.',
+      "Patient, positive, and super knowledgeable. The best learning experience I've had.",
     rating: 5,
     city: 'San Jose',
     tags: ['Confidence Building'],
