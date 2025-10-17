@@ -2,6 +2,8 @@
 import { AnimatedSection } from '@/components/custom/Animated';
 import { MasonryWall } from '@/components/custom/reviews/MasonryWall';
 import type { Metadata } from 'next';
+import { siFacebook, siGoogle, siYelp } from 'simple-icons';
+
 export const metadata: Metadata = {
   title: 'Student Reviews - Easy CA Driving School',
   description:
@@ -301,30 +303,60 @@ export default function ReviewsPage() {
         transition={{ duration: 0.45 }}
       >
         <div className="rounded-2xl border bg-muted/30 p-5">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-center">
             <div>
-              <p className="text-2xl font-semibold">{avg.toFixed(1)}★</p>
+              <p className="text-2xl font-semibold">
+                {avg.toFixed(1)}
+                <span className="text-amber-400">★</span>
+              </p>
               <p className="text-xs text-muted-foreground">Average Rating</p>
             </div>
             <div>
               <p className="text-2xl font-semibold">{reviewCount}+</p>
               <p className="text-xs text-muted-foreground">Student Reviews</p>
             </div>
-            <div>
+            <div className="col-span-2 lg:col-span-1">
               <p className="text-2xl font-semibold">4 Cities</p>
               <p className="text-xs text-muted-foreground">
                 Milpitas • Fremont • San Jose • Sunnyvale
               </p>
             </div>
-            <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
-              <span className="rounded-full border px-2 py-1 bg-background">
-                Google
+            <div className="col-span-2 lg:col-span-1 flex items-center justify-center gap-1 lg:gap-2 text-xs text-muted-foreground">
+              <span className="rounded-full border px-2 lg:px-3 py-1 lg:py-1.5 bg-background flex items-center gap-1 lg:gap-1.5">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  style={{ color: siGoogle.hex }}
+                >
+                  <path d={siGoogle.path} />
+                </svg>
+                <span className="hidden lg:inline">Google</span>
               </span>
-              <span className="rounded-full border px-2 py-1 bg-background">
-                Yelp
+              <span className="rounded-full border px-2 lg:px-3 py-1 lg:py-1.5 bg-background flex items-center gap-1 lg:gap-1.5">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  style={{ color: siYelp.hex }}
+                >
+                  <path d={siYelp.path} />
+                </svg>
+                <span className="hidden lg:inline">Yelp</span>
               </span>
-              <span className="rounded-full border px-2 py-1 bg-background">
-                Facebook
+              <span className="rounded-full border px-2 lg:px-3 py-1 lg:py-1.5 bg-background flex items-center gap-1 lg:gap-1.5">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  style={{ color: siFacebook.hex }}
+                >
+                  <path d={siFacebook.path} />
+                </svg>
+                <span className="hidden lg:inline">Facebook</span>
               </span>
             </div>
           </div>

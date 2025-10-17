@@ -9,6 +9,7 @@ import {
   Heart,
   ShieldCheck,
 } from 'lucide-react';
+import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -176,11 +177,14 @@ const AssessmentCard = ({
 
         {/* CTA Button */}
         <Button
+          asChild
           className="w-full group/button"
           variant={assessment.recommended ? 'default' : 'outline'}
         >
-          Schedule Assessment
-          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/button:translate-x-1" />
+          <Link href={`/contact-us?service=assessment&type=${assessment.id}`}>
+            Book an Appointment
+            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/button:translate-x-1" />
+          </Link>
         </Button>
       </Card>
     </motion.div>

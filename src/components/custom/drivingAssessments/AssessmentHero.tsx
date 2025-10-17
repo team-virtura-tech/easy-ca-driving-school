@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Clock, Shield, Star, Users } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 
@@ -134,15 +135,16 @@ export const AssessmentHero = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <Button size="lg" className="text-base px-8 py-6">
-                Schedule Assessment
+              <Button asChild size="lg" className="text-base px-8 py-6">
+                <Link href="/contact-us">Book an Appointment</Link>
               </Button>
               <Button
+                asChild
                 variant="outline"
                 size="lg"
                 className="text-base px-8 py-6"
               >
-                Learn More
+                <a href="#AssessmentProcess">Learn More</a>
               </Button>
             </motion.div>
 
@@ -162,7 +164,7 @@ export const AssessmentHero = () => {
           {/* Mobile Image */}
           <div className="lg:hidden relative aspect-[4/3] w-full">
             <Image
-              src="/images/landing/student-driver.jpg"
+              src="/images/drivingAssessments/driving-assessments.jpg"
               alt="Professional driving assessment in progress"
               fill
               className="object-cover rounded-3xl"

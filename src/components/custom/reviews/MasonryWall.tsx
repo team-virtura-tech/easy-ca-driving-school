@@ -14,7 +14,7 @@ function Stars({ rating }: { rating: number }) {
       {Array.from({ length: 5 }).map((_, i) => (
         <Star
           key={i}
-          className={`size-4 ${i < rating ? 'text-yellow-500' : 'text-muted-foreground/40'}`}
+          className={`size-4 ${i < rating ? 'text-amber-400' : 'text-muted-foreground/40'}`}
           fill={i < rating ? 'currentColor' : 'none'}
         />
       ))}

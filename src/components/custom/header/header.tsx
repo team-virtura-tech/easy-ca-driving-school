@@ -155,8 +155,8 @@ export const Header = () => {
         <div className="absolute top-full left-0 w-full h-2 bg-transparent group-hover:block hidden" />
 
         {/* Dropdown Content */}
-        <div className="absolute top-full left-0 z-[9999] mt-2 w-48 scale-95 opacity-0 invisible group-hover:scale-100 group-hover:opacity-100 group-hover:visible transition-all duration-150 ease-out origin-top">
-          <div className="rounded-lg border bg-background shadow-2xl py-2 backdrop-blur-sm">
+        <div className="absolute top-full left-0 z-[9999] mt-2 min-w-max scale-95 opacity-0 invisible group-hover:scale-100 group-hover:opacity-100 group-hover:visible transition-all duration-150 ease-out origin-top">
+          <div className="rounded-lg border bg-background shadow-2xl py-2 backdrop-blur-sm whitespace-nowrap">
             {/* Main link as first item - only for About Us */}
             {item.label === 'About Us' && (
               <>
@@ -303,9 +303,9 @@ export const Header = () => {
           </p>
         </div>
       </div>
-      <div className="flex h-20 items-center justify-between px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16 max-w-none w-full">
+      <div className="flex h-24 items-center justify-between px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16 max-w-none w-full">
         {/* Logo + Company Name */}
-        <Link href="/" className="flex items-center">
+        <Link href="/" className="flex items-center py-2">
           <ModernDriversEdLogo
             size="md"
             variant="full"
@@ -316,7 +316,7 @@ export const Header = () => {
 
         {/* Desktop Navigation */}
         <nav
-          className="hidden md:flex md:items-center md:space-x-8"
+          className="hidden xl:flex xl:items-center xl:space-x-8"
           role="navigation"
           aria-label="Main navigation"
         >
@@ -326,7 +326,7 @@ export const Header = () => {
         </nav>
 
         {/* Desktop Right Section */}
-        <div className="hidden md:flex md:items-center md:space-x-4">
+        <div className="hidden xl:flex xl:items-center xl:space-x-4">
           <Link
             href="tel:+11234567890"
             className="flex items-center space-x-2 text-sm font-medium text-muted-foreground transition-colors hover:text-[--color-brand-orange]"
@@ -342,7 +342,7 @@ export const Header = () => {
 
         {/* Mobile Hamburger Menu */}
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTrigger asChild className="md:hidden">
+          <SheetTrigger asChild className="xl:hidden">
             <Button
               variant="ghost"
               size="icon"
@@ -357,45 +357,49 @@ export const Header = () => {
           <SheetContent
             side="right"
             id="mobile-menu"
-            className="w-[300px] sm:w-[400px] z-[200]"
+            className="w-[300px] sm:w-[400px] md:w-[450px] lg:w-[500px] z-[200] flex flex-col p-0"
           >
             <VisuallyHidden>
               <SheetTitle>Navigation Menu</SheetTitle>
             </VisuallyHidden>
-            <nav
-              className="mt-16 flex flex-col space-y-2"
-              role="navigation"
-              aria-label="Mobile navigation"
-            >
-              {navItems.map((item) => (
-                <MobileNavItem key={item.href} item={item} />
-              ))}
-            </nav>
 
-            <Separator className="my-6" />
-
-            <div className="space-y-4 px-2">
-              <Link
-                href="tel:+11234567890"
-                className="flex items-center space-x-3 px-4 py-3 text-base font-medium text-foreground transition-all duration-200 hover:text-[--color-brand-orange] hover:bg-accent/50 rounded-lg"
-                onClick={() => setIsOpen(false)}
+            {/* Navigation Content */}
+            <div className="flex-1 overflow-y-auto px-6 pt-16 pb-4">
+              <nav
+                className="flex flex-col space-y-2"
+                role="navigation"
+                aria-label="Mobile navigation"
               >
-                <Phone className="h-5 w-5" />
-                <span>(888) 299-8911</span>
-              </Link>
+                {navItems.map((item) => (
+                  <MobileNavItem key={item.href} item={item} />
+                ))}
+              </nav>
 
-              {mounted && showThemeToggle && (
-                <div className="flex items-center justify-between px-4 py-3 rounded-lg bg-accent/20">
-                  <span className="text-base font-medium text-muted-foreground">
-                    Theme
-                  </span>
-                  <ThemeToggle />
-                </div>
-              )}
+              <Separator className="my-6" />
+
+              <div className="space-y-4">
+                <Link
+                  href="tel:+11234567890"
+                  className="flex items-center space-x-3 px-4 py-3 text-base font-medium text-foreground transition-all duration-200 hover:text-[--color-brand-orange] hover:bg-accent/50 rounded-lg"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <Phone className="h-5 w-5" />
+                  <span>(888) 299-8911</span>
+                </Link>
+
+                {mounted && showThemeToggle && (
+                  <div className="flex items-center justify-between px-4 py-3 rounded-lg bg-accent/20">
+                    <span className="text-base font-medium text-muted-foreground">
+                      Theme
+                    </span>
+                    <ThemeToggle />
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Sticky CTA Button */}
-            <div className="absolute bottom-4 left-4 right-4">
+            <div className="border-t border-border/50 p-6">
               <Button asChild className="w-full" size="lg">
                 <Link href="/contact-us" onClick={() => setIsOpen(false)}>
                   Book Now

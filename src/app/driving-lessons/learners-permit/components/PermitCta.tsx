@@ -2,35 +2,37 @@
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import { motion, useReducedMotion } from 'framer-motion';
 import {
   ArrowRight,
   CheckCircle,
   Clock,
-  Mail,
   Phone,
   Star,
   Users,
 } from 'lucide-react';
 import Link from 'next/link';
 
-const benefits = [
+const keyBenefits = [
   {
     icon: CheckCircle,
-    text: 'DMV Licensed Course',
+    title: 'DMV Licensed Course',
+    description: 'State-approved curriculum',
   },
   {
     icon: Clock,
-    text: 'Complete at Your Own Pace',
+    title: 'Flexible Learning',
+    description: 'Study at your own pace',
   },
   {
     icon: Users,
-    text: 'Expert Instructor Support',
+    title: 'Expert Support',
+    description: '24/7 instructor assistance',
   },
   {
     icon: Star,
-    text: '98% Pass Rate',
+    title: '98% Success Rate',
+    description: 'Proven track record',
   },
 ];
 
@@ -41,7 +43,7 @@ const stats = [
   },
   {
     number: '30,000+',
-    label: 'Certified Drivers',
+    label: 'Students Certified',
   },
   {
     number: '98%',
@@ -49,7 +51,7 @@ const stats = [
   },
   {
     number: '24/7',
-    label: 'Online Access',
+    label: 'Support Available',
   },
 ];
 
@@ -101,7 +103,7 @@ export const PermitCta = () => {
               variant="secondary"
               className="bg-primary/10 text-primary border-primary/20"
             >
-              Ready to Start?
+              Ready to Start Your Journey?
             </Badge>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl text-slate-900">
               Get Your California Learner&apos;s Permit{' '}
@@ -109,25 +111,32 @@ export const PermitCta = () => {
             </h2>
             <p className="text-lg text-slate-600 max-w-3xl mx-auto">
               Join thousands of successful students who started their driving
-              journey with us. Begin your DMV-approved driver education course
-              now.
+              journey with us. Complete our DMV-approved course and get expert
+              support every step of the way.
             </p>
           </motion.div>
 
-          {/* Benefits */}
+          {/* Key Benefits Grid */}
           <motion.div
             variants={reduce ? {} : itemVariants}
-            className="flex flex-wrap justify-center gap-6 md:gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
           >
-            {benefits.map((benefit, index) => {
+            {keyBenefits.map((benefit, index) => {
               const IconComponent = benefit.icon;
               return (
                 <div
                   key={index}
-                  className="flex items-center gap-2 text-slate-700"
+                  className="text-center p-4 rounded-lg bg-white/50 border border-slate-200"
                 >
-                  <IconComponent className="h-5 w-5 text-primary" />
-                  <span className="text-sm font-medium">{benefit.text}</span>
+                  <div className="bg-primary/10 p-3 rounded-full w-fit mx-auto mb-3">
+                    <IconComponent className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="font-semibold text-slate-900 mb-1">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-sm text-slate-600">
+                    {benefit.description}
+                  </p>
                 </div>
               );
             })}
@@ -180,69 +189,6 @@ export const PermitCta = () => {
                 <div className="text-sm text-slate-500">{stat.label}</div>
               </div>
             ))}
-          </motion.div>
-        </motion.div>
-
-        {/* Contact Cards */}
-        <motion.div
-          variants={reduce ? {} : containerVariants}
-          initial={reduce ? false : 'hidden'}
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-2 gap-6 mt-16"
-        >
-          <motion.div variants={reduce ? {} : itemVariants}>
-            <Card className="bg-white border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-              <CardContent className="pt-6">
-                <div className="flex items-start gap-4">
-                  <div className="bg-primary/10 p-3 rounded-lg">
-                    <Phone className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-2 text-slate-900">
-                      Call Us Today
-                    </h3>
-                    <p className="text-slate-600 text-sm mb-3">
-                      Speak with our friendly team about getting started with
-                      your permit.
-                    </p>
-                    <a
-                      href="tel:888-895-0644"
-                      className="text-primary font-medium hover:text-primary/80 transition-colors"
-                    >
-                      (888) 895-0644
-                    </a>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          <motion.div variants={reduce ? {} : itemVariants}>
-            <Card className="bg-white border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-              <CardContent className="pt-6">
-                <div className="flex items-start gap-4">
-                  <div className="bg-primary/10 p-3 rounded-lg">
-                    <Mail className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-2 text-slate-900">
-                      Contact Form
-                    </h3>
-                    <p className="text-slate-600 text-sm mb-3">
-                      Send us a message and we&apos;ll get back to you within 24
-                      hours.
-                    </p>
-                    <Link
-                      href="/contact-us"
-                      className="text-primary font-medium hover:text-primary/80 transition-colors"
-                    >
-                      Send Message
-                    </Link>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
           </motion.div>
         </motion.div>
 

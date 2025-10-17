@@ -88,24 +88,24 @@ export const BenefitCard = ({
       className={cn(
         'group relative rounded-xl border bg-card p-6 shadow-sm transition-all duration-300 hover:shadow-md',
         'hover:border-primary/20 hover:bg-card/80',
+        'flex flex-col items-center text-center',
         className
       )}
       data-component="BenefitCard"
     >
-      <div className="flex items-start gap-4">
-        <div className="flex-shrink-0">
-          <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary/20">
-            <IconComponent className="h-6 w-6" />
-          </div>
-        </div>
-        <div className="flex-1 space-y-2">
-          <h3 className="text-lg font-semibold text-card-foreground">
-            {benefit.title}
-          </h3>
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            {benefit.description}
-          </p>
-        </div>
+      {/* Icon at top center */}
+      <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary/20 group-hover:scale-105">
+        <IconComponent className="h-8 w-8" />
+      </div>
+
+      {/* Content centered */}
+      <div className="space-y-3">
+        <h3 className="text-lg font-semibold text-card-foreground">
+          {benefit.title}
+        </h3>
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          {benefit.description}
+        </p>
       </div>
     </motion.div>
   );
@@ -153,7 +153,7 @@ export const TrafficSchoolBenefits = ({
             </motion.div>
           </StaggerAnimation>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-10">
             {benefits.map((benefit, index) => (
               <BenefitCard
                 key={benefit.id}

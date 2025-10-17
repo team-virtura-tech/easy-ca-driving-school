@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 
 import { motion, useReducedMotion } from 'framer-motion';
 
-import { FAQ } from '@/components/custom/pricing/FAQ';
+import { StandardFaq } from '@/components/custom/common';
 import { ModernCtaSection } from '@/components/custom/pricing/ModernCtaSection';
 import { ModernPackageCard } from '@/components/custom/pricing/ModernPackageCard';
 import { ModernPricingHero } from '@/components/custom/pricing/ModernPricingHero';
@@ -28,6 +28,40 @@ export default function PackagesPricingPage() {
   });
 
   const filteredPackages = filterPackages(packages, filters);
+
+  // FAQ data for driving lessons and packages
+  const pricingFaqs = [
+    {
+      id: 'pickup-dropoff',
+      question: 'Do you provide pickup and drop-off service?',
+      answer:
+        'Yes! All our packages include free pickup and drop-off service within our service area. Our instructors will pick you up from your home, school, or work and return you to the same location after your lesson.',
+    },
+    {
+      id: 'schedule-lessons',
+      question: 'How do I schedule my driving lessons?',
+      answer:
+        'After booking a package, you can schedule lessons through our online portal or by calling our office. We offer flexible scheduling including evenings and weekends to accommodate your busy schedule.',
+    },
+    {
+      id: 'dmv-test-day',
+      question: 'What happens on DMV test day?',
+      answer:
+        'For packages that include the DMV road test, we provide the car and an instructor will accompany you to the DMV. We typically schedule a practice lesson right before your test to help you feel confident and prepared.',
+    },
+    {
+      id: 'reschedule-cancel',
+      question: 'Can I reschedule or cancel a lesson?',
+      answer:
+        'Yes, you can reschedule or cancel lessons with at least 24 hours notice without any fees. Same-day cancellations may incur a small fee, except in cases of illness or emergency.',
+    },
+    {
+      id: 'california-requirements',
+      question: 'What are the California requirements for teen drivers?',
+      answer:
+        'California requires teens (ages 15½-17½) to complete at least 6 hours of professional driving instruction and 50 hours of supervised practice (10 hours at night) before taking the DMV road test. Our teen packages meet and exceed these requirements.',
+    },
+  ];
 
   // Update URL when ZIP changes
   useEffect(() => {
@@ -126,8 +160,8 @@ export default function PackagesPricingPage() {
                           more.
                         </p>
                       </div>
-                      <div className="flex justify-center">
-                        <div className="flex flex-wrap justify-center gap-8 sm:gap-8 w-full max-w-7xl">
+                      <div className="w-full">
+                        <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,320px))] justify-center gap-6 max-w-7xl mx-auto">
                           {filteredPackages
                             .filter((pkg) => pkg.lessons <= 2)
                             .map((pkg, index) => (
@@ -137,7 +171,7 @@ export default function PackagesPricingPage() {
                                 pkg={pkg}
                                 zip={filters.zip}
                                 index={index}
-                                className="w-full sm:w-80 max-w-sm flex-shrink-0"
+                                className="w-full"
                               />
                             ))}
                         </div>
@@ -189,8 +223,8 @@ export default function PackagesPricingPage() {
                           ))}
                         </div>
                       </div>
-                      <div className="flex justify-center">
-                        <div className="flex flex-wrap justify-center gap-8 sm:gap-8 w-full max-w-7xl">
+                      <div className="w-full">
+                        <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,300px))] justify-center gap-6 max-w-7xl mx-auto">
                           {filteredPackages
                             .filter(
                               (pkg) =>
@@ -205,7 +239,7 @@ export default function PackagesPricingPage() {
                                 pkg={pkg}
                                 zip={filters.zip}
                                 index={index}
-                                className="w-full sm:w-80 max-w-sm flex-shrink-0"
+                                className="w-full"
                               />
                             ))}
                         </div>
@@ -235,8 +269,8 @@ export default function PackagesPricingPage() {
                           Plus we will take you to the DMV for your Road Test
                         </p>
                       </div>
-                      <div className="flex justify-center">
-                        <div className="flex flex-wrap justify-center gap-8 sm:gap-8 w-full max-w-7xl">
+                      <div className="w-full">
+                        <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,320px))] justify-center gap-6 max-w-7xl mx-auto">
                           {filteredPackages
                             .filter((pkg) => pkg.carForTest)
                             .map((pkg, index) => (
@@ -246,7 +280,7 @@ export default function PackagesPricingPage() {
                                 pkg={pkg}
                                 zip={filters.zip}
                                 index={index}
-                                className="w-full sm:w-80 max-w-sm flex-shrink-0"
+                                className="w-full"
                               />
                             ))}
                         </div>
@@ -310,9 +344,21 @@ export default function PackagesPricingPage() {
         <ModernCtaSection />
 
         {/* FAQ Section */}
-        <div className="bg-white dark:bg-gray-900">
-          <FAQ />
-        </div>
+        <StandardFaq
+          title="Frequently Asked Questions"
+          subtitle="Have questions? We have answers. Find everything you need to know about our driving lessons and packages."
+          faqItems={pricingFaqs}
+          ctaTitle="Ready to Get Started?"
+          ctaDescription="Book your driving lessons today and take the first step towards getting your license."
+          primaryCta={{
+            text: 'Book Your Lessons',
+            href: '/contact-us',
+          }}
+          secondaryCta={{
+            text: 'Call (888) 299-8911',
+            href: 'tel:888-299-8911',
+          }}
+        />
 
         {/* Footer Note */}
         <div className="border-t bg-gray-100 py-8 dark:border-gray-700 dark:bg-gray-800">

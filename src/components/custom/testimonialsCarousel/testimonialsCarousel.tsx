@@ -182,18 +182,18 @@ export const TestimonialsCarousel = ({
       id={componentName}
       data-component={componentName}
       className={cn(
-        'relative bg-gray-50 dark:bg-gray-900/50 py-16 md:py-20',
+        'relative bg-gray-50 dark:bg-gray-900/50 py-12 md:py-16 lg:py-20',
         className
       )}
       initial={reduce ? false : { opacity: 0, y: 20 }}
       animate={reduce ? {} : { opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
     >
-      <div className="mx-auto max-w-screen-xl px-4 sm:px-6">
+      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 md:mb-12">
           <motion.h2
-            className="text-3xl font-bold text-gray-900 dark:text-white md:text-4xl"
+            className="text-2xl font-bold text-gray-900 dark:text-white md:text-3xl lg:text-4xl"
             initial={reduce ? false : { opacity: 0, y: 20 }}
             animate={reduce ? {} : { opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
@@ -201,7 +201,7 @@ export const TestimonialsCarousel = ({
             What Our Students Say
           </motion.h2>
           <motion.p
-            className="mt-4 text-lg text-gray-600 dark:text-gray-300"
+            className="mt-3 md:mt-4 text-base md:text-lg text-gray-600 dark:text-gray-300"
             initial={reduce ? false : { opacity: 0, y: 20 }}
             animate={reduce ? {} : { opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
@@ -215,28 +215,28 @@ export const TestimonialsCarousel = ({
           {/* Main Testimonial Card */}
           <motion.div
             key={currentIndex}
-            className="mx-auto max-w-4xl"
+            className="mx-auto max-w-3xl md:max-w-4xl"
             initial={reduce ? false : { opacity: 0, x: 20 }}
             animate={reduce ? {} : { opacity: 1, x: 0 }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
           >
-            <div className="relative rounded-2xl bg-white dark:bg-gray-800 p-8 md:p-12 shadow-lg">
+            <div className="relative rounded-xl md:rounded-2xl bg-white dark:bg-gray-800 p-6 md:p-8 lg:p-12 shadow-lg">
               {/* Quote Icon */}
-              <div className="absolute -top-4 left-8">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-600">
-                  <Quote className="h-4 w-4 text-white" />
+              <div className="absolute -top-3 md:-top-4 left-6 md:left-8">
+                <div className="flex h-6 w-6 md:h-8 md:w-8 items-center justify-center rounded-full bg-blue-600">
+                  <Quote className="h-3 w-3 md:h-4 md:w-4 text-white" />
                 </div>
               </div>
 
               {/* Testimonial Content */}
-              <div className="pt-4">
+              <div className="pt-3 md:pt-4">
                 {/* Rating */}
-                <div className="flex items-center gap-1 mb-4">
+                <div className="flex items-center gap-1 mb-3 md:mb-4">
                   {renderStars(testimonials[currentIndex].rating)}
                 </div>
 
                 {/* Content */}
-                <blockquote className="text-lg md:text-xl text-gray-700 dark:text-gray-200 leading-relaxed mb-6">
+                <blockquote className="text-base md:text-lg lg:text-xl text-gray-700 dark:text-gray-200 leading-relaxed mb-4 md:mb-6">
                   &ldquo;{testimonials[currentIndex].content}&rdquo;
                 </blockquote>
 
@@ -264,29 +264,29 @@ export const TestimonialsCarousel = ({
           {/* Navigation Buttons */}
           <button
             onClick={prevTestimonial}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 flex h-10 w-10 items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-lg transition-all hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 md:-translate-x-12"
+            className="absolute left-0 md:left-4 lg:left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-4 lg:-translate-x-12 flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-lg transition-all hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 cursor-pointer"
             aria-label="Previous testimonial"
           >
-            <ChevronLeft className="h-5 w-5 text-gray-600 dark:text-gray-400" />
+            <ChevronLeft className="h-4 w-4 md:h-5 md:w-5 text-gray-600 dark:text-gray-400" />
           </button>
 
           <button
             onClick={nextTestimonial}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 flex h-10 w-10 items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-lg transition-all hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 md:translate-x-12"
+            className="absolute right-0 md:right-4 lg:right-0 top-1/2 -translate-y-1/2 translate-x-2 md:translate-x-4 lg:translate-x-12 flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-lg transition-all hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 cursor-pointer"
             aria-label="Next testimonial"
           >
-            <ChevronRight className="h-5 w-5 text-gray-600 dark:text-gray-400" />
+            <ChevronRight className="h-4 w-4 md:h-5 md:w-5 text-gray-600 dark:text-gray-400" />
           </button>
         </div>
 
         {/* Dots Indicator */}
-        <div className="flex justify-center gap-2 mt-8">
+        <div className="flex justify-center gap-1.5 md:gap-2 mt-6 md:mt-8">
           {testimonials.map((_, index) => (
             <button
               key={index}
               onClick={() => goToTestimonial(index)}
               className={cn(
-                'h-2 w-2 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
+                'h-2 w-2 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 cursor-pointer',
                 index === currentIndex
                   ? 'bg-blue-600 w-8'
                   : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
@@ -297,7 +297,7 @@ export const TestimonialsCarousel = ({
         </div>
 
         {/* Small Preview Cards for Desktop */}
-        <div className="hidden lg:block mt-12">
+        <div className="hidden xl:block mt-8 lg:mt-12">
           <div className="flex justify-center gap-4 max-w-6xl mx-auto">
             {testimonials.map((testimonial, index) => {
               if (index === currentIndex) return null;
@@ -314,7 +314,7 @@ export const TestimonialsCarousel = ({
                 <motion.button
                   key={testimonial.id}
                   onClick={() => goToTestimonial(index)}
-                  className="flex-1 max-w-sm rounded-xl bg-white/50 dark:bg-gray-800/50 p-4 text-left transition-all hover:bg-white dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  className="flex-1 max-w-sm rounded-xl bg-white/50 dark:bg-gray-800/50 p-4 text-left transition-all hover:bg-white dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 cursor-pointer"
                   initial={reduce ? false : { opacity: 0, scale: 0.9 }}
                   animate={reduce ? {} : { opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3, ease: 'easeOut' }}

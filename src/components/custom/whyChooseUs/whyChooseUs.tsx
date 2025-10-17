@@ -75,18 +75,18 @@ export const WhyChooseUs = ({
       id={componentName}
       data-component={componentName}
       className={cn(
-        'relative bg-gray-50 dark:bg-gray-900/50 py-16 md:py-20',
+        'relative bg-gray-50 dark:bg-gray-900/50 py-12 md:py-16 lg:py-20',
         className
       )}
       initial={reduce ? false : { opacity: 0, y: 20 }}
       animate={reduce ? {} : { opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
     >
-      <div className="mx-auto max-w-screen-xl px-4 sm:px-6">
+      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 md:mb-10 lg:mb-12">
           <motion.h2
-            className="text-3xl font-bold text-gray-900 dark:text-white md:text-4xl"
+            className="text-2xl font-bold text-gray-900 dark:text-white md:text-3xl lg:text-4xl"
             initial={reduce ? false : { opacity: 0, y: 20 }}
             animate={reduce ? {} : { opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
@@ -94,7 +94,7 @@ export const WhyChooseUs = ({
             Key benefits that set us apart
           </motion.h2>
           <motion.h3
-            className="text-3xl font-bold text-gray-900 dark:text-white md:text-4xl mt-2"
+            className="text-xl font-bold text-gray-900 dark:text-white md:text-2xl lg:text-3xl mt-1 md:mt-2"
             initial={reduce ? false : { opacity: 0, y: 20 }}
             animate={reduce ? {} : { opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
@@ -108,22 +108,22 @@ export const WhyChooseUs = ({
           direction="up"
           staggerDelay={0.2}
           duration={0.6}
-          className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-1 gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-3"
         >
           {benefits.map((benefit) => {
             const IconComponent = benefit.icon;
             return (
               <div key={benefit.id} className="text-center">
                 {/* Icon */}
-                <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 dark:bg-primary/20">
-                  <IconComponent className="h-8 w-8 text-primary" />
+                <div className="mx-auto mb-4 md:mb-6 flex h-12 w-12 md:h-16 md:w-16 items-center justify-center rounded-xl md:rounded-2xl bg-primary/10 dark:bg-primary/20">
+                  <IconComponent className="h-6 w-6 md:h-8 md:w-8 text-primary" />
                 </div>
 
                 {/* Content */}
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                <h3 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white mb-3 md:mb-4">
                   {benefit.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                <p className="text-sm md:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
                   {benefit.description}
                 </p>
               </div>
@@ -146,10 +146,10 @@ export const WhyChooseUs = ({
             Ready to start your driving journey with the best?
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors">
+            <button className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors cursor-pointer">
               Book Your First Lesson
             </button>
-            <button className="px-8 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+            <button className="px-8 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors cursor-pointer">
               Learn More
             </button>
           </div>
