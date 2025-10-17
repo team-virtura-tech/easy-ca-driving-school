@@ -81,7 +81,8 @@ export const StepCard = ({ step, index, onClick, reduce }: StepCardProps) => {
           'hover:shadow-xl hover:scale-105',
           'transition-all duration-200',
           'focus:outline-none focus:ring-2 focus:ring-primary-foreground/50 focus:ring-offset-2 focus:ring-offset-primary',
-          'flex flex-col items-center text-center gap-3'
+          'flex flex-col items-center text-center gap-3',
+          'cursor-pointer'
         )}
       >
         <Icon className="w-6 h-6 md:w-7 md:h-7 opacity-90 group-hover:opacity-100 transition-opacity" />

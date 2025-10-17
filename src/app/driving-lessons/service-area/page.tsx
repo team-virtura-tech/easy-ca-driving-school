@@ -210,7 +210,7 @@ export default function ServiceAreaPage() {
             Ready to start? We&apos;ll match you with an instructor near you.
           </p>
           <a
-            href="/book"
+            href="/contact-us"
             className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-primary-foreground font-medium hover:opacity-90 transition"
           >
             <Navigation2 className="size-4" />

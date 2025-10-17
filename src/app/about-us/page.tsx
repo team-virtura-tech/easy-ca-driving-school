@@ -248,8 +248,7 @@ export default function AboutUsPage() {
 
       {/* CTA Section */}
       <section className="bg-muted/30 py-16 md:py-24">
-        {/* <div className="container mx-auto px-4"> */}
-        <div className="">
+        <div className="container mx-auto px-4 md:px-6">
           <motion.div
             initial={reduce ? {} : { opacity: 0, y: 20 }}
             whileInView={reduce ? {} : { opacity: 1, y: 0 }}

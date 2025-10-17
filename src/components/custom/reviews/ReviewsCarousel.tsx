@@ -118,14 +118,14 @@ export const ReviewsCarousel = ({
       <button
         aria-label="Previous"
         onClick={() => scrollByPage(-1)}
-        className="absolute left-0 top-1/2 -translate-y-1/2 rounded-full border bg-background/80 p-2 shadow hover:bg-background hidden sm:inline-flex"
+        className="absolute left-0 top-1/2 -translate-y-1/2 rounded-full border bg-background/80 p-2 shadow hover:bg-background hidden sm:inline-flex cursor-pointer"
       >
         <ChevronLeft className="size-5" />
       </button>
       <button
         aria-label="Next"
         onClick={() => scrollByPage(1)}
-        className="absolute right-0 top-1/2 -translate-y-1/2 rounded-full border bg-background/80 p-2 shadow hover:bg-background hidden sm:inline-flex"
+        className="absolute right-0 top-1/2 -translate-y-1/2 rounded-full border bg-background/80 p-2 shadow hover:bg-background hidden sm:inline-flex cursor-pointer"
       >
         <ChevronRight className="size-5" />
       </button>

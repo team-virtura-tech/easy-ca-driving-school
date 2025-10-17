@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Calendar, Gift, MessageCircle, Phone, Shield } from 'lucide-react';
+import Link from 'next/link';
 
 import { cn } from '@/lib/utils';
 
@@ -74,19 +75,25 @@ export const ModernCtaSection = ({ className, id }: ModernCtaSectionProps) => {
 
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button
+              asChild
               size="lg"
               className="group h-12 min-w-48 bg-gradient-to-r from-primary to-orange-700 px-8 text-base font-semibold shadow-lg transition-all duration-300 hover:from-orange-700 hover:to-orange-800 hover:shadow-xl hover:shadow-orange-500/25"
             >
-              <MessageCircle className="mr-2 h-5 w-5 transition-transform group-hover:scale-110" />
-              Get Custom Quote
+              <Link href="/contact-us">
+                <MessageCircle className="mr-2 h-5 w-5 transition-transform group-hover:scale-110" />
+                Get Custom Quote
+              </Link>
             </Button>
             <Button
+              asChild
               size="lg"
               variant="outline"
               className="h-12 min-w-48 border-2 px-8 text-base font-semibold transition-all duration-300 hover:bg-gray-50 dark:hover:bg-gray-800"
             >
-              <Phone className="mr-2 h-5 w-5" />
-              Call Now: (555) 123-4567
+              <a href="tel:+15551234567">
+                <Phone className="mr-2 h-5 w-5" />
+                Call Now: (555) 123-4567
+              </a>
             </Button>
           </div>
         </motion.div>
@@ -143,20 +150,26 @@ export const ModernCtaSection = ({ className, id }: ModernCtaSectionProps) => {
 
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button
+              asChild
               variant="outline"
               size="lg"
               className="h-11 min-w-40 border-2 border-green-200 bg-green-50 text-green-700 transition-all duration-300 hover:bg-green-100 dark:border-green-800 dark:bg-green-900/20 dark:text-green-300 dark:hover:bg-green-900/30"
             >
-              <Gift className="mr-2 h-4 w-4" />
-              Gift Cards
+              <Link href="/contact-us">
+                <Gift className="mr-2 h-4 w-4" />
+                Gift Cards
+              </Link>
             </Button>
             <Button
+              asChild
               variant="outline"
               size="lg"
               className="h-11 min-w-40 border-2 border-purple-200 bg-purple-50 text-purple-700 transition-all duration-300 hover:bg-purple-100 dark:border-purple-800 dark:bg-purple-900/20 dark:text-purple-300 dark:hover:bg-purple-900/30"
             >
-              <Calendar className="mr-2 h-4 w-4" />
-              Free Assessment
+              <Link href="/driving-lessons/driving-assessments">
+                <Calendar className="mr-2 h-4 w-4" />
+                Free Assessment
+              </Link>
             </Button>
           </div>
         </motion.div>

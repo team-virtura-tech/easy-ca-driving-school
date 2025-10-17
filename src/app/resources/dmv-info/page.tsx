@@ -14,6 +14,7 @@ import {
   Shield,
   Users,
 } from 'lucide-react';
+import Link from 'next/link';
 
 const dmvOffices = [
   {
@@ -134,13 +135,21 @@ export default function DMVInfoPage() {
               professional driving instruction.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-              <Button size="lg" className="bg-[#ff6900] hover:bg-[#D0783B]">
-                Schedule Lessons
-                <ChevronRight className="ml-2 h-4 w-4" />
+              <Button
+                size="lg"
+                className="bg-[#ff6900] hover:bg-[#D0783B]"
+                asChild
+              >
+                <Link href="/contact-us">
+                  Schedule Appointment
+                  <ChevronRight className="ml-2 h-4 w-4" />
+                </Link>
               </Button>
-              <Button variant="outline" size="lg">
-                View Practice Tests
-                <ExternalLink className="ml-2 h-4 w-4" />
+              <Button variant="outline" size="lg" asChild>
+                <Link href="/resources/dmv-practice-tests">
+                  View Practice Tests
+                  <ExternalLink className="ml-2 h-4 w-4" />
+                </Link>
               </Button>
             </div>
           </div>
@@ -168,15 +177,15 @@ export default function DMVInfoPage() {
                       </p>
                     </div>
                   </div>
-                  <Button
-                    variant="outline"
-                    className="mt-4 w-full"
-                    onClick={() =>
-                      window.open('https://www.dmv.ca.gov/portal/dmv', '_blank')
-                    }
-                  >
-                    Visit DMV Website
-                    <ExternalLink className="ml-2 h-4 w-4" />
+                  <Button variant="outline" className="mt-4 w-full" asChild>
+                    <a
+                      href="https://www.dmv.ca.gov/portal/dmv"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Visit DMV Website
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </a>
                   </Button>
                 </CardContent>
               </Card>
@@ -196,18 +205,15 @@ export default function DMVInfoPage() {
                       </p>
                     </div>
                   </div>
-                  <Button
-                    variant="outline"
-                    className="mt-4 w-full"
-                    onClick={() =>
-                      window.open(
-                        'https://www.dmv.ca.gov/portal/dmv/dmv/onlinesvcs/appointment',
-                        '_blank'
-                      )
-                    }
-                  >
-                    Schedule Appointment
-                    <Clock className="ml-2 h-4 w-4" />
+                  <Button variant="outline" className="mt-4 w-full" asChild>
+                    <a
+                      href="https://www.dmv.ca.gov/portal/dmv/dmv/onlinesvcs/appointment"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Schedule Appointment
+                      <Clock className="ml-2 h-4 w-4" />
+                    </a>
                   </Button>
                 </CardContent>
               </Card>
@@ -291,33 +297,46 @@ export default function DMVInfoPage() {
       </section>
 
       {/* Contact CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-[#ff6900] to-[#D0783B]">
+      <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-4xl text-center text-white">
-            <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-              Ready to Get Your Driver&apos;s License?
-            </h2>
-            <p className="mb-8 text-lg opacity-90">
-              Join thousands of successful drivers who passed their test on the
-              first try with our professional instruction.
-            </p>
-            <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-              <Button
-                size="lg"
-                variant="secondary"
-                className="bg-white text-[#ff6900] hover:bg-white/90"
-              >
-                <Phone className="mr-2 h-4 w-4" />
-                Call Now
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white bg-transparent text-white hover:bg-white hover:text-[#ff6900]"
-              >
-                Schedule Online
-                <ChevronRight className="ml-2 h-4 w-4" />
-              </Button>
+          <div className="mx-auto max-w-4xl text-center">
+            <div className="rounded-2xl border bg-card p-8 shadow-lg md:p-12">
+              <h2 className="mb-4 text-3xl font-bold md:text-4xl">
+                Ready to Get Your Driver&apos;s License?
+              </h2>
+              <p className="mb-8 text-lg text-muted-foreground">
+                Join thousands of successful drivers who passed the test on the
+                first try with our professional instruction.
+              </p>
+              <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+                <Button
+                  size="lg"
+                  className="h-12 bg-[#ff6900] px-8 text-white hover:bg-[#D0783B]"
+                  asChild
+                >
+                  <a
+                    href="tel:+18882998911"
+                    className="inline-flex items-center gap-2"
+                  >
+                    <Phone className="h-4 w-4" />
+                    Call (888) 299-8911
+                  </a>
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="h-12 px-8"
+                  asChild
+                >
+                  <a
+                    href="/contact-us"
+                    className="inline-flex items-center gap-2"
+                  >
+                    Schedule Appointment
+                    <ChevronRight className="h-4 w-4" />
+                  </a>
+                </Button>
+              </div>
             </div>
           </div>
         </div>

@@ -4,12 +4,13 @@ import { motion, useReducedMotion } from 'framer-motion';
 import {
   ArrowRight,
   CheckCircle,
-  CreditCard,
+  MessageCircle,
   Phone,
   Shield,
   Users,
 } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -182,20 +183,24 @@ export const EligibilityAndCta = () => {
 
                 {/* CTA Buttons */}
                 <div className="space-y-4">
-                  <Button size="lg" className="w-full text-base py-6">
-                    <CreditCard className="mr-2 h-5 w-5" />
-                    Schedule Online Now
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
+                  <Link href="/contact-us" className="block">
+                    <Button size="lg" className="w-full text-base py-6">
+                      <MessageCircle className="mr-2 h-5 w-5" />
+                      Contact Us to Schedule
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
 
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="w-full text-base py-6"
-                  >
-                    <Phone className="mr-2 h-5 w-5" />
-                    Call (888) 945-0644
-                  </Button>
+                  <Link href="tel:+18889450644" className="block">
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      className="w-full text-base py-6"
+                    >
+                      <Phone className="mr-2 h-5 w-5" />
+                      Call (888) 945-0644
+                    </Button>
+                  </Link>
                 </div>
 
                 {/* Guarantee */}

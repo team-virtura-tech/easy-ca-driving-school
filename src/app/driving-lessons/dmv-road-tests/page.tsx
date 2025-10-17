@@ -10,6 +10,7 @@ import {
   CheckCircle,
   Clock,
   MapPin,
+  MessageCircle,
   Phone,
   Shield,
   Target,
@@ -17,6 +18,7 @@ import {
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title:
@@ -182,13 +184,22 @@ export default function DMVRoadTestsPage() {
 
               {/* CTA Buttons */}
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                <Button size="lg" className="text-base">
-                  <Phone className="mr-2 h-5 w-5" />
-                  Call (888) 945-0644
+                <Button size="lg" className="text-base" asChild>
+                  <a href="tel:+18889450644">
+                    <Phone className="mr-2 h-5 w-5" />
+                    Call (888) 945-0644
+                  </a>
                 </Button>
-                <Button size="lg" variant="outline" className="text-base">
-                  <Calendar className="mr-2 h-5 w-5" />
-                  Book Online
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="text-base"
+                  asChild
+                >
+                  <Link href="/contact-us">
+                    <MessageCircle className="mr-2 h-5 w-5" />
+                    Contact Us
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -245,13 +256,6 @@ export default function DMVRoadTestsPage() {
                           <p className="text-muted-foreground leading-relaxed">
                             {step.description}
                           </p>
-                          <Button
-                            variant="ghost"
-                            className="gap-2 h-auto p-0 text-primary hover:text-primary/80 ml-auto"
-                          >
-                            Discover More
-                            <step.icon className="h-4 w-4" />
-                          </Button>
                         </div>
                       ) : (
                         // Even steps (2, 4): Image on left
@@ -347,13 +351,6 @@ export default function DMVRoadTestsPage() {
                           <p className="text-muted-foreground leading-relaxed">
                             {step.description}
                           </p>
-                          <Button
-                            variant="ghost"
-                            className="gap-2 h-auto p-0 text-primary hover:text-primary/80"
-                          >
-                            Discover More
-                            <step.icon className="h-4 w-4" />
-                          </Button>
                         </div>
                       )}
                     </div>
@@ -392,14 +389,6 @@ export default function DMVRoadTestsPage() {
                           <p className="text-sm text-muted-foreground leading-relaxed">
                             {step.description}
                           </p>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="gap-1 h-auto p-0 text-primary hover:text-primary/80"
-                          >
-                            Discover More
-                            <step.icon className="h-3 w-3" />
-                          </Button>
                         </div>
                       </div>
                     </div>
@@ -462,36 +451,51 @@ export default function DMVRoadTestsPage() {
       </section>
 
       {/* Call to Action Section */}
-      <section className="bg-primary py-16 text-primary-foreground md:py-20">
-        <div className="container mx-auto px-4 md:px-6">
+      <section className="relative overflow-hidden bg-gradient-to-br from-gray-50 via-white to-primary/5 dark:from-gray-900 dark:via-gray-900 dark:to-primary/10 py-16 md:py-20">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(249,115,22,0.05),transparent_60%)]" />
+
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-bold md:text-4xl">
-              Ready to Pass Your DMV Road Test?
+            <h2 className="text-3xl font-bold text-foreground md:text-4xl">
+              Ready to Pass Your{' '}
+              <span className="bg-gradient-to-r from-primary to-orange-700 bg-clip-text text-transparent">
+                DMV Road Test?
+              </span>
             </h2>
-            <p className="mt-4 text-lg opacity-90 md:text-xl">
+            <p className="mt-4 text-lg text-muted-foreground md:text-xl">
               Join the 96% of our students who pass their road test on the first
               try. Professional instruction, convenient pickup, and complete
               test day support.
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
-              <Button size="lg" variant="secondary" className="text-base">
-                <Phone className="mr-2 h-5 w-5" />
-                Call (888) 945-0644
+              <Button
+                size="lg"
+                className="text-base bg-gradient-to-r from-primary to-orange-700 hover:from-orange-700 hover:to-orange-800 shadow-lg hover:shadow-xl transition-all duration-300"
+                asChild
+              >
+                <a href="tel:+18889450644">
+                  <Phone className="mr-2 h-5 w-5" />
+                  Call (888) 945-0644
+                </a>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="text-base border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+                className="text-base border-2 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300"
+                asChild
               >
-                <Calendar className="mr-2 h-5 w-5" />
-                Schedule Online
+                <Link href="/contact-us">
+                  <MessageCircle className="mr-2 h-5 w-5" />
+                  Contact Us
+                </Link>
               </Button>
             </div>
 
             {/* Service Areas */}
-            <div className="mt-12 pt-8 border-t border-primary-foreground/20">
-              <div className="flex items-center justify-center gap-2 text-sm opacity-75">
+            <div className="mt-12 pt-8 border-t border-border">
+              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
                 <MapPin className="h-4 w-4" />
                 <span>
                   Serving San Jose, Santa Clara County, Contra Costa County &
