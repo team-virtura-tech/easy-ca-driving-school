@@ -130,6 +130,20 @@ export const Footer = ({ id, className }: FooterProps) => {
                       </Link>
                     </li>
                   ))}
+                {/* Add FAQs link manually */}
+                <li className="text-center sm:text-left">
+                  <Link
+                    href="/faqs"
+                    className={cn(
+                      'hover:text-primary transition-colors',
+                      pathname === '/faqs'
+                        ? 'text-primary font-medium'
+                        : 'text-muted-foreground'
+                    )}
+                  >
+                    FAQs
+                  </Link>
+                </li>
               </ul>
             </nav>
           </div>
