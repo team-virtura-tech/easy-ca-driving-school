@@ -10,6 +10,7 @@ import { StandardFaq } from '@/components/custom/common';
 import { ModernCtaSection } from '@/components/custom/pricing/ModernCtaSection';
 import { ModernPackageCard } from '@/components/custom/pricing/ModernPackageCard';
 import { ModernPricingHero } from '@/components/custom/pricing/ModernPricingHero';
+import { BRAND_INFO } from '@/constants/brandInfo';
 import { filterPackages, packages, type FilterState } from '@/lib/packages';
 
 import { ModernFilters } from '@/components/custom/pricing/ModernFilters';
@@ -330,7 +331,7 @@ export default function PackagesPricingPage() {
                       </div>
                       <div className="flex items-center gap-3 text-gray-700 dark:text-gray-300 p-3 sm:p-2 rounded-lg bg-white/50 dark:bg-gray-800/50">
                         <div className="h-3 w-3 rounded-full bg-green-500 flex-shrink-0"></div>
-                        <span className="font-medium">24/7 Support</span>
+                        <span className="font-medium">6-12 AM Support</span>
                       </div>
                     </div>
                   </div>
@@ -355,8 +356,8 @@ export default function PackagesPricingPage() {
             href: '/contact-us',
           }}
           secondaryCta={{
-            text: 'Call (888) 299-8911',
-            href: 'tel:888-299-8911',
+            text: `Call ${BRAND_INFO.phoneNumber}`,
+            href: `tel:${BRAND_INFO.phoneNumberTel}`,
           }}
         />
 

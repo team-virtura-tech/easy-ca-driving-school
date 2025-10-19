@@ -44,7 +44,8 @@ const processSteps = [
       'Arrive 15 minutes early',
     ],
     cta: 'DMV Website',
-    ctaLink: 'https://www.dmv.ca.gov',
+    ctaLink:
+      'https://www.dmv.ca.gov/portal/appointments/select-appointment-type/',
     external: true,
   },
   {

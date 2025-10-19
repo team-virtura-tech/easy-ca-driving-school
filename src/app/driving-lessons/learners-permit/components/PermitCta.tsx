@@ -2,6 +2,7 @@
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { BRAND_INFO } from '@/constants/brandInfo';
 import { motion, useReducedMotion } from 'framer-motion';
 import {
   ArrowRight,
@@ -27,7 +28,7 @@ const keyBenefits = [
   {
     icon: Users,
     title: 'Expert Support',
-    description: '24/7 instructor assistance',
+    description: 'Instructor assistance',
   },
   {
     icon: Star,
@@ -50,7 +51,7 @@ const stats = [
     label: 'Pass Rate',
   },
   {
-    number: '24/7',
+    number: '6AM - 12AM PST',
     label: 'Support Available',
   },
 ];
@@ -167,11 +168,11 @@ export const PermitCta = () => {
               className="border-slate-300 bg-white text-slate-900 hover:bg-slate-50 hover:text-slate-900 text-lg px-8 shadow-sm font-semibold transition-all duration-200"
             >
               <a
-                href="tel:888-895-0644"
+                href={`tel:${BRAND_INFO.phoneNumberTel}`}
                 className="inline-flex items-center gap-2"
               >
                 <Phone className="h-4 w-4" />
-                Call (888) 895-0644
+                Call {BRAND_INFO.phoneNumber}
               </a>
             </Button>
           </motion.div>

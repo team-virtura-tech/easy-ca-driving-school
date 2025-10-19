@@ -3,6 +3,7 @@ import { TestimonialsCarousel } from '@/components/custom/testimonialsCarousel';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { BRAND_INFO } from '@/constants/brandInfo';
 import {
   Award,
   Calendar,
@@ -185,9 +186,9 @@ export default function DMVRoadTestsPage() {
               {/* CTA Buttons */}
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                 <Button size="lg" className="text-base" asChild>
-                  <a href="tel:+18889450644">
+                  <a href={`tel:${BRAND_INFO.phoneNumberTel}`}>
                     <Phone className="mr-2 h-5 w-5" />
-                    Call (888) 945-0644
+                    Call {BRAND_INFO.phoneNumber}
                   </a>
                 </Button>
                 <Button
@@ -475,9 +476,9 @@ export default function DMVRoadTestsPage() {
                 className="text-base bg-gradient-to-r from-primary to-orange-700 hover:from-orange-700 hover:to-orange-800 shadow-lg hover:shadow-xl transition-all duration-300"
                 asChild
               >
-                <a href="tel:+18889450644">
+                <a href={`tel:${BRAND_INFO.phoneNumberTel}`}>
                   <Phone className="mr-2 h-5 w-5" />
-                  Call (888) 945-0644
+                  Call {BRAND_INFO.phoneNumber}
                 </a>
               </Button>
               <Button

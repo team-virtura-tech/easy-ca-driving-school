@@ -1,5 +1,6 @@
 'use client';
 
+import { BRAND_INFO } from '@/constants/brandInfo';
 import { cn } from '@/lib/utils';
 import { motion, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
@@ -129,6 +130,20 @@ export const Footer = ({ id, className }: FooterProps) => {
                       </Link>
                     </li>
                   ))}
+                {/* Add FAQs link manually */}
+                <li className="text-center sm:text-left">
+                  <Link
+                    href="/faqs"
+                    className={cn(
+                      'hover:text-primary transition-colors',
+                      pathname === '/faqs'
+                        ? 'text-primary font-medium'
+                        : 'text-muted-foreground'
+                    )}
+                  >
+                    FAQs
+                  </Link>
+                </li>
               </ul>
             </nav>
           </div>
@@ -142,19 +157,19 @@ export const Footer = ({ id, className }: FooterProps) => {
                 <div className="flex items-center justify-center md:justify-start xl:justify-start gap-2">
                   <span>📞</span>
                   <a
-                    href="tel:+18882998911"
+                    href={`tel:${BRAND_INFO.phoneNumberTel}`}
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    (888) 299-8911
+                    {BRAND_INFO.phoneNumber}
                   </a>
                 </div>
                 <div className="flex items-start justify-center md:justify-start xl:justify-start gap-2">
                   <span className="mt-0.5">✉️</span>
                   <a
-                    href="mailto:info@easycadriversed.com"
+                    href={`mailto:${BRAND_INFO.email}`}
                     className="text-muted-foreground hover:text-primary transition-colors break-all text-xs md:text-sm leading-tight"
                   >
-                    info@easycadriversed.com
+                    {BRAND_INFO.email}
                   </a>
                 </div>
                 <div className="flex items-center justify-center md:justify-start xl:justify-start gap-2 pt-2 border-t border-border/30 mt-3">
@@ -170,9 +185,10 @@ export const Footer = ({ id, className }: FooterProps) => {
             <div className="text-center md:text-left xl:text-left">
               <h3 className="font-semibold text-base mb-3">Visit Our Office</h3>
               <address className="not-italic text-xs md:text-sm text-muted-foreground leading-relaxed">
-                📍 1776 Clear Lake Ave, Suite 200
+                📍 {BRAND_INFO.address.street}
                 <br />
-                Milpitas, California 95035
+                {BRAND_INFO.address.city}, {BRAND_INFO.address.state}{' '}
+                {BRAND_INFO.address.zipCode}
               </address>
             </div>
           </div>

@@ -1,5 +1,6 @@
 'use client';
 
+import { BRAND_INFO } from '@/constants/brandInfo';
 import { motion, useReducedMotion } from 'framer-motion';
 import {
   ArrowRight,
@@ -191,14 +192,17 @@ export const EligibilityAndCta = () => {
                     </Button>
                   </Link>
 
-                  <Link href="tel:+18889450644" className="block">
+                  <Link
+                    href={`tel:${BRAND_INFO.phoneNumberTel}`}
+                    className="block"
+                  >
                     <Button
                       variant="outline"
                       size="lg"
                       className="w-full text-base py-6"
                     >
                       <Phone className="mr-2 h-5 w-5" />
-                      Call (888) 945-0644
+                      Call {BRAND_INFO.phoneNumber}
                     </Button>
                   </Link>
                 </div>
