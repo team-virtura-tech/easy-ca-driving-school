@@ -14,6 +14,7 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
+import { BRAND_INFO } from '@/constants/brandInfo';
 import { cn } from '@/lib/utils';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { motion, useReducedMotion } from 'framer-motion';
@@ -328,11 +329,11 @@ export const Header = () => {
         {/* Desktop Right Section */}
         <div className="hidden xl:flex xl:items-center xl:space-x-4">
           <Link
-            href="tel:+11234567890"
+            href={`tel:${BRAND_INFO.phoneNumberTel}`}
             className="flex items-center space-x-2 text-sm font-medium text-muted-foreground transition-colors hover:text-[--color-brand-orange]"
           >
             <Phone className="h-4 w-4" />
-            <span>(888) 299-8911</span>
+            <span>{BRAND_INFO.phoneNumber}</span>
           </Link>
           <Button asChild className="ml-4">
             <Link href="/contact-us">Book Now</Link>
@@ -379,12 +380,12 @@ export const Header = () => {
 
               <div className="space-y-4">
                 <Link
-                  href="tel:+11234567890"
+                  href={`tel:${BRAND_INFO.phoneNumberTel}`}
                   className="flex items-center space-x-3 px-4 py-3 text-base font-medium text-foreground transition-all duration-200 hover:text-[--color-brand-orange] hover:bg-accent/50 rounded-lg"
                   onClick={() => setIsOpen(false)}
                 >
                   <Phone className="h-5 w-5" />
-                  <span>(888) 299-8911</span>
+                  <span>{BRAND_INFO.phoneNumber}</span>
                 </Link>
 
                 {mounted && showThemeToggle && (

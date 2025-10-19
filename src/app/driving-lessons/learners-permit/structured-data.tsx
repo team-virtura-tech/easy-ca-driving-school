@@ -1,3 +1,5 @@
+import { BRAND_INFO } from '@/constants/brandInfo';
+
 export const generateLearnerPermitStructuredData = () => {
   const baseUrl = 'https://easycodrivingschool.com';
 
@@ -12,10 +14,14 @@ export const generateLearnerPermitStructuredData = () => {
       '@type': 'Organization',
       name: 'Easy California Driving School',
       url: baseUrl,
-      telephone: '888-895-0644',
+      telephone: BRAND_INFO.phoneNumberTel,
+      email: BRAND_INFO.email,
       address: {
         '@type': 'PostalAddress',
+        streetAddress: BRAND_INFO.address.street,
+        addressLocality: BRAND_INFO.address.city,
         addressRegion: 'CA',
+        postalCode: BRAND_INFO.address.zipCode,
         addressCountry: 'US',
       },
     },

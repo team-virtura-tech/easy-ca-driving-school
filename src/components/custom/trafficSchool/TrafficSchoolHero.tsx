@@ -112,7 +112,7 @@ export const TrafficSchoolHero = ({
             {/* Trust Indicators */}
             <div className="mt-8 flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
               <span>✓ Mobile Friendly</span>
-              <span>✓ 24/7 Access</span>
+              <span>✓ 6-12 AM Access</span>
               <span>✓ Instant Certificate</span>
               <span>✓ Money Back Guarantee</span>
             </div>

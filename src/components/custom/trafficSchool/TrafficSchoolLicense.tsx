@@ -1,6 +1,7 @@
 'use client';
 
 import { Badge } from '@/components/ui/badge';
+import { BRAND_INFO } from '@/constants/brandInfo';
 import { cn } from '@/lib/utils';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Award, Calendar, MapPin, Shield } from 'lucide-react';
@@ -21,10 +22,10 @@ export type LicenseInfo = {
 const defaultLicenseInfo: LicenseInfo = {
   licenseNumber: 'E0538',
   issuedTo: 'URBAN TRAFFIC SCHOOL',
-  address: '1776 CLEAR LAKE AVE STE 200',
-  city: 'MILPITAS',
+  address: BRAND_INFO.address.street.toUpperCase().replace(', SUITE', ' STE'),
+  city: BRAND_INFO.address.city.toUpperCase(),
   state: 'CA',
-  zipCode: '95035',
+  zipCode: BRAND_INFO.address.zipCode,
   dateIssued: 'Jul 25, 2023',
   expirationDate: 'Jul 25, 2024',
   formControlNo: '1535568',

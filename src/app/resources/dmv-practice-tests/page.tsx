@@ -257,7 +257,7 @@ export default function DMVPracticeTestsPage() {
                 </CardContent>
               </Card>
 
-              <Card className="group transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20">
+              {/* <Card className="group transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/20">
                 <CardHeader>
                   <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-purple-100 group-hover:bg-purple-200 dark:bg-purple-900/30 dark:group-hover:bg-purple-800/40">
                     <FileText className="h-6 w-6 text-purple-600 dark:text-purple-400" />
@@ -270,7 +270,7 @@ export default function DMVPracticeTestsPage() {
                     California drivers.
                   </p>
                 </CardContent>
-              </Card>
+              </Card> */}
 
               <Card className="group transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/20">
                 <CardHeader>

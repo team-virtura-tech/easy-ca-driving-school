@@ -2,6 +2,7 @@
 
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { BRAND_INFO } from '@/constants/brandInfo';
 import { motion, useReducedMotion } from 'framer-motion';
 import {
   AlertCircle,
@@ -167,8 +168,8 @@ export const PermitRequirements = () => {
                     </li>
                     <li>• DMV will take your photo, so come prepared</li>
                     <li>
-                      • If you have paperwork issues, call us at 888-895-0644
-                      before leaving the DMV
+                      • If you have paperwork issues, call us at{' '}
+                      {BRAND_INFO.phoneNumber} before leaving the DMV
                     </li>
                     <li>
                       • The permit test has 46 questions - you can miss up to 8

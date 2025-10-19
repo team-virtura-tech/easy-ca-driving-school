@@ -5,7 +5,6 @@ import { motion, useInView, useReducedMotion } from 'framer-motion';
 import {
   Award,
   CheckCircle,
-  Clock,
   GraduationCap,
   Shield,
   Star,
@@ -36,10 +35,6 @@ export default function AboutUsPage() {
     {
       icon: <GraduationCap className="h-6 w-6" />,
       text: 'Experienced Instructors',
-    },
-    {
-      icon: <Clock className="h-6 w-6" />,
-      text: '24/7 Online Learning',
     },
     {
       icon: <Users className="h-6 w-6" />,

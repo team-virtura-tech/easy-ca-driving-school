@@ -3,6 +3,7 @@
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { BRAND_INFO } from '@/constants/brandInfo';
 import {
   Award,
   CheckCircle2,
@@ -315,11 +316,11 @@ export default function DMVInfoPage() {
                   asChild
                 >
                   <a
-                    href="tel:+18882998911"
+                    href={`tel:${BRAND_INFO.phoneNumberTel}`}
                     className="inline-flex items-center gap-2"
                   >
                     <Phone className="h-4 w-4" />
-                    Call (888) 299-8911
+                    Call {BRAND_INFO.phoneNumber}
                   </a>
                 </Button>
                 <Button

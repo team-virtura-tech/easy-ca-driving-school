@@ -30,7 +30,7 @@ export const ModernPricingHero = ({
     { icon: Users, label: '15,000+', desc: 'Students Trained' },
     { icon: Award, label: '98%', desc: 'Pass Rate' },
     { icon: Star, label: '4.9/5', desc: 'Average Rating' },
-    { icon: Clock, label: '24/7', desc: 'Support Available' },
+    { icon: Clock, label: '6-12 AM', desc: 'Support Available' },
   ];
 
   const features = [

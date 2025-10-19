@@ -51,9 +51,9 @@ const defaultFeatures: Feature[] = [
   },
   {
     id: 'customer-support',
-    title: '24/7 Customer Support',
+    title: '6-12 AM Customer Support',
     description:
-      'Get help when you need it with our round-the-clock customer support via phone, email, or live chat',
+      'Get help when you need it with our customer support via phone, email.',
     icon: Headphones,
   },
 ];

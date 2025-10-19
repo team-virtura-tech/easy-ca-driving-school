@@ -7,6 +7,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
+import { BRAND_INFO } from '@/constants/brandInfo';
 import { cn } from '@/lib/utils';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ExternalLink, Phone } from 'lucide-react';
@@ -47,8 +48,8 @@ export const StandardFaq = ({
   ctaTitle = 'Still Have Questions?',
   ctaDescription = 'Our friendly customer support team is here to help you. Contact us for personalized assistance.',
   primaryCta = {
-    text: 'Call (888) 299-8911',
-    href: 'tel:888-299-8911',
+    text: `Call ${BRAND_INFO.phoneNumber}`,
+    href: `tel:${BRAND_INFO.phoneNumberTel}`,
   },
   secondaryCta = {
     text: 'Contact Us',
