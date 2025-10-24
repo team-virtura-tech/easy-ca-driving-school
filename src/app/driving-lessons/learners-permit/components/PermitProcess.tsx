@@ -11,6 +11,7 @@ import {
   Car,
   CheckCircle,
   Clock,
+  ExternalLink,
   FileCheck,
 } from 'lucide-react';
 import Link from 'next/link';
@@ -29,7 +30,8 @@ const processSteps = [
       'Certificate mailed upon completion',
     ],
     cta: 'Start Course',
-    ctaLink: '/contact-us',
+    ctaLink: 'https://www.urbantrafficschool.com/',
+    external: true,
   },
   {
     step: '2',
@@ -194,7 +196,7 @@ export const PermitProcess = () => {
                                 className="inline-flex items-center gap-2"
                               >
                                 {step.cta}
-                                <ArrowRight className="h-4 w-4" />
+                                <ExternalLink className="h-4 w-4" />
                               </a>
                             ) : (
                               <Link

@@ -3,7 +3,7 @@
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { motion, useReducedMotion } from 'framer-motion';
-import { CheckCircle, Clock, Users } from 'lucide-react';
+import { CheckCircle, Clock, ExternalLink, Users } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -143,7 +143,15 @@ export const PermitHero = () => {
             {/* CTA Buttons */}
             <div className="flex flex-col gap-4 sm:flex-row">
               <Button asChild size="lg" className="text-lg">
-                <Link href="/contact-us">Start Your Course</Link>
+                <Link
+                  href="https://www.urbantrafficschool.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2"
+                >
+                  Start Your Course
+                  <ExternalLink className="h-4 w-4" />
+                </Link>
               </Button>
               <Button asChild variant="outline" size="lg">
                 <Link href="/resources/dmv-practice-tests">
