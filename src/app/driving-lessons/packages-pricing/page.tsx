@@ -129,8 +129,9 @@ export default function PackagesPricingPage() {
                 <div className="space-y-12">
                   {/* Reduced spacing from space-y-16 to space-y-12 */}
                   {/* Basic Training Hours Section */}
-                  {filteredPackages.filter((pkg) => pkg.lessons <= 2).length >
-                    0 && (
+                  {filteredPackages.filter(
+                    (pkg) => pkg.lessons <= 2 && pkg.category !== 'Test Day'
+                  ).length > 0 && (
                     <div>
                       <div className="mb-6 text-center">
                         {/* Reduced margin from mb-8 to mb-6 */}
@@ -155,7 +156,10 @@ export default function PackagesPricingPage() {
                       <div className="w-full">
                         <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,320px))] justify-center gap-6 max-w-7xl mx-auto">
                           {filteredPackages
-                            .filter((pkg) => pkg.lessons <= 2)
+                            .filter(
+                              (pkg) =>
+                                pkg.lessons <= 2 && pkg.category !== 'Test Day'
+                            )
                             .map((pkg, index) => (
                               <ModernPackageCard
                                 key={pkg.id}
