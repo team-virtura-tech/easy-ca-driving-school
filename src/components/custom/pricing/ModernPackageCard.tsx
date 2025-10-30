@@ -105,18 +105,22 @@ export const ModernPackageCard = ({
           <div className="mb-6 flex-grow">
             {/* Use flex-grow to push button to bottom */}
             <ul className="space-y-2">
-              <li className="flex items-start gap-3">
-                <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                <span className="text-sm text-gray-700 dark:text-gray-300">
-                  {pkg.hours} hours of professional instruction
-                </span>
-              </li>
-              <li className="flex items-start gap-3">
-                <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                <span className="text-sm text-gray-700 dark:text-gray-300">
-                  Free online driver&apos;s education
-                </span>
-              </li>
+              {pkg.category !== 'Test Day' && (
+                <li className="flex items-start gap-3">
+                  <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm text-gray-700 dark:text-gray-300">
+                    {pkg.hours} hours of professional instruction
+                  </span>
+                </li>
+              )}
+              {(pkg.category === 'Teen' || pkg.category === 'Universal') && (
+                <li className="flex items-start gap-3">
+                  <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm text-gray-700 dark:text-gray-300">
+                    Free online driver&apos;s education (teens only)
+                  </span>
+                </li>
+              )}
               {pkg.pickupDropoff && (
                 <li className="flex items-start gap-3">
                   <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
@@ -138,7 +142,11 @@ export const ModernPackageCard = ({
                 <span className="text-sm text-gray-700 dark:text-gray-300">
                   {pkg.category === 'Teen'
                     ? 'Meets California teen requirements'
-                    : 'Flexible scheduling'}
+                    : pkg.category === 'Test Day'
+                      ? 'Professional test day support'
+                      : pkg.category === 'Universal'
+                        ? 'Perfect for teens & adults'
+                        : 'Flexible scheduling'}
                 </span>
               </li>
             </ul>
