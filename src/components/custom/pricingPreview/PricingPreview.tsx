@@ -11,6 +11,8 @@ export type PricingPreviewPlan = {
   name: string;
   hours: number;
   price: number;
+  originalPrice?: number;
+  savings?: number;
   isPopular?: boolean;
 };
 
@@ -20,20 +22,24 @@ const previewPlans: PricingPreviewPlan[] = [
     id: 'starter',
     name: 'Starter',
     hours: 2,
-    price: 120,
+    price: 180,
   },
   {
     id: 'popular',
     name: 'Most Popular',
     hours: 4,
-    price: 220,
+    price: 350,
+    originalPrice: 360,
+    savings: 10,
     isPopular: true,
   },
   {
     id: 'intensive',
     name: 'Intensive',
     hours: 6,
-    price: 320,
+    price: 525,
+    originalPrice: 540,
+    savings: 15,
   },
 ];
 
@@ -124,9 +130,23 @@ export const PricingPreview = ({
 
                 {/* Price */}
                 <div className="mb-3 md:mb-4">
-                  <span className="text-xl font-bold text-gray-900 dark:text-white md:text-2xl lg:text-3xl">
-                    ${plan.price}
-                  </span>
+                  {plan.originalPrice && plan.savings ? (
+                    <div className="flex flex-col items-center gap-1">
+                      <span className="text-sm text-gray-500 dark:text-gray-400 line-through">
+                        ${plan.originalPrice}
+                      </span>
+                      <span className="text-xl font-bold text-gray-900 dark:text-white md:text-2xl lg:text-3xl">
+                        ${plan.price}
+                      </span>
+                      <span className="text-xs font-medium text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30 px-2 py-0.5 rounded-full">
+                        Save ${plan.savings}
+                      </span>
+                    </div>
+                  ) : (
+                    <span className="text-xl font-bold text-gray-900 dark:text-white md:text-2xl lg:text-3xl">
+                      ${plan.price}
+                    </span>
+                  )}
                 </div>
 
                 {/* CTA Button */}
