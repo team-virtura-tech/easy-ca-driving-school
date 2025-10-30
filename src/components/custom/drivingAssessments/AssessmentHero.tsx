@@ -15,6 +15,7 @@ export type StatItemProps = {
 
 const StatItem = ({ icon: Icon, value, label }: StatItemProps) => {
   const reduce = useReducedMotion();
+  const isStarIcon = Icon === Star;
 
   return (
     <motion.div
@@ -23,7 +24,9 @@ const StatItem = ({ icon: Icon, value, label }: StatItemProps) => {
       transition={{ duration: 0.3 }}
       className="flex flex-col items-center p-4 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-2xl border border-primary/20"
     >
-      <Icon className="h-6 w-6 text-primary mb-2" />
+      <Icon
+        className={`h-6 w-6 text-amber-400 mb-2 ${isStarIcon ? 'fill-current' : ''}`}
+      />
       <div className="text-2xl font-bold text-foreground">{value}</div>
       <div className="text-sm text-muted-foreground text-center">{label}</div>
     </motion.div>

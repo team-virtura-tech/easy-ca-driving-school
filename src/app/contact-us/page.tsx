@@ -17,10 +17,6 @@ export default function ContactUsPage() {
           transition={{ duration: 0.5, ease: 'easeOut' }}
           className="relative overflow-hidden rounded-3xl bg-[#F7F5EE] shadow-2xl"
         >
-          {/* Decorative corner tabs */}
-          <div className="absolute left-6 top-0 h-12 w-1 bg-gradient-to-b from-purple-500 to-purple-600 opacity-60" />
-          <div className="absolute right-6 top-0 h-12 w-1 bg-gradient-to-b from-purple-500 to-purple-600 opacity-60" />
-
           <div className="grid grid-cols-1 lg:grid-cols-12">
             {/* Image Column - Left Side */}
             <motion.div
