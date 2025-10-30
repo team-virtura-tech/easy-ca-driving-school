@@ -2,8 +2,13 @@
 
 import { cn } from '@/lib/utils';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
-import Image from 'next/image';
+import {
+  ChevronLeft,
+  ChevronRight,
+  CircleUserRound,
+  Quote,
+  Star,
+} from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
 
 export type Testimonial = {
@@ -33,7 +38,7 @@ const defaultTestimonials: Testimonial[] = [
     avatar: '/images/landing/student-driving.jpg',
     content:
       'Amazing experience! The flexible scheduling and modern teaching techniques made learning to drive stress-free and enjoyable.',
-    rating: 5,
+    rating: 4.5,
   },
   {
     id: '3',
@@ -51,7 +56,7 @@ const defaultTestimonials: Testimonial[] = [
     avatar: '/images/landing/student-driving.jpg',
     content:
       'The best driving school in the area! Their safety-first approach and comprehensive curriculum gave me confidence on the road.',
-    rating: 5,
+    rating: 4.5,
   },
   {
     id: '5',
@@ -103,78 +108,76 @@ export const TestimonialsCarousel = ({
     return () => clearInterval(interval);
   }, [autoPlay, autoPlayInterval, nextTestimonial]);
 
-  // Function to get initials from name
-  const getInitials = (name: string) => {
-    return name
-      .split(' ')
-      .map((word) => word.charAt(0))
-      .join('')
-      .toUpperCase();
-  };
-
-  // Avatar component with fallback to initials
+  // Avatar component using CircleUserRound icon
   const Avatar = ({
-    src,
-    alt,
-    name,
     size = 'md',
   }: {
-    src: string;
-    alt: string;
-    name: string;
+    src?: string;
+    alt?: string;
+    name?: string;
     size?: 'sm' | 'md' | 'lg';
   }) => {
-    const [imageError, setImageError] = useState(false);
     const sizeClasses = {
-      sm: 'h-8 w-8 text-xs',
-      md: 'h-12 w-12 text-sm',
-      lg: 'h-16 w-16 text-lg',
+      sm: 'h-8 w-8',
+      md: 'h-12 w-12',
+      lg: 'h-16 w-16',
     };
 
-    if (imageError) {
-      return (
-        <div
-          className={cn(
-            'flex items-center justify-center rounded-full bg-blue-600 text-white font-semibold',
-            sizeClasses[size]
-          )}
-        >
-          {getInitials(name)}
-        </div>
-      );
-    }
+    const iconSizeClasses = {
+      sm: 'h-5 w-5',
+      md: 'h-8 w-8',
+      lg: 'h-10 w-10',
+    };
 
     return (
       <div
         className={cn(
-          'relative overflow-hidden rounded-full bg-gray-200 dark:bg-gray-700',
+          'flex items-center justify-center rounded-full border bg-muted',
           sizeClasses[size]
         )}
       >
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          className="object-cover"
-          sizes={size === 'sm' ? '32px' : size === 'md' ? '48px' : '64px'}
-          onError={() => setImageError(true)}
+        <CircleUserRound
+          className={cn('text-muted-foreground', iconSizeClasses[size])}
         />
       </div>
     );
   };
 
   const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }, (_, i) => (
-      <Star
-        key={i}
-        className={cn(
-          'h-4 w-4',
-          i < rating
-            ? 'fill-yellow-400 text-yellow-400'
-            : 'fill-gray-200 text-gray-200'
-        )}
-      />
-    ));
+    return (
+      <div className="flex items-center gap-1">
+        {Array.from({ length: 5 }, (_, i) => {
+          const isFilled = i < Math.floor(rating);
+          const isHalf = i === Math.floor(rating) && rating % 1 !== 0;
+
+          if (isHalf) {
+            return (
+              <div key={i} className="relative h-4 w-4">
+                <Star className="h-4 w-4 fill-gray-200 text-gray-200" />
+                <div
+                  className="absolute inset-0 overflow-hidden"
+                  style={{ width: '50%' }}
+                >
+                  <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                </div>
+              </div>
+            );
+          }
+
+          return (
+            <Star
+              key={i}
+              className={cn(
+                'h-4 w-4',
+                isFilled
+                  ? 'fill-yellow-400 text-yellow-400'
+                  : 'fill-gray-200 text-gray-200'
+              )}
+            />
+          );
+        })}
+      </div>
+    );
   };
 
   return (
@@ -242,12 +245,7 @@ export const TestimonialsCarousel = ({
 
                 {/* Author */}
                 <div className="flex items-center gap-4">
-                  <Avatar
-                    src={testimonials[currentIndex].avatar}
-                    alt={testimonials[currentIndex].name}
-                    name={testimonials[currentIndex].name}
-                    size="md"
-                  />
+                  <Avatar size="md" />
                   <div>
                     <div className="font-semibold text-gray-900 dark:text-white">
                       {testimonials[currentIndex].name}
@@ -320,12 +318,7 @@ export const TestimonialsCarousel = ({
                   transition={{ duration: 0.3, ease: 'easeOut' }}
                 >
                   <div className="flex items-center gap-3 mb-2">
-                    <Avatar
-                      src={testimonial.avatar}
-                      alt={testimonial.name}
-                      name={testimonial.name}
-                      size="sm"
-                    />
+                    <Avatar size="sm" />
                     <div>
                       <div className="text-sm font-medium text-gray-900 dark:text-white">
                         {testimonial.name}

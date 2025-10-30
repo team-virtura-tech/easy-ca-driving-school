@@ -93,6 +93,7 @@ export const ModernPricingHero = ({
           >
             {stats.map((stat, index) => {
               const Icon = stat.icon;
+              const isStarIcon = stat.icon === Star;
               return (
                 <motion.div
                   key={index}
@@ -102,7 +103,15 @@ export const ModernPricingHero = ({
                   className="group"
                 >
                   <div className="rounded-2xl border border-orange-200/50 bg-white/80 backdrop-blur-sm p-6 shadow-lg transition-all duration-300 hover:bg-white hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10 dark:border-orange-800/30 dark:bg-gray-800/60 dark:hover:bg-gray-800/80 dark:hover:border-primary/40 dark:shadow-2xl">
-                    <Icon className="mx-auto mb-3 h-8 w-8 text-gray-600 transition-colors group-hover:text-primary dark:text-gray-400 dark:group-hover:text-primary" />
+                    <Icon
+                      className={cn(
+                        'mx-auto mb-3 h-8 w-8 transition-colors',
+                        isStarIcon
+                          ? 'text-amber-400 group-hover:text-amber-500 dark:text-amber-400 dark:group-hover:text-amber-300'
+                          : 'text-gray-600 group-hover:text-primary dark:text-gray-400 dark:group-hover:text-primary'
+                      )}
+                      fill={isStarIcon ? 'currentColor' : 'none'}
+                    />
                     <div className="text-2xl font-bold sm:text-3xl text-gray-900 dark:text-white">
                       {stat.label}
                     </div>
