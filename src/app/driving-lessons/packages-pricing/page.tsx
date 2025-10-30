@@ -220,7 +220,7 @@ export default function PackagesPricingPage() {
                         </div>
                       </div>
                       <div className="w-full">
-                        <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,300px))] justify-center gap-6 max-w-7xl mx-auto">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-center gap-6 max-w-7xl mx-auto">
                           {filteredPackages
                             .filter(
                               (pkg) =>
