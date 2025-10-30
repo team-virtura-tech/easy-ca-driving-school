@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 
 import { motion, useReducedMotion } from 'framer-motion';
 
@@ -13,15 +13,13 @@ import { ModernPricingHero } from '@/components/custom/pricing/ModernPricingHero
 import { BRAND_INFO } from '@/constants/brandInfo';
 import { filterPackages, packages, type FilterState } from '@/lib/packages';
 
-import { ModernFilters } from '@/components/custom/pricing/ModernFilters';
 import { generateStructuredData } from './structured-data';
 
 export default function PackagesPricingPage() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const reduce = useReducedMotion();
 
-  const [filters, setFilters] = useState<FilterState>({
+  const [filters, _setFilters] = useState<FilterState>({
     zip: searchParams.get('zip') || '',
     category: 'All',
     sort: 'popular',
@@ -64,14 +62,8 @@ export default function PackagesPricingPage() {
     },
   ];
 
-  // Update URL when ZIP changes
-  useEffect(() => {
-    if (filters.zip) {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set('zip', filters.zip);
-      router.replace(`?${params.toString()}`, { scroll: false });
-    }
-  }, [filters.zip, router, searchParams]);
+  // Static filters - no dynamic updates needed
+  // useEffect for ZIP changes removed since filters are now hidden
 
   return (
     <>
@@ -89,8 +81,8 @@ export default function PackagesPricingPage() {
         {/* Modern Hero Section */}
         <ModernPricingHero />
 
-        {/* Modern Filters */}
-        <ModernFilters filters={filters} onFiltersChange={setFilters} />
+        {/* Modern Filters - Hidden */}
+        {/* <ModernFilters filters={filters} onFiltersChange={setFilters} /> */}
 
         {/* Packages Grid Section */}
         <section className="py-12 lg:py-16">
@@ -127,18 +119,19 @@ export default function PackagesPricingPage() {
                   </h2>
                   <p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-300">
                     {filteredPackages.length} package
-                    {filteredPackages.length !== 1 ? 's' : ''} available
-                    {filters.zip && ` in ${filters.zip}`}. Each package includes
-                    professional instruction and flexible scheduling.
+                    {filteredPackages.length !== 1 ? 's' : ''} available. Each
+                    package includes professional instruction and flexible
+                    scheduling.
                   </p>
                 </motion.div>
 
                 {/* Package Sections by Type (Like Competitor) */}
                 <div className="space-y-12">
                   {/* Reduced spacing from space-y-16 to space-y-12 */}
-                  {/* Single Lessons Section */}
-                  {filteredPackages.filter((pkg) => pkg.lessons <= 2).length >
-                    0 && (
+                  {/* Basic Training Hours Section */}
+                  {filteredPackages.filter(
+                    (pkg) => pkg.lessons <= 2 && pkg.category !== 'Test Day'
+                  ).length > 0 && (
                     <div>
                       <div className="mb-6 text-center">
                         {/* Reduced margin from mb-8 to mb-6 */}
@@ -148,23 +141,25 @@ export default function PackagesPricingPage() {
                             <div className="flex items-center justify-center gap-3">
                               <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
                               <h2 className="text-lg font-semibold text-gray-900 dark:text-white tracking-wide">
-                                SINGLE LESSON(S)
+                                BASIC TRAINING HOURS
                               </h2>
                               <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
                             </div>
                           </div>
                         </div>
                         <p className="mt-4 text-gray-600 dark:text-gray-400">
-                          Purchase 1 or 2 lessons
+                          2-4 Hours Training
                           <br />
-                          Only enroll if you do not intend to take 3 lessons or
-                          more.
+                          Perfect for beginners or quick refresher sessions.
                         </p>
                       </div>
                       <div className="w-full">
                         <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,320px))] justify-center gap-6 max-w-7xl mx-auto">
                           {filteredPackages
-                            .filter((pkg) => pkg.lessons <= 2)
+                            .filter(
+                              (pkg) =>
+                                pkg.lessons <= 2 && pkg.category !== 'Test Day'
+                            )
                             .map((pkg, index) => (
                               <ModernPackageCard
                                 key={pkg.id}
@@ -180,7 +175,7 @@ export default function PackagesPricingPage() {
                     </div>
                   )}
 
-                  {/* Package Lessons (3-Pack, 4-Pack, 6-Pack) */}
+                  {/* Training Hour Packages (6-12 Hours) */}
                   {filteredPackages.filter(
                     (pkg) =>
                       pkg.lessons >= 3 && pkg.lessons <= 6 && !pkg.carForTest
@@ -195,14 +190,14 @@ export default function PackagesPricingPage() {
                             <div className="flex items-center justify-center gap-3">
                               <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
                               <h2 className="text-lg font-semibold text-gray-900 dark:text-white tracking-wide">
-                                LESSON PACKAGES
+                                TRAINING HOUR PACKAGES
                               </h2>
                               <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
                             </div>
                           </div>
                         </div>
                         <div className="flex justify-center gap-3 flex-wrap mb-8">
-                          {/* Get unique lesson counts to avoid duplicates */}
+                          {/* Get unique hour counts to avoid duplicates */}
                           {Array.from(
                             new Set(
                               filteredPackages
@@ -212,20 +207,20 @@ export default function PackagesPricingPage() {
                                     pkg.lessons <= 6 &&
                                     !pkg.carForTest
                                 )
-                                .map((pkg) => pkg.lessons)
+                                .map((pkg) => pkg.hours)
                             )
-                          ).map((lessonCount) => (
+                          ).map((hourCount) => (
                             <div
-                              key={lessonCount}
+                              key={hourCount}
                               className="bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-full text-sm font-medium shadow-sm"
                             >
-                              {lessonCount}-PACK
+                              {hourCount} HOURS
                             </div>
                           ))}
                         </div>
                       </div>
                       <div className="w-full">
-                        <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,300px))] justify-center gap-6 max-w-7xl mx-auto">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-center gap-6 max-w-7xl mx-auto">
                           {filteredPackages
                             .filter(
                               (pkg) =>
@@ -249,8 +244,9 @@ export default function PackagesPricingPage() {
                   )}
 
                   {/* Complete Package (with DMV Test) */}
-                  {filteredPackages.filter((pkg) => pkg.carForTest).length >
-                    0 && (
+                  {filteredPackages.filter(
+                    (pkg) => pkg.carForTest && pkg.category !== 'Test Day'
+                  ).length > 0 && (
                     <div>
                       <div className="mb-6 text-center">
                         {/* Reduced margin from mb-8 to mb-6 */}
@@ -273,7 +269,50 @@ export default function PackagesPricingPage() {
                       <div className="w-full">
                         <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,320px))] justify-center gap-6 max-w-7xl mx-auto">
                           {filteredPackages
-                            .filter((pkg) => pkg.carForTest)
+                            .filter(
+                              (pkg) =>
+                                pkg.carForTest && pkg.category !== 'Test Day'
+                            )
+                            .map((pkg, index) => (
+                              <ModernPackageCard
+                                key={pkg.id}
+                                id={`package-${pkg.id}`}
+                                pkg={pkg}
+                                zip={filters.zip}
+                                index={index}
+                                className="w-full"
+                              />
+                            ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* DMV Test Day Service */}
+                  {filteredPackages.filter((pkg) => pkg.category === 'Test Day')
+                    .length > 0 && (
+                    <div>
+                      <div className="mb-6 text-center">
+                        <div className="relative inline-block">
+                          <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-red-500/10 rounded-2xl blur-xl transform scale-110"></div>
+                          <div className="relative bg-white dark:bg-gray-900 border-2 border-orange-500/30 px-8 py-3 rounded-2xl shadow-sm">
+                            <div className="flex items-center justify-center gap-3">
+                              <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
+                              <h2 className="text-lg font-semibold text-gray-900 dark:text-white tracking-wide">
+                                DMV TEST DAY SERVICE
+                              </h2>
+                              <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <p className="mt-4 text-lg text-gray-700 dark:text-gray-300 font-semibold">
+                          Car + Meet at DMV • Optional 1-hr Warm-up
+                        </p>
+                      </div>
+                      <div className="w-full">
+                        <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,320px))] justify-center gap-6 max-w-7xl mx-auto">
+                          {filteredPackages
+                            .filter((pkg) => pkg.category === 'Test Day')
                             .map((pkg, index) => (
                               <ModernPackageCard
                                 key={pkg.id}
@@ -365,11 +404,8 @@ export default function PackagesPricingPage() {
         <div className="border-t bg-gray-100 py-8 dark:border-gray-700 dark:bg-gray-800">
           <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              {filters.zip
-                ? `Prices shown are for ZIP code ${filters.zip}.`
-                : 'Enter your ZIP code above for location-specific pricing.'}{' '}
               All prices exclude taxes and DMV fees. Flexible payment plans
-              available at checkout.
+              available at checkout. Service available throughout California.
             </p>
           </div>
         </div>

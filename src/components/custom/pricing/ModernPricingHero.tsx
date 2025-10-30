@@ -60,58 +60,7 @@ export const ModernPricingHero = ({
         <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_40%,rgba(249,115,22,0.03)_50%,transparent_60%)] dark:bg-[linear-gradient(45deg,transparent_40%,rgba(249,115,22,0.08)_50%,transparent_60%)]" />
       </div>
 
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute h-1 w-1 rounded-full bg-primary/20 dark:bg-primary/30"
-            animate={
-              reduce
-                ? {}
-                : {
-                    x: [0, 100, -100, 0],
-                    y: [0, -100, 100, 0],
-                    opacity: [0.2, 0.6, 0.2],
-                  }
-            }
-            transition={{
-              duration: 25 + i * 5,
-              repeat: Infinity,
-              ease: 'linear',
-            }}
-            style={{
-              left: `${10 + i * 12}%`,
-              top: `${20 + i * 8}%`,
-            }}
-          />
-        ))}
-        {/* Larger floating elements */}
-        {[...Array(4)].map((_, i) => (
-          <motion.div
-            key={`large-${i}`}
-            className="absolute h-3 w-3 rounded-full bg-gradient-to-br from-primary/10 to-orange-300/10 dark:bg-gradient-to-br dark:from-primary/20 dark:to-orange-400/20"
-            animate={
-              reduce
-                ? {}
-                : {
-                    x: [0, -50, 50, 0],
-                    y: [0, 50, -50, 0],
-                    scale: [1, 1.2, 0.8, 1],
-                  }
-            }
-            transition={{
-              duration: 30 + i * 8,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-            style={{
-              right: `${15 + i * 20}%`,
-              top: `${30 + i * 15}%`,
-            }}
-          />
-        ))}
-      </div>
+      {/* Animated Background Elements - Removed */}
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
         <div className="text-center">

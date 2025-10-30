@@ -89,7 +89,7 @@ export const ModernFilters = ({
             </label>
             <Select
               value={filters.category}
-              onValueChange={(value: 'Teen' | 'Adult' | 'All') =>
+              onValueChange={(value: 'Teen' | 'Adult' | 'Test Day' | 'All') =>
                 onFiltersChange({ ...filters, category: value })
               }
             >
@@ -100,6 +100,7 @@ export const ModernFilters = ({
                 <SelectItem value="All">All Categories</SelectItem>
                 <SelectItem value="Teen">Teen (15½-17½)</SelectItem>
                 <SelectItem value="Adult">Adult (18+)</SelectItem>
+                <SelectItem value="Test Day">DMV Test Day</SelectItem>
               </SelectContent>
             </Select>
           </motion.div>
