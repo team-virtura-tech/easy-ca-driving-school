@@ -3,6 +3,7 @@
 import { BRAND_INFO } from '@/constants/brandInfo';
 import { cn } from '@/lib/utils';
 import { motion, useReducedMotion } from 'framer-motion';
+import { Building2, Mail, MapPin, Phone } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import CircularText from './circularText';
@@ -155,7 +156,7 @@ export const Footer = ({ id, className }: FooterProps) => {
               <h3 className="font-semibold text-base mb-3">Get in Touch</h3>
               <div className="space-y-2 text-sm">
                 <div className="flex items-center justify-center md:justify-start xl:justify-start gap-2">
-                  <span>📞</span>
+                  <Phone className="h-4 w-4 text-muted-foreground" />
                   <a
                     href={`tel:${BRAND_INFO.phoneNumberTel}`}
                     className="text-muted-foreground hover:text-primary transition-colors"
@@ -164,7 +165,7 @@ export const Footer = ({ id, className }: FooterProps) => {
                   </a>
                 </div>
                 <div className="flex items-start justify-center md:justify-start xl:justify-start gap-2">
-                  <span className="mt-0.5">✉️</span>
+                  <Mail className="h-4 w-4 text-muted-foreground mt-0.5" />
                   <a
                     href={`mailto:${BRAND_INFO.email}`}
                     className="text-muted-foreground hover:text-primary transition-colors break-all text-xs md:text-sm leading-tight"
@@ -173,7 +174,7 @@ export const Footer = ({ id, className }: FooterProps) => {
                   </a>
                 </div>
                 <div className="flex items-center justify-center md:justify-start xl:justify-start gap-2 pt-2 border-t border-border/30 mt-3">
-                  <span>🏛️</span>
+                  <Building2 className="h-4 w-4 text-[--color-brand-orange]" />
                   <span className="font-medium text-[--color-brand-orange] text-xs md:text-sm">
                     CA DMV License # E2127
                   </span>
@@ -184,12 +185,15 @@ export const Footer = ({ id, className }: FooterProps) => {
             {/* Address */}
             <div className="text-center md:text-left xl:text-left">
               <h3 className="font-semibold text-base mb-3">Visit Our Office</h3>
-              <address className="not-italic text-xs md:text-sm text-muted-foreground leading-relaxed">
-                📍 {BRAND_INFO.address.street}
-                <br />
-                {BRAND_INFO.address.city}, {BRAND_INFO.address.state}{' '}
-                {BRAND_INFO.address.zipCode}
-              </address>
+              <div className="flex items-start gap-2">
+                <MapPin className="h-4 w-4 text-muted-foreground mt-0.5" />
+                <address className="not-italic text-xs md:text-sm text-muted-foreground leading-relaxed">
+                  {BRAND_INFO.address.street}
+                  <br />
+                  {BRAND_INFO.address.city}, {BRAND_INFO.address.state}{' '}
+                  {BRAND_INFO.address.zipCode}
+                </address>
+              </div>
             </div>
           </div>
         </div>
