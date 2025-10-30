@@ -2,8 +2,7 @@
 
 import type { Testimonial } from '@/app/reviews/page.tsx';
 import { motion } from 'framer-motion';
-import { Quote, Star } from 'lucide-react';
-import Image from 'next/image';
+import { CircleUserRound, Quote, Star } from 'lucide-react';
 
 function Stars({ rating }: { rating: number }) {
   return (
@@ -11,13 +10,34 @@ function Stars({ rating }: { rating: number }) {
       className="flex items-center gap-0.5"
       aria-label={`${rating} out of 5 stars`}
     >
-      {Array.from({ length: 5 }).map((_, i) => (
-        <Star
-          key={i}
-          className={`size-4 ${i < rating ? 'text-amber-400' : 'text-muted-foreground/40'}`}
-          fill={i < rating ? 'currentColor' : 'none'}
-        />
-      ))}
+      {Array.from({ length: 5 }).map((_, i) => {
+        const isFilled = i < Math.floor(rating);
+        const isHalf = i === Math.floor(rating) && rating % 1 !== 0;
+
+        if (isHalf) {
+          return (
+            <div key={i} className="relative size-4">
+              <Star className="size-4 text-muted-foreground/40" fill="none" />
+              <div
+                className="absolute inset-0 overflow-hidden"
+                style={{ width: '50%' }}
+              >
+                <Star className="size-4 text-amber-400" fill="currentColor" />
+              </div>
+            </div>
+          );
+        }
+
+        return (
+          <Star
+            key={i}
+            className={`size-4 ${
+              isFilled ? 'text-amber-400' : 'text-muted-foreground/40'
+            }`}
+            fill={isFilled ? 'currentColor' : 'none'}
+          />
+        );
+      })}
     </div>
   );
 }
@@ -40,13 +60,8 @@ export const MasonryWall = ({
         >
           {/* Header */}
           <div className="flex items-start gap-3">
-            <div className="relative h-12 w-12 overflow-hidden rounded-full border bg-muted">
-              <Image
-                src={t.avatar}
-                alt={`${t.name} avatar`}
-                fill
-                className="object-cover"
-              />
+            <div className="flex h-12 w-12 items-center justify-center rounded-full border bg-muted">
+              <CircleUserRound className="h-8 w-8 text-muted-foreground" />
             </div>
             <div className="flex-1">
               <div className="flex items-center justify-between gap-2">

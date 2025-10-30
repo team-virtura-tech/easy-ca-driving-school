@@ -2,7 +2,6 @@
 import { AnimatedSection } from '@/components/custom/Animated';
 import { MasonryWall } from '@/components/custom/reviews/MasonryWall';
 import type { Metadata } from 'next';
-import { siFacebook, siGoogle, siYelp } from 'simple-icons';
 
 export const metadata: Metadata = {
   title: 'Student Reviews - Easy CA Driving School',
@@ -54,7 +53,7 @@ const defaultTestimonials: Testimonial[] = [
     avatar: '/images/landing/student-driver.jpg',
     content:
       'I needed to refresh my driving skills and this school exceeded my expectations. Highly recommend their professional courses.',
-    rating: 5,
+    rating: 4.5,
     city: 'Milpitas',
     tags: ['Refresher Course'],
     date: '2025-03-30',
@@ -103,7 +102,7 @@ const defaultTestimonials: Testimonial[] = [
     avatar: '/images/landing/student-driving.jpg',
     content:
       'Friendly instructors and super practical tips for busy Bay Area roads. Parallel parking finally makes sense!',
-    rating: 5,
+    rating: 4.5,
     city: 'San Jose',
     tags: ['Parking Mastery'],
     date: '2025-06-08',
@@ -163,7 +162,7 @@ const defaultTestimonials: Testimonial[] = [
     avatar: '/images/aboutUs/maleProfile.png',
     content:
       'Loved the step-by-step breakdowns. Parking and lane changes finally clicked for me.',
-    rating: 5,
+    rating: 4.5,
     city: 'Sunnyvale',
     tags: ['Parking Mastery'],
     date: '2025-04-22',
@@ -211,7 +210,7 @@ const defaultTestimonials: Testimonial[] = [
     avatar: '/images/landing/student-driver.jpg',
     content:
       "I was terrified of hill starts—now they are easy. Couldn't recommend more!",
-    rating: 5,
+    rating: 4.5,
     city: 'Sunnyvale',
     tags: ['Beginners'],
     date: '2025-02-09',
@@ -259,7 +258,7 @@ const defaultTestimonials: Testimonial[] = [
     avatar: '/images/landing/student-driver.jpg',
     content:
       'Flexible scheduling and practical routes around my neighborhood. I felt ready for everything.',
-    rating: 5,
+    rating: 4.5,
     city: 'Sunnyvale',
     tags: ['Flexible Scheduling'],
     date: '2025-03-05',
@@ -303,7 +302,7 @@ export default function ReviewsPage() {
         transition={{ duration: 0.45 }}
       >
         <div className="rounded-2xl border bg-muted/30 p-5">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-center">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 text-center">
             <div>
               <p className="text-2xl font-semibold">
                 {avg.toFixed(1)}
@@ -315,49 +314,11 @@ export default function ReviewsPage() {
               <p className="text-2xl font-semibold">{reviewCount}+</p>
               <p className="text-xs text-muted-foreground">Student Reviews</p>
             </div>
-            <div className="col-span-2 lg:col-span-1">
+            <div>
               <p className="text-2xl font-semibold">4 Cities</p>
               <p className="text-xs text-muted-foreground">
                 Milpitas • Fremont • San Jose • Sunnyvale
               </p>
-            </div>
-            <div className="col-span-2 lg:col-span-1 flex items-center justify-center gap-1 lg:gap-2 text-xs text-muted-foreground">
-              <span className="rounded-full border px-2 lg:px-3 py-1 lg:py-1.5 bg-background flex items-center gap-1 lg:gap-1.5">
-                <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  style={{ color: siGoogle.hex }}
-                >
-                  <path d={siGoogle.path} />
-                </svg>
-                <span className="hidden lg:inline">Google</span>
-              </span>
-              <span className="rounded-full border px-2 lg:px-3 py-1 lg:py-1.5 bg-background flex items-center gap-1 lg:gap-1.5">
-                <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  style={{ color: siYelp.hex }}
-                >
-                  <path d={siYelp.path} />
-                </svg>
-                <span className="hidden lg:inline">Yelp</span>
-              </span>
-              <span className="rounded-full border px-2 lg:px-3 py-1 lg:py-1.5 bg-background flex items-center gap-1 lg:gap-1.5">
-                <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  style={{ color: siFacebook.hex }}
-                >
-                  <path d={siFacebook.path} />
-                </svg>
-                <span className="hidden lg:inline">Facebook</span>
-              </span>
             </div>
           </div>
         </div>
