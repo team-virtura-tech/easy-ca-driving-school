@@ -27,7 +27,74 @@ const contactSchema = z.object({
     .max(2000, 'Message must be less than 2000 characters'),
   topics: z.array(z.string()).max(6, 'Please select up to 6 topics').optional(),
   company: z.string().optional(), // honeypot
+  recaptchaToken: z.string().min(1, 'reCAPTCHA token is required'),
 });
+
+// reCAPTCHA verification function
+async function verifyRecaptcha(token: string): Promise<boolean> {
+  try {
+    const projectId = process.env.RECAPTCHA_PROJECT_ID;
+    const apiKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+
+    if (!projectId || !apiKey) {
+      console.error('reCAPTCHA configuration missing');
+      return false;
+    }
+
+    // Get Google Application Credentials from environment
+    const credentialsJson = process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON;
+    if (!credentialsJson) {
+      console.error('Google Application Credentials JSON not found');
+      return false;
+    }
+
+    const credentials = JSON.parse(credentialsJson);
+
+    // Create JWT for authentication
+    const { JWT } = await import('google-auth-library');
+    const client = new JWT({
+      email: credentials.client_email,
+      key: credentials.private_key,
+      scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+    });
+
+    const accessToken = await client.authorize();
+
+    const response = await fetch(
+      `https://recaptchaenterprise.googleapis.com/v1/projects/${projectId}/assessments`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${accessToken.access_token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          event: {
+            token,
+            expectedAction: 'contact_form_submit',
+            siteKey: apiKey,
+          },
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      console.error('reCAPTCHA verification failed:', response.statusText);
+      return false;
+    }
+
+    const result = await response.json();
+
+    // Check if the token is valid and the score is acceptable
+    return (
+      result.tokenProperties?.valid === true &&
+      result.riskAnalysis?.score >= 0.5
+    );
+  } catch (error) {
+    console.error('reCAPTCHA verification error:', error);
+    return false;
+  }
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -40,6 +107,21 @@ export async function POST(request: NextRequest) {
 
     // Validate the request body
     const validatedData = contactSchema.parse(body);
+
+    // Verify reCAPTCHA
+    const isRecaptchaValid = await verifyRecaptcha(
+      validatedData.recaptchaToken
+    );
+    if (!isRecaptchaValid) {
+      console.error(
+        'reCAPTCHA verification failed for token:',
+        validatedData.recaptchaToken?.substring(0, 20) + '...'
+      );
+      return NextResponse.json(
+        { message: 'reCAPTCHA verification failed. Please try again.' },
+        { status: 400 }
+      );
+    }
 
     // Format topics for display
     const topicsText = validatedData.topics?.length
