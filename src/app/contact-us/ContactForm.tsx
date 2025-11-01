@@ -248,6 +248,11 @@ export const ContactForm = ({ id, className }: ContactFormProps) => {
           )}
           aria-invalid={errors.phone ? 'true' : 'false'}
           aria-describedby={errors.phone ? 'phone-error' : undefined}
+          onInput={(e) => {
+            // Only allow numeric characters, spaces, hyphens, parentheses, and plus signs
+            const target = e.target as HTMLInputElement;
+            target.value = target.value.replace(/[^0-9\s()+.-]/g, '');
+          }}
           {...register('phone')}
         />
         {errors.phone && (
