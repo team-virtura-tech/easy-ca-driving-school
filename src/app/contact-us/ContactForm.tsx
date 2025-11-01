@@ -4,11 +4,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { useRecaptcha } from '@/hooks/useRecaptcha';
 import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Loader2, Send } from 'lucide-react';
-import Link from 'next/link';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -64,6 +64,7 @@ export const ContactForm = ({ id, className }: ContactFormProps) => {
 
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { executeRecaptcha, isReady } = useRecaptcha();
 
   const {
     register,
@@ -96,6 +97,12 @@ export const ContactForm = ({ id, className }: ContactFormProps) => {
     setIsSubmitting(true);
 
     try {
+      // Execute reCAPTCHA
+      const recaptchaToken = await executeRecaptcha('contact_form_submit');
+      if (!recaptchaToken) {
+        throw new Error('reCAPTCHA verification failed. Please try again.');
+      }
+
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -105,6 +112,7 @@ export const ContactForm = ({ id, className }: ContactFormProps) => {
           ...data,
           name: `${data.firstName} ${data.lastName}`, // Combine first and last name
           topics: selectedTopics,
+          recaptchaToken, // Include reCAPTCHA token
         }),
       });
 
@@ -170,6 +178,7 @@ export const ContactForm = ({ id, className }: ContactFormProps) => {
             type="text"
             placeholder="John"
             autoComplete="given-name"
+            data-form-type="contact"
             className={cn(
               'py-3 text-base',
               errors.firstName &&
@@ -256,7 +265,7 @@ export const ContactForm = ({ id, className }: ContactFormProps) => {
         <Input
           id="email"
           type="email"
-          placeholder="jane@framer.com"
+          placeholder="jane@gmail.com"
           autoComplete="email"
           className={cn(
             'py-3 text-base',
@@ -344,7 +353,7 @@ export const ContactForm = ({ id, className }: ContactFormProps) => {
       <div className="space-y-3 pt-4">
         <Button
           type="submit"
-          disabled={isSubmitting}
+          disabled={isSubmitting || !isReady}
           className="w-full rounded-xl bg-foreground py-3.5 font-medium text-background hover:bg-foreground/90 disabled:opacity-50"
         >
           {isSubmitting ? (
@@ -360,12 +369,32 @@ export const ContactForm = ({ id, className }: ContactFormProps) => {
           )}
         </Button>
 
+        {/* reCAPTCHA Notice */}
+        <div className="text-center text-xs text-muted-foreground">
+          This site is protected by reCAPTCHA and the Google{' '}
+          <a
+            href="https://policies.google.com/privacy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-foreground"
+          >
+            Privacy Policy
+          </a>{' '}
+          and{' '}
+          <a
+            href="https://policies.google.com/terms"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-foreground"
+          >
+            Terms of Service
+          </a>{' '}
+          apply.
+        </div>
+
         {/* Privacy Note */}
         <p className="text-center text-sm text-muted-foreground">
-          We&apos;ll never share your info.{' '}
-          <Link href="/privacy" className="underline hover:text-foreground">
-            Privacy Policy
-          </Link>
+          We&apos;ll never share your info.
         </p>
       </div>
     </motion.form>

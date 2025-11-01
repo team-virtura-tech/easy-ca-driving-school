@@ -237,3 +237,6 @@
     background-size: 20px 20px;
   }
 }
+.grecaptcha-badge {
+  visibility: hidden !important;
+}

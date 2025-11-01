@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useMemo } from 'react';
 import type { LogoColorScheme } from './types';
 
 export type LogoIconProps = {
@@ -8,6 +9,7 @@ export type LogoIconProps = {
   colorScheme: LogoColorScheme;
   animated?: boolean;
   className?: string;
+  id?: string;
 };
 
 export const LogoIcon = ({
@@ -15,8 +17,19 @@ export const LogoIcon = ({
   colorScheme,
   animated = false,
   className,
+  id,
 }: LogoIconProps) => {
-  const gradientId = `gradient-${Math.random().toString(36).substr(2, 9)}`;
+  // Create a stable gradient ID based on component props or provided id
+  const gradientId = useMemo(() => {
+    if (id) return `gradient-${id}`;
+    // Create a deterministic ID based on size and colorScheme
+    const hash =
+      `${size}-${colorScheme.primary}-${colorScheme.secondary}`.replace(
+        /[^a-zA-Z0-9]/g,
+        ''
+      );
+    return `gradient-logo-${hash}`;
+  }, [id, size, colorScheme]);
 
   return (
     <svg
